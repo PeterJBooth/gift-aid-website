@@ -8,7 +8,7 @@ const ToggleInput = () => {
           <div className="toggle-sign">£</div>
           <div className="toggle-slider"></div>
         </div>
-        <input type="number" className="text-input"></input>
+        <input type="number" className="text-input toggle"></input>
       </div>
     </div>
   );

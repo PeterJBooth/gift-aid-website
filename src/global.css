@@ -4,6 +4,15 @@
   font-family: Roboto;
 }
 
+img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -o-user-drag: none;
+  user-select: none;
+}
+
 :root {
   /* font sizes */
   --body: 14px;

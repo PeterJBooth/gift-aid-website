@@ -57,6 +57,15 @@ header {
 
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.what-is-gift-aid-button:hover {
+  background-color: hsl(174, 37%, 72%);
+}
+
+.what-is-gift-aid-button:active {
+  background-color: hsl(174, 37%, 65%);
+  box-shadow: none;
 }
 
 .what-is-gift-aid-text {
