@@ -1,18 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import toogleIcon from "../assets/toggle.svg";
+import { UseCalculatorContext } from "../context/CalculatorContext";
 
-const SelectInput = ({ inputTitle, setSelectValue, setInputValue }) => {
+const SelectInput = ({ inputTitle, setSelectValue, setInputValue, id }) => {
   const [textInputActive, setTextInputActive] = useState(false);
   let inputRef = useRef();
-
-  useEffect(() => {
-    let handler = (e) => {
-      if (!inputRef.current.contains(e.target)) {
-        setTextInputActive(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-  });
+  const { activeSelectInput } = UseCalculatorContext();
 
   const handleOptionChange = (e) => {
     setSelectValue(e.target.value);
@@ -43,7 +36,7 @@ const SelectInput = ({ inputTitle, setSelectValue, setInputValue }) => {
         </div>
         <div
           className={
-            textInputActive
+            activeSelectInput === id
               ? "text-input-container active"
               : "text-input-container"
           }
@@ -56,7 +49,9 @@ const SelectInput = ({ inputTitle, setSelectValue, setInputValue }) => {
           <input
             type="number"
             className="text-input"
+            min="1"
             onChange={(e) => handleInputChange(e)}
+            id={id}
           ></input>
         </div>
       </div>

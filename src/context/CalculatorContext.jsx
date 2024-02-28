@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CalculatorContext = createContext();
 
@@ -12,10 +12,33 @@ const CalculatorContextProvider = (props) => {
 
   const [livesInScotland, setLivesScotland] = useState(false);
   const [contributesToPension, setContributesToPension] = useState(false);
+  const [pensionformat, setPensionformat] = useState("percentage");
+
   const [higherRateGiftAidRelief, setHigherRateGiftAidRelief] = useState(false);
   const [higherRatePensionRelief, setHigherRatePensionRelief] = useState(false);
 
   const [usingAdvancedOptions, setUsingAdvancedOptions] = useState(false);
+  const [activeSelectInput, setActiveSelectInput] = useState("123");
+
+  useEffect(() => {
+    const handler = (e) => {
+      // console.log(
+      //   `new value '${e.target.id}' old value '${activeSelectInput}'`
+      // );
+
+      if (e.target.id !== "") {
+        setActiveSelectInput(e.target.id);
+      }
+      if (e.target.id === "" && activeSelectInput !== e.target.id) {
+        setActiveSelectInput(e.target.id);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [activeSelectInput]);
 
   return (
     <CalculatorContext.Provider
@@ -27,10 +50,13 @@ const CalculatorContextProvider = (props) => {
         setLivesScotland,
         setContributesToPension,
         contributesToPension,
+        pensionformat,
+        setPensionformat,
         setUsingAdvancedOptions,
         usingAdvancedOptions,
         setHigherRateGiftAidRelief,
         setHigherRatePensionRelief,
+        activeSelectInput,
       }}
     >
       {props.children}

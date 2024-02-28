@@ -28,18 +28,20 @@ const CalculatorForm = () => {
         inputTitle="Income"
         setSelectValue={setSelectedIncomeInterval}
         setInputValue={setIncome}
+        id="select1"
       />
       <SelectInput
         inputTitle="Amount I want to Donate"
         setSelectValue={setSelectedDonationInterval}
         setInputValue={setDonationAmount}
+        id="select2"
       />
       <CheckboxInput title="I Live In Scotland" setState={setLivesScotland} />
       <CheckboxInput
         title="I Contribute To a Pension"
         setState={setContributesToPension}
       />
-      {contributesToPension === true && <ToggleInput />}
+      {contributesToPension === true && <ToggleInput id="select2" />}
       <hr />
       <CheckboxInput
         title="Use Advanced Options"
