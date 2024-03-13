@@ -13,12 +13,13 @@ const CalculatorContextProvider = (props) => {
   const [livesInScotland, setLivesScotland] = useState(false);
   const [contributesToPension, setContributesToPension] = useState(false);
   const [pensionformat, setPensionformat] = useState("percentage");
+  const [pensionAmount, setPensionAmount] = useState(0);
 
   const [higherRateGiftAidRelief, setHigherRateGiftAidRelief] = useState(false);
   const [higherRatePensionRelief, setHigherRatePensionRelief] = useState(false);
 
   const [usingAdvancedOptions, setUsingAdvancedOptions] = useState(false);
-  const [activeSelectInput, setActiveSelectInput] = useState("123");
+  const [activeSelectInput, setActiveSelectInput] = useState("");
 
   useEffect(() => {
     const handler = (e) => {
@@ -57,6 +58,8 @@ const CalculatorContextProvider = (props) => {
         setHigherRateGiftAidRelief,
         setHigherRatePensionRelief,
         activeSelectInput,
+        pensionAmount,
+        setPensionAmount,
       }}
     >
       {props.children}

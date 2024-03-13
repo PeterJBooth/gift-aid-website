@@ -11,24 +11,24 @@ const MainPage = () => {
     <main>
       <CalculatorContextProvider>
         {/* <div className="layout-grid">
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-        <div className="layout-column"></div>
-      </div> */}
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+          <div className="layout-column"></div>
+        </div> */}
         <img src={vector1} alt="" className="vector1" />
         <Header />
         <div className="calculator-and-result-container">
           <CalculatorForm />
-          <PageTitle />
+          {/* <PageTitle /> */}
         </div>
         <img src={vector2} alt="" className="vector2" />
       </CalculatorContextProvider>

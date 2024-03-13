@@ -4,7 +4,7 @@
 
   margin-left: 4px;
   width: 20rem;
-  gap: 2rem;
+  /* gap: 2rem; */
   /* background-color: rgba(92, 31, 25, 0.193); */
 }
 
@@ -26,6 +26,7 @@
   flex-direction: column;
   width: 100%;
   gap: 1rem;
+  padding: 1rem 0;
 }
 
 .input-title {
@@ -161,6 +162,10 @@ select {
 .checkbox-container {
   display: flex;
   gap: 1rem;
+  background-color: #fff;
+
+  z-index: 2;
+  padding: 1rem 0;
 }
 
 .checkbox {
@@ -204,12 +209,13 @@ select {
 .toggle-input-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  max-height: 100rem;
+  z-index: 2;
+  background-color: white;
 }
 .toggle-input {
   display: flex;
-  /* background-color: #d8d8d8; */
-  /* border-radius: 0.5rem; */
+  padding-top: 1rem;
 }
 
 .toggle {
@@ -279,18 +285,19 @@ select {
 
 .toggle-input .text-input:hover {
   border: 2px solid var(--Foundation-Orange-orange-500, #205b9bc5);
-}
-
-.toggle-input .text-input:hover {
   padding-left: calc(1rem - 1px);
 }
-
 .toggle-input .text-input:focus {
   border: 2px solid var(--Foundation-Orange-orange-500, #205b9bc5);
-  padding-left: calc(1rem - 1px);
 }
 
-.calculator-form hr {
+.line-break-container {
+  background-color: white;
+  z-index: 2;
+  padding: 1rem 0;
+}
+
+.line-break-container hr {
   stroke-width: 4px;
   height: 1px;
   background-color: var(--Foundation-Neutral-neutral-100, #d8d8d8);
@@ -320,6 +327,8 @@ select {
   /* transition: 70ms; */
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+
+  margin: 1rem 0;
 }
 
 .calculate-button:hover {
@@ -341,34 +350,14 @@ select {
   font-size: 13px;
   font-weight: 300;
 
-  z-index: -1;
+  z-index: 1;
   gap: 0.25rem;
-
-  margin-top: 0rem;
-  max-height: 2rem;
-  opacity: 1;
-
-  transition: all 0.7s;
-
-  /* margin-top: 0; */
-  /* animation: fade-in 1s; */
-}
-
-.message.hide {
-  /* display: none; */
-  max-height: 0;
-  margin-top: -1rem;
-  opacity: 0;
+  background-color: white;
 }
 
 .information-circle {
   height: 0.9rem;
   width: 0.9rem;
-}
-
-.exclamation-triangle {
-  /* height: 0.8rem; */
-  /* width: 0.9rem; */
 }
 
 .message.information {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import checkMark from "../assets/check-mark.svg";
 
-const CheckboxInput = ({ title, setState }) => {
+const CheckboxInput = ({ title, setState, zIndex }) => {
   const [isTicked, setIsTicked] = useState(false);
 
   const clickCheckbox = () => {
@@ -15,7 +15,7 @@ const CheckboxInput = ({ title, setState }) => {
   };
 
   return (
-    <div className="checkbox-container">
+    <div className="checkbox-container" style={{ zIndex: zIndex }}>
       <div
         className={isTicked ? "checkbox ticked" : "checkbox"}
         onClick={() => {
