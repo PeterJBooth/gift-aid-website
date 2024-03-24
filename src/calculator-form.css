@@ -131,6 +131,7 @@ select {
   padding: 0 0 0 0.5rem;
   background-color: white;
   z-index: 1;
+  background-color: var(--background-white, #fafafa);
 }
 
 .text-input-container.active .pound-placeholder,
@@ -153,6 +154,7 @@ select {
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+  background-color: var(--background-white, #fafafa);
 }
 
 .text-input:focus {
@@ -162,7 +164,7 @@ select {
 .checkbox-container {
   display: flex;
   gap: 1rem;
-  background-color: #fff;
+  background-color: var(--background-white, #fafafa);
 
   z-index: 2;
   padding: 1rem 0;
@@ -211,7 +213,7 @@ select {
   flex-direction: column;
   max-height: 100rem;
   z-index: 2;
-  background-color: white;
+  background-color: var(--background-white, #fafafa);
 }
 .toggle-input {
   display: flex;
@@ -280,7 +282,8 @@ select {
 .toggle-input .text-input {
   border: 1px solid var(--Foundation-Neutral-neutral-100, #d8d8d8);
   border-radius: 0rem 0.375rem 0.375rem 0rem;
-  /* background-color: none; */
+
+  background-color: var(--background-white, #fafafa);
 }
 
 .toggle-input .text-input:hover {
@@ -292,7 +295,7 @@ select {
 }
 
 .line-break-container {
-  background-color: white;
+  background-color: var(--background-white, #fafafa);
   z-index: 2;
   padding: 1rem 0;
 }
@@ -349,10 +352,12 @@ select {
   display: flex;
   font-size: 13px;
   font-weight: 300;
+  /* justify-content: center; */
+  align-items: center;
 
   z-index: 1;
   gap: 0.25rem;
-  background-color: white;
+  background-color: var(--background-white, #fafafa);
 }
 
 .information-circle {
@@ -365,6 +370,12 @@ select {
   color: var(--blue-500, #2364aa);
 }
 .message.validation {
-  /* font-weight: 400; */
+  font-weight: 400;
   color: #ff1100;
+
+  /* height: 0.5rem; */
+}
+.exclamation-triangle {
+  height: 0.8rem;
+  padding-bottom: 0.1rem;
 }

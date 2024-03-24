@@ -8,9 +8,12 @@ import { CalculatorContextProvider } from "../context/CalculatorContext";
 
 const MainPage = () => {
   return (
-    <main>
-      <CalculatorContextProvider>
-        {/* <div className="layout-grid">
+    <div className="main-page-content">
+      <Header />
+
+      <main>
+        <CalculatorContextProvider>
+          {/* <div className="layout-grid">
           <div className="layout-column"></div>
           <div className="layout-column"></div>
           <div className="layout-column"></div>
@@ -24,15 +27,15 @@ const MainPage = () => {
           <div className="layout-column"></div>
           <div className="layout-column"></div>
         </div> */}
-        <img src={vector1} alt="" className="vector1" />
-        <Header />
-        <div className="calculator-and-result-container">
-          <CalculatorForm />
-          {/* <PageTitle /> */}
-        </div>
-        <img src={vector2} alt="" className="vector2" />
-      </CalculatorContextProvider>
-    </main>
+          <img src={vector1} alt="" className="vector1" />
+          <div className="calculator-and-result-container">
+            <CalculatorForm />
+            <PageTitle />
+          </div>
+          <img src={vector2} alt="" className="vector2" />
+        </CalculatorContextProvider>
+      </main>
+    </div>
   );
 };
 
