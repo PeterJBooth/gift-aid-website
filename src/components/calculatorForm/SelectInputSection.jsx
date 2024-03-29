@@ -1,5 +1,5 @@
 import { useTransition } from "@react-spring/web";
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { SelectInput } from "./SelectInput";
 
 const SelectInputSection = () => {

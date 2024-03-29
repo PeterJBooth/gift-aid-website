@@ -1,14 +1,15 @@
 import { useTransition } from "@react-spring/web";
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CheckboxInput } from "./CheckboxInput";
 import { ToggleInput } from "./ToggleInput";
+import { useEffect } from "react";
 
 const PensionSection = () => {
   const {
     contributesToPension,
     setContributesToPension,
-    pensionAmount,
-    setPensionAmount,
+    pensionContribution,
+    setPensionContribution,
   } = UseCalculatorContext();
 
   const componentTransition = useTransition(contributesToPension, {
@@ -29,19 +30,30 @@ const PensionSection = () => {
     },
   });
 
+  useEffect(() => {
+    const resetHiddedComponentStates = () => {
+      setPensionContribution(0);
+    };
+
+    if (!contributesToPension) {
+      resetHiddedComponentStates();
+    }
+  }, [contributesToPension]);
+
   return (
     <>
       <CheckboxInput
         title="I Contribute To a Pension"
-        setState={setContributesToPension}
+        setCheckboxState={setContributesToPension}
+        checkboxState={contributesToPension}
         zIndex={3}
       />
       {componentTransition((style, item) =>
         item === true ? (
           <ToggleInput
             id="pensionInput"
-            setInputValue={setPensionAmount}
-            inputValue={pensionAmount}
+            setInputValue={setPensionContribution}
+            inputValue={pensionContribution}
             style={style}
           />
         ) : (

@@ -1,19 +1,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { calculateGiftAidEligibility } from "../calculate";
+import { getGiftAidEligibilityInformation } from "../calculate";
 const CalculatorContext = createContext();
 
 const CalculatorContextProvider = (props) => {
-  const [selectedIncomeInterval, setSelectedIncomeInterval] = useState("Month");
+  const [selectedIncomeInterval, setSelectedIncomeInterval] = useState("Year");
   const [grossIncome, setGrossIncome] = useState(null);
 
   const [selectedDonationInterval, setSelectedDonationInterval] =
-    useState("Month");
+    useState("Year");
   const [donationAmount, setDonationAmount] = useState(null);
+  const [livesInScotland, setLivesInScotland] = useState(false);
 
-  const [livesInScotland, setLivesScotland] = useState(false);
   const [contributesToPension, setContributesToPension] = useState(false);
   const [pensionformat, setPensionformat] = useState("percentage");
-  const [pensionAmount, setPensionAmount] = useState(0);
+  const [pensionContribution, setPensionContribution] = useState(0);
 
   const [claimsAdditionalGiftAidRelief, setClaimsAdditionalGiftAidRelief] =
     useState(false);
@@ -24,6 +24,10 @@ const CalculatorContextProvider = (props) => {
   const [activeSelectInput, setActiveSelectInput] = useState("");
 
   const [validationErrors, setValidationErrors] = useState([]);
+
+  const [eligibilityInformation, setEligibilityInformation] = useState({
+    informationRetrieved: false,
+  });
 
   useEffect(() => {
     const handler = (e) => {
@@ -56,7 +60,7 @@ const CalculatorContextProvider = (props) => {
 
     const isInvalidPensionPercentage =
       pensionformat === "percentage" &&
-      (pensionAmount > 100 || pensionAmount < 0);
+      (pensionContribution > 100 || pensionContribution < 0);
 
     if (isInvalidPensionPercentage) {
       validationErrors.push("Invalid Pension Percentage");
@@ -80,14 +84,19 @@ const CalculatorContextProvider = (props) => {
   };
 
   const determineGiftAidEligibility = () => {
-    calculateGiftAidEligibility(
+    const giftAidEligibilityInformation = getGiftAidEligibilityInformation(
       grossIncome,
       donationAmount,
       livesInScotland,
-      pensionAmount,
+      pensionContribution,
       claimsAdditionalGiftAidRelief,
-      claimsAdditionalPensionRelief
+      claimsAdditionalPensionRelief,
+      selectedIncomeInterval,
+      selectedDonationInterval,
+      pensionformat
     );
+
+    setEligibilityInformation(giftAidEligibilityInformation);
     // return;
   };
 
@@ -98,22 +107,27 @@ const CalculatorContextProvider = (props) => {
         setGrossIncome,
         setSelectedDonationInterval,
         setDonationAmount,
-        setLivesScotland,
+        setLivesInScotland,
+        livesInScotland,
         setContributesToPension,
         contributesToPension,
         pensionformat,
         setPensionformat,
         setUsingAdvancedOptions,
         usingAdvancedOptions,
+        claimsAdditionalGiftAidRelief,
+        claimsAdditionalPensionRelief,
         setClaimsAdditionalGiftAidRelief,
         setClaimsAdditionalPensionRelief,
         activeSelectInput,
-        pensionAmount,
-        setPensionAmount,
+        pensionContribution,
+        setPensionContribution,
         validateFormInputs,
         validationErrors,
         removeValidationError,
         determineGiftAidEligibility,
+        eligibilityInformation,
+        selectedDonationInterval,
       }}
     >
       {props.children}

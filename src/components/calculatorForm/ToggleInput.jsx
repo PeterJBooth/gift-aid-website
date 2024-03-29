@@ -1,6 +1,5 @@
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { IoInformationCircle } from "react-icons/io5";
-import { BsExclamationTriangle } from "react-icons/bs";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { ValidationMessage } from "./ValidationMessage";
@@ -147,7 +146,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
             ref={inputRef}
             id={id}
             onChange={(e) => handleInputChange(e)}
-            value={inputValue !== 0 ? inputValue : null}
+            value={inputValue !== 0 ? inputValue : ""}
           ></input>
         </div>
       </animated.div>

@@ -1,12 +1,12 @@
-import { CheckboxInput } from "../components/CheckboxInput";
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import { CheckboxInput } from "./CheckboxInput";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CalculateButton } from "./CalculateButton";
 import { AdvancedOptionsSection } from "./AdvancedOptionsSection";
 import { PensionSection } from "./PensionSection";
 import { SelectInputSection } from "./SelectInputSection";
 
 const CalculatorForm = () => {
-  const { setLivesScotland } = UseCalculatorContext();
+  const { setLivesInScotland, livesInScotland } = UseCalculatorContext();
 
   return (
     <div className="calculator-form">
@@ -14,7 +14,8 @@ const CalculatorForm = () => {
       <SelectInputSection />
       <CheckboxInput
         title="I Live In Scotland"
-        setState={setLivesScotland}
+        setCheckboxState={setLivesInScotland}
+        checkboxState={livesInScotland}
         zIndex={3}
       />
       <PensionSection />

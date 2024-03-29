@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import toogleIcon from "../assets/toggle.svg";
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import toogleIcon from "../../assets/toggle.svg";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { ValidationMessage } from "./ValidationMessage";
 
 const SelectInput = ({
@@ -19,14 +19,12 @@ const SelectInput = ({
 
   const handleOptionChange = (e) => {
     setSelectValue(e.target.value);
-    console.log(e.target.value);
     return;
   };
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value !== "" ? Number(e.target.value) : null;
     setInputValue(inputValue);
-    console.log(inputValue);
 
     const errorMessageIsRendered = validationErrors.includes(validationError);
     if (errorMessageIsRendered && inputValue != null) {
@@ -46,8 +44,8 @@ const SelectInput = ({
                 handleOptionChange(e);
               }}
             >
-              <option>Month</option>
               <option>Year</option>
+              <option>Month</option>
             </select>
             <img src={toogleIcon} alt="toggle" className="select-toggle" />
           </div>

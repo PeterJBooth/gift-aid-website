@@ -1,28 +1,24 @@
 import { useState } from "react";
-import checkMark from "../assets/check-mark.svg";
+import checkMark from "../../assets/check-mark.svg";
 
-const CheckboxInput = ({ title, setState, zIndex }) => {
-  const [isTicked, setIsTicked] = useState(false);
-
+const CheckboxInput = ({ title, setCheckboxState, checkboxState, zIndex }) => {
   const clickCheckbox = () => {
-    if (isTicked === true) {
-      setIsTicked(false);
-      setState(false);
+    if (checkboxState === true) {
+      setCheckboxState(false);
     } else {
-      setIsTicked(true);
-      setState(true);
+      setCheckboxState(true);
     }
   };
 
   return (
     <div className="checkbox-container" style={{ zIndex: zIndex }}>
       <div
-        className={isTicked ? "checkbox ticked" : "checkbox"}
+        className={checkboxState ? "checkbox ticked" : "checkbox"}
         onClick={() => {
           clickCheckbox();
         }}
       >
-        {isTicked === true && (
+        {checkboxState === true && (
           <img className="check-mark" src={checkMark} alt="check mark" />
         )}
       </div>
