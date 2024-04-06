@@ -1,7 +1,14 @@
 import { useState } from "react";
 import checkMark from "../../assets/check-mark.svg";
+import { MoreInfoProvider } from "./MoreInfoProvider";
 
-const CheckboxInput = ({ title, setCheckboxState, checkboxState, zIndex }) => {
+const CheckboxInput = ({
+  title,
+  setCheckboxState,
+  checkboxState,
+  zIndex,
+  informationBox,
+}) => {
   const clickCheckbox = () => {
     if (checkboxState === true) {
       setCheckboxState(false);
@@ -22,7 +29,15 @@ const CheckboxInput = ({ title, setCheckboxState, checkboxState, zIndex }) => {
           <img className="check-mark" src={checkMark} alt="check mark" />
         )}
       </div>
-      <p className="checkbox-title">{title}</p>
+      <div className="checkbox-title">
+        {title}
+        {informationBox && (
+          <MoreInfoProvider
+            title={informationBox.title}
+            content={informationBox.content}
+          />
+        )}
+      </div>
     </div>
   );
 };

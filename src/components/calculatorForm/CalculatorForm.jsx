@@ -16,7 +16,12 @@ const CalculatorForm = () => {
         title="I Live In Scotland"
         setCheckboxState={setLivesInScotland}
         checkboxState={livesInScotland}
-        zIndex={3}
+        zIndex={5}
+        informationBox={{
+          title: "Scottish Tax Impact",
+          content:
+            "The Scottish Government has its own tax bands for those living in Scotland, so the amount of income tax you pay is calculated differently.",
+        }}
       />
       <PensionSection />
       <div className="line-break-container">

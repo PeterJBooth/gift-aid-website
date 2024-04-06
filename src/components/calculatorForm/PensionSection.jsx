@@ -46,7 +46,7 @@ const PensionSection = () => {
         title="I Contribute To a Pension"
         setCheckboxState={setContributesToPension}
         checkboxState={contributesToPension}
-        zIndex={3}
+        zIndex={4}
       />
       {componentTransition((style, item) =>
         item === true ? (

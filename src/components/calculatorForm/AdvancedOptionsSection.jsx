@@ -39,6 +39,11 @@ const AdvancedOptionsSection = () => {
         title="Use Advanced Options"
         setCheckboxState={setUsingAdvancedOptions}
         checkboxState={usingAdvancedOptions}
+        informationBox={{
+          title: "Advanced Options",
+          content:
+            "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayer, who claim the below forms of tax relief.",
+        }}
       />
       {advancedOptionsTransition((style, item) =>
         item === true ? (

@@ -9,7 +9,7 @@ const PageTitle = () => {
     <div className="page-title-container">
       <img src={tickIcon} alt="Tick Icon" className="tick-icon" />
       <div className="page-title">
-        <span>Check Your Eligibility</span>
+        <span className="title-line1">Check Your Eligibility</span>
         <span>for Gift Aid Donations</span>
         <img src={underline} alt="underline" className="underline" />
       </div>

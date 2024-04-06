@@ -3,6 +3,7 @@ import { IoInformationCircle } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { ValidationMessage } from "./ValidationMessage";
+import { MoreInfoProvider } from "./MoreInfoProvider";
 
 const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
   const {
@@ -103,7 +104,18 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
   return (
     <>
       <animated.div className="toggle-input-container" style={style}>
-        <div className="input-title">Pension Contribution</div>
+        <div className="input-title">
+          Pension Contribution
+          <MoreInfoProvider
+            title={"Pension Contribution"}
+            content={`If you contribute to a pension via the PAYE system, please input themonthly amount here.
+
+              This calculation assumes that you contribute to your pension from your net pay, thereby receiving tax relief on contributions from HMRC. If you are unsure if this the case, it is recommended to enter the amount you contribute anyway.
+              
+              You can enter the contribution as a percentage of your salary (e.g. 8%) or provide the actual amount you contribute per month (e.g. £300).)`}
+          />
+        </div>
+
         <div id="pension-select-input" className="toggle-input">
           <div className="toggle">
             <div
@@ -150,7 +162,6 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           ></input>
         </div>
       </animated.div>
-
       {informationMessageTransition((style, item) =>
         item === true ? (
           <animated.div style={style} className="message information">

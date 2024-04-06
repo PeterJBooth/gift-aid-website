@@ -1,43 +1,29 @@
 import { Header } from "../components/Header";
 
-import backgroundShape from "../assets/background-shape.svg";
-import backgroundShape2 from "../assets/background-shape2.svg";
 import { CalculatorContextProvider } from "../context/CalculatorContext";
 import { FormSection } from "../components/FormSection";
 import { Footer } from "../components/Footer";
+import { ScreenTypeContextProvider } from "../context/ScreenTypeContext";
+import { PopupContextProvider } from "../context/PopupContext";
+import { GiftAidButton } from "../components/GiftAidButton";
+import { Menu } from "../components/Menu";
+import { BackgroundShapes } from "../components/BackgroundShapes";
 
 const MainPage = () => {
   return (
     <>
-      <img src={backgroundShape} alt="" className="background-shape" />
-      <div className="background-shape-container">
-        <img src={backgroundShape2} alt="" className="background-shape2" />
-      </div>
-      <div className="main-page-content">
-        <Header />
-
-        <main>
-          <CalculatorContextProvider>
-            {/* <div className="layout-grid">
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-            <div className="layout-column"></div>
-          </div> */}
-            <FormSection />
-          </CalculatorContextProvider>
-        </main>
-
-        <Footer />
-      </div>
+      <ScreenTypeContextProvider>
+        <PopupContextProvider>
+          <Header giftAidButtonActive={true} />
+          <main>
+            <BackgroundShapes />
+            <CalculatorContextProvider>
+              <FormSection />
+            </CalculatorContextProvider>
+          </main>
+          <Footer />
+        </PopupContextProvider>
+      </ScreenTypeContextProvider>
     </>
   );
 };

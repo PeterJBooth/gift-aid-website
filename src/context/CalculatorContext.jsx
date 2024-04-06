@@ -97,7 +97,7 @@ const CalculatorContextProvider = (props) => {
     );
 
     setEligibilityInformation(giftAidEligibilityInformation);
-    // return;
+    return giftAidEligibilityInformation;
   };
 
   return (

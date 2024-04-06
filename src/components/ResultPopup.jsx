@@ -1,10 +1,14 @@
 import checkMark from "../assets/check-mark2.svg";
 import { animated } from "@react-spring/web";
 import { UseCalculatorContext } from "../context/CalculatorContext";
+import { IoMdClose } from "react-icons/io";
+import { usePopupContext } from "../context/PopupContext";
+import { useScreenTypeContext } from "../context/ScreenTypeContext";
 
 const ResultPopup = ({ style }) => {
-  const { eligibilityInformation, selectedDonationInterval } =
-    UseCalculatorContext();
+  const { eligibilityInformation } = UseCalculatorContext();
+  const { screenType } = useScreenTypeContext();
+  const { setPopupIsActive } = usePopupContext();
 
   const displayResultMessage = () => {
     if (eligibilityInformation.canClaimGiftAid) {
@@ -58,13 +62,38 @@ const ResultPopup = ({ style }) => {
     return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  const handleCloseButtonClick = () => {
+    setPopupIsActive(false);
+  };
+
+  const handleBreakdownButtonClick = () => {
+    if (screenType.isMobile || screenType.isTablet) {
+      setPopupIsActive(false);
+    }
+  };
+
   return (
     <animated.div className="result-popup-container" style={style}>
       <div className="result-popup">
+        <IoMdClose
+          className="close-icon"
+          size={28}
+          onClick={() => {
+            handleCloseButtonClick();
+          }}
+        />
+
         {displayResultMessage()}
         <div className="result-info-container">
           {displayResultDescription()}
-          <button className="breakdown-button">See Breakdown</button>
+          <button
+            className="breakdown-button"
+            onClick={() => {
+              handleBreakdownButtonClick();
+            }}
+          >
+            See Breakdown
+          </button>
           <div className="result-notice">
             The calculation makes standard assumptions to determine how much you
             can gift aid. If you have any doubts, we recommend you reach out to

@@ -3,7 +3,7 @@
   flex-direction: column;
 
   margin-left: 4px;
-  width: 20rem;
+  max-width: 20rem;
   /* gap: 2rem; */
   /* background-color: rgba(92, 31, 25, 0.193); */
 }
@@ -30,6 +30,7 @@
 }
 
 .input-title {
+  display: flex;
   color: var(--Black, #000);
 
   /* Title 1 bold */
@@ -39,6 +40,17 @@
   font-weight: 700;
   line-height: 120%; /* 1.35rem */
   /* margin-bottom: 1rem; */
+  align-items: end;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.toggle-input-container .input-title {
+  position: relative;
 }
 
 .select-input {
@@ -166,6 +178,7 @@ select {
   gap: 1rem;
   background-color: var(--background-white, #fafafa);
 
+  /* This is sometimes set to higher value via JS */
   z-index: 2;
   padding: 1rem 0;
 }
@@ -200,6 +213,7 @@ select {
 }
 
 .checkbox-title {
+  display: flex;
   color: var(--Black, #000);
 
   font-size: 1.125rem;
@@ -212,7 +226,7 @@ select {
   display: flex;
   flex-direction: column;
   max-height: 100rem;
-  z-index: 2;
+  z-index: 3;
   background-color: var(--background-white, #fafafa);
 }
 .toggle-input {
@@ -379,7 +393,70 @@ select {
   height: 0.8rem;
   padding-bottom: 0.1rem;
 }
+.question-mark-info-box-container {
+  position: relative;
+  margin-left: 0.45rem;
+}
+.question-mark {
+  padding-bottom: 0.15rem;
+  color: #194779;
+  cursor: pointer;
+}
 
+.question-mark:hover {
+  color: var(--blue-200, #9ab8d8);
+}
+
+.question-mark:active {
+  color: #194779;
+  position: relative;
+}
+
+.information-box {
+  position: absolute;
+  top: 2.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 21rem;
+  /* height: 10rem; */
+  background-color: var(--background-white, #fafafa);
+  border: solid;
+  border-color: var(--neutral-100, #d8d8d8);
+  border-radius: 4px;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 4;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.information-box::before {
+  position: absolute;
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--background-white, #fafafa);
+  top: -1px;
+
+  right: 50%;
+  transform: translate(50%, -50%) rotate(45deg);
+  border-left: solid;
+  border-top: solid;
+  border-color: var(--neutral-100, #d8d8d8);
+}
+.information-box .close-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: block;
+}
+
+.information-box .body {
+  white-space: pre-line;
+}
 /* .test {
   position: absolute;
 

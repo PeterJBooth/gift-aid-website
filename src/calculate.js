@@ -11,8 +11,9 @@ const getGiftAidEligibilityInformation = (
   selectedDonationInterval,
   pensionformat
 ) => {
-  console.log("income " + selectedIncomeInterval);
-  console.log("donation " + selectedDonationInterval);
+  // console.log("income " + selectedIncomeInterval);
+  // console.log("donation " + selectedDonationInterval);
+
   // Cost units are in £
 
   // info we need
@@ -89,8 +90,8 @@ const getGiftAidEligibilityInformation = (
     timeInterval: selectedDonationInterval,
   };
 
-  console.log(incomeTaxTable);
-  console.log(taxBand);
+  // console.log(incomeTaxTable);
+  // console.log(taxBand);
   console.log("Income Tax: " + incomeTaxAmount);
   console.log("Pension Tax Relief: " + pensionTaxReliefAmount);
   console.log("Total Tax Paid: " + totalTaxPaid);
@@ -199,7 +200,7 @@ const getPersonalAllowance = (grossIncome) => {
     grossIncome < 100000
       ? 12570
       : 12570 - Math.min(12570, (grossIncome - 100000) * 2);
-  console.log(personalAllowance);
+  // console.log(personalAllowance);
   return personalAllowance;
 };
 
@@ -216,7 +217,7 @@ const calculateIncomeTaxInEachBand = (taxBands, grossIncome) => {
           )
         : Math.max(grossIncome - lowerLimit, 0);
 
-    console.log(taxBand.incomeInBand);
+    // console.log(taxBand.incomeInBand);
 
     taxBand.taxAmount = (taxBand.incomeInBand * taxBand.taxRate) / 100;
   });
@@ -241,7 +242,7 @@ const getPensionTaxReliefPercentage = (
   taxBand,
   claimsAdditionalPensionTaxRelief
 ) => {
-  if (claimsAdditionalPensionTaxRelief) {
+  if (claimsAdditionalPensionTaxRelief && taxBand.taxRate > 20) {
     // If Basic Rate pays 80 -> They get 20 in relief
     // If Higher Rate pays 60 -> They get 40 in relief
     // If Additional Rate pays 55 -> They get 45 in relief
@@ -306,7 +307,7 @@ const calculateGiftAidTaxRelief = (
   donationAmount,
   taxBand
 ) => {
-  if (claimsAdditionalGiftAidTaxRelief) {
+  if (claimsAdditionalGiftAidTaxRelief && taxBand.taxRate > 20) {
     // Donation * Gift Aid Claim Percentage Increase * Tax Relief Percentage
 
     const taxRelief = (donationAmount * 1.25 * (taxBand.taxRate - 20)) / 100;
@@ -322,7 +323,7 @@ const calculateGiftAidDonationCap = (
   totalTaxPaid,
   taxBand
 ) => {
-  console.log(taxBand.taxRate > 20);
+  // console.log(taxBand.taxRate > 20);
 
   if (claimsAdditionalGiftAidTaxRelief && taxBand.taxRate > 20) {
     // Reverse the gift Aid claim and Tax Relief functions
