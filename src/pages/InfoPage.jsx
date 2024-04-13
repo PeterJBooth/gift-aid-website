@@ -10,7 +10,7 @@ const InfoPage = () => {
     <>
       <ScreenTypeContextProvider>
         <Header giftAidButtonActive={false} />
-        <div className="coming-soon h1">Cooming Soon</div>
+        <div className="coming-soon h1">Coming Soon</div>
 
         {/* <main>
           <div className="summary-info-container">
