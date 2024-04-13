@@ -10,9 +10,7 @@ const InfoPage = () => {
     <>
       <ScreenTypeContextProvider>
         <Header giftAidButtonActive={false} />
-        <div className="coming-soon h1">Cooming Soon</div>
-
-        {/* <main>
+        <main>
           <div className="summary-info-container">
             <div className="info-page-title">What Is Gift Aid?</div>
             <div className="title2">
@@ -85,11 +83,19 @@ const InfoPage = () => {
                 answer="No, Gift Aid can be claimed on various types of donations, including
           those made by debit or credit card, standing order, cheque, or through
           a fundraising event."
+                answerHeight={72}
+              />
+              <Question
+                question="Is Gift Aid only applicable to cash donations?"
+                answer="No, Gift Aid can be claimed on various types of donations, including
+          those made by debit or credit card, standing order, cheque, or through
+          a fundraising event."
+                answerHeight={72}
               />
             </div>
           </div>
-        </main> */}
-        {/* <Footer /> */}
+        </main>
+        <Footer />
       </ScreenTypeContextProvider>
     </>
   );

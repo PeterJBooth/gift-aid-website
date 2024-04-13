@@ -1,8 +1,8 @@
 import { useState } from "react";
 import vIcon from "../assets/info-page/v-icon.svg";
-import { useTransition } from "@react-spring/web";
+import { useTransition, animated } from "@react-spring/web";
 
-const Question = ({ question, answer }) => {
+const Question = ({ question, answer, answerHeight }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
@@ -13,22 +13,25 @@ const Question = ({ question, answer }) => {
     }
   };
 
-  const expandTransition = useTransition(isExpanded, {
+  const expandTransition = useTransition(isExpanded === true, {
     from: {
       opacity: 0,
       maxHeight: 0,
+      y: -answerHeight,
       paddingTop: 0,
       paddingBottom: 0,
     },
     enter: {
       opacity: 1,
-      maxHeight: 16,
-      paddingTop: 8,
-      paddingBottom: 8,
+      maxHeight: answerHeight,
+      y: 0,
+      paddingTop: 16,
+      paddingBottom: 0,
     },
     leave: {
       opacity: 0,
       maxHeight: 0,
+      y: -answerHeight,
       paddingTop: 0,
       paddingBottom: 0,
     },
@@ -39,18 +42,21 @@ const Question = ({ question, answer }) => {
       <img
         src={vIcon}
         alt="Toggle"
-        className="v-icon"
+        className={isExpanded ? "v-icon rotated" : "v-icon"}
         onClick={() => {
           handleClick();
         }}
       />
+
       <div className="question-and-answer">
-        <div className="title2 bold top-align">{question}</div>
+        <div className="title2 bold top-align white question-title">
+          {question}
+        </div>
         {expandTransition((style, item) =>
           item === true ? (
-            <div className="title2" style={style}>
+            <animated.div className="title2" style={style}>
               {answer}
-            </div>
+            </animated.div>
           ) : (
             ""
           )
