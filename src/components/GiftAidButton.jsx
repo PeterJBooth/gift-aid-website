@@ -6,14 +6,18 @@ const GiftAidButton = () => {
     navigate("/what-is-gift-aid");
   };
   return (
-    <button
-      className="what-is-gift-aid-button"
-      onClick={() => {
-        handleButtonClick();
-      }}
-    >
-      <div className="what-is-gift-aid-text">What is Gift Aid</div>
-    </button>
+    <>
+      <button
+        className=" bg-turquoise-400 rounded-xl shadow-md hover:bg-opacity-80 active:bg-opacity-100 active:shadow-none"
+        onClick={() => {
+          handleButtonClick();
+        }}
+      >
+        <div className="py-4 px-8 text-white font-medium text-lg">
+          What is Gift Aid
+        </div>
+      </button>
+    </>
   );
 };
 

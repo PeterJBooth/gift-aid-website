@@ -1,78 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import logoSmall from "../assets/logo-small.svg";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
+import { Brand } from "./Brand";
 
 const Footer = () => {
-  const navigate = useNavigate();
-
   const { screenType } = useScreenTypeContext();
 
-  const handleClick = () => {
-    navigate("/");
-  };
-
-  const displayFooterInformation = () => {
-    if (!screenType.isMobile) {
-      return (
-        <>
-          <div className="brand-and-copyright">
-            <div
-              className="brand-logo-and-title small"
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              <img src={logoSmall} alt="logo icon" />
-              <div className="brand-name small">VerifyMyGiftAid</div>
+  return (
+    <div className="flex flex-col gap-6 mb-8 px-custom max-w-10xl mx-auto mt-auto w-full">
+      <hr className=" bg-neutral-200 border-none h-px" />
+      <div className="flex items-end justify-between gap-4">
+        <div className="flex  flex-col tablet:flex-row gap-6 w-full tablet:w-auto tablet:items-end">
+          <div className="-mb-0.5">
+            <Brand defaultSize="small" />
+          </div>
+          <div className="flex justify-between w-full tablet:w-auto gap-4">
+            <div className="text-xs2 leading-4">
+              Copyright © 2024 VeryifyMyGiftAid
             </div>
-            <div className="caption">Copyright © 2024 VeryifyMyGiftAid</div>
-          </div>
-          <div className="caption">United Kingdom</div>
-        </>
-      );
-    } else {
-      return (
-        <div className="brand-and-copyright">
-          <div
-            className="brand-logo-and-title small"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            <img src={logoSmall} alt="logo icon" />
-            <div className="brand-name small">VerifyMyGiftAid</div>
-          </div>
-          <div className="copyright">
-            <div className="caption">Copyright © 2024 VeryifyMyGiftAid</div>
-            <div className="caption">United Kingdom</div>
+            {screenType.isMobile && (
+              <div className="text-xs2 leading-4">United Kingdom</div>
+            )}
           </div>
         </div>
-      );
-    }
-  };
-
-  return (
-    <div className="footer-container">
-      <hr className="linebreak" />
-      <div className="footer-information">{displayFooterInformation()}</div>
+        {!screenType.isMobile && (
+          <div className="text-xs2 leading-4">United Kingdom</div>
+        )}
+      </div>
     </div>
   );
 };
 
 export { Footer };
-
-{
-  /* <div className="footer-container">
-<hr className="linebreak" />
-<div className="footer-information">
-  <div className="brand-and-copyright">
-    <div className="brand-logo-and-title">
-      <img src={logoSmall} alt="logo icon" />
-      <div className="brand-name small">VerifyMyGiftAid</div>
-    </div>
-    <div className="caption">Copyright © 2024 VeryifyMyGiftAid</div>
-  </div>
-  <div className="caption">United Kingdom</div>
-</div>
-</div> */
-}

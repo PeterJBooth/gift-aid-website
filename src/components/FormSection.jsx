@@ -90,8 +90,7 @@ const FormSection = () => {
   };
 
   return (
-    <div className="calculator-and-result-container">
-      {/* <div className="test"></div> */}
+    <div className="calculator-and-result-container flex flex-col desktop:flex-row items-center desktop:items-start my-40 justify-between px-custom max-w-10xl mx-auto w-full ">
       {displayContent()}
     </div>
   );
