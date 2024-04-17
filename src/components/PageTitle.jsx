@@ -6,21 +6,28 @@ import "../calculator-form.css";
 
 const PageTitle = () => {
   return (
-    <div className="page-title-container mt-24 relative">
+    <div className=" relative mb-40  mt-0 desktop:mt-24">
       <img
         src={tickIcon}
         alt="Tick Icon"
-        className="absolute -top-[5.125rem] -left-[1.375rem]"
+        className="absolute left-1/2 top-1/2 -translate-x-[9.5rem] -translate-y-[10rem] scale-75 largePhone:-left-[1.375rem] largePhone:-top-[5.125rem] largePhone:translate-x-0 largePhone:translate-y-0 largePhone:scale-90 tablet:scale-100"
       />
-      <div className="page-title text-[45px] text-center leading-snug tracking-tighter font-black max-w-[25rem] desktop:text-[55px] ">
-        <span className="title-line1">Check Your Eligibility</span>
-        <span>for Gift Aid Donations</span>
-        <img src={underline} alt="underline" className="underline" />
+      <div className="max-w-[25rem] largePhone:max-w-max">
+        <span className="block text-center text-[45px] font-black leading-tight	 tracking-tight desktop:text-[55px] largeDesktop:text-[65px]">
+          Check Your Eligibility
+        </span>
+        <span className="block text-center text-[45px] font-black leading-tight	 tracking-tight desktop:text-[55px] largeDesktop:text-[65px]">
+          for Gift Aid Donations
+        </span>
+        <img
+          src={underline}
+          alt="underline"
+          className="absolute bottom-1/2 left-1/2 w-32 translate-x-[-1.7rem]  translate-y-[3.9rem] largePhone:bottom-[-0.7rem] largePhone:left-[4.25rem] largePhone:w-36 largePhone:translate-x-0 largePhone:translate-y-0 desktop:bottom-[-0.8rem] desktop:left-[5.4rem] desktop:w-auto largeDesktop:left-[6.2rem] largeDesktop:w-[13rem]"
+        />
       </div>
-      {/* <div className="open-hand-icon-container"> */}
-      <div className="absolute right-[-3.7rem] top-[10.5rem] w-20">
-        <img src={circleIcon} alt="circle" className="absolute top-0 left-0" />
-        <div className="absolute left-[0.77rem] top-[0.35rem] -rotate-[32deg] text-blue-200 text-xl font-black">
+      <div className="absolute bottom-1/2 right-1/2  w-20 translate-x-[10.4rem] translate-y-[7rem] scale-75 largePhone:-bottom-[1rem] largePhone:-right-[4rem] largePhone:translate-x-0 largePhone:translate-y-0 largePhone:scale-90 tablet:scale-100">
+        <img src={circleIcon} alt="circle" className="absolute left-0 top-0" />
+        <div className="absolute left-[0.77rem] top-[0.35rem] -rotate-[32deg] text-xl font-black text-blue-200">
           £
         </div>
         <img

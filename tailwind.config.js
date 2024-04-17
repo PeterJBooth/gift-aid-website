@@ -5,6 +5,7 @@ module.exports = {
     colors: {
       white: "#ffffff",
       black: "#000000",
+      red: "#ff1100",
       neutral: {
         25: "#fafafa",
         50: "#f2f2f2",
@@ -50,6 +51,7 @@ module.exports = {
         300: "#6c97c6",
         400: "#4f83bb",
         500: "#2364aa",
+        550: "#205b9bc5",
         600: "#205b9b",
         700: "#194779",
         800: "#13375e",
@@ -82,6 +84,8 @@ module.exports = {
     extend: {
       boxShadow: {
         "3xl": "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
+        custom1:
+          "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
       },
       maxWidth: {
         "8xl": "88rem",
@@ -93,6 +97,7 @@ module.exports = {
       },
       fontSize: {
         xs2: "0.8125rem",
+        "3xl": "2rem",
       },
     },
   },

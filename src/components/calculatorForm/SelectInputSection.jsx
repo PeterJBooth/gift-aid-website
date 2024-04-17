@@ -20,7 +20,7 @@ const SelectInputSection = () => {
     },
     enter: {
       opacity: 1,
-      maxHeight: 16,
+      maxHeight: 32,
       paddingBottom: 16,
     },
     leave: {
@@ -33,12 +33,12 @@ const SelectInputSection = () => {
 
   const incomeValidationMessageTransition = useTransition(
     validationErrors.includes("Missing Income Amount"),
-    transitionProperties
+    transitionProperties,
   );
 
   const donationValidationMessageTransition = useTransition(
     validationErrors.includes("Missing Donation Amount"),
-    transitionProperties
+    transitionProperties,
   );
 
   return (

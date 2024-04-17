@@ -43,7 +43,7 @@ const Header = ({ giftAidButtonActive }) => {
   };
 
   return (
-    <header className="flex justify-between max-w-10xl px-custom mx-auto mt-6  w-full">
+    <header className="mx-auto mt-6 flex w-full max-w-10xl justify-between px-custom">
       <Brand />
       {loadMenuAndMenuButton()}
     </header>
