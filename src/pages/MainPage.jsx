@@ -16,7 +16,7 @@ const MainPage = () => {
         <PopupContextProvider>
           <Header giftAidButtonActive={true} />
           <main>
-            <BackgroundShapes />
+            {/* <BackgroundShapes /> */}
             <CalculatorContextProvider>
               <FormSection />
             </CalculatorContextProvider>

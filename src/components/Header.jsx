@@ -6,9 +6,9 @@ import { GiftAidButton } from "./GiftAidButton";
 import { Menu } from "./Menu";
 import { useSpring } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
+import { Brand } from "./Brand";
 
 const Header = ({ giftAidButtonActive }) => {
-  const navigate = useNavigate();
   const { screenType } = useScreenTypeContext();
   const MENU_HEIGHT = 170;
 
@@ -17,22 +17,23 @@ const Header = ({ giftAidButtonActive }) => {
   };
 
   const loadMenuAndMenuButton = () => {
-    if (giftAidButtonActive) {
-      if (!screenType.isMobile) {
-        return <GiftAidButton />;
-      } else {
-        return (
-          <>
-            <img
-              src={burgerIcon}
-              alt="Menu Button"
-              onClick={() => handleMenuButtonClick()}
-              // onDrag={}
-            />
-            <Menu menuHeight={MENU_HEIGHT} springProps={[{ y }, api]} />
-          </>
-        );
-      }
+    if (!giftAidButtonActive) {
+      return;
+    }
+
+    if (!screenType.isMobile) {
+      return <GiftAidButton />;
+    } else {
+      return (
+        <>
+          <img
+            src={burgerIcon}
+            alt="Menu Button"
+            onClick={() => handleMenuButtonClick()}
+          />
+          <Menu menuHeight={MENU_HEIGHT} springProps={[{ y }, api]} />
+        </>
+      );
     }
   };
 
@@ -41,28 +42,9 @@ const Header = ({ giftAidButtonActive }) => {
     api.start({ y: 0 });
   };
 
-  const handleBrandingClick = () => {
-    navigate("/");
-  };
-
   return (
-    <header>
-      <div
-        className="brand-logo-and-title"
-        onClick={() => {
-          handleBrandingClick();
-        }}
-      >
-        <img
-          src={screenType.isMobile ? logoIconSmall : logoIcon}
-          alt="logo icon"
-        />
-        <div
-          className={screenType.isMobile ? "brand-name small" : "brand-name"}
-        >
-          VerifyMyGiftAid
-        </div>
-      </div>
+    <header className="mx-auto mt-6 flex w-full max-w-10xl justify-between px-custom">
+      <Brand />
       {loadMenuAndMenuButton()}
     </header>
   );

@@ -36,11 +36,12 @@ const Menu = ({ menuHeight, springProps }) => {
     <>
       <animated.menu
         {...bindMenuPosition()}
-        className="menu"
+        className="fixed -top-8 right-0 left-0 h-48 rounded-3xl bg-neutral-25 flex flex-col justify-end items-center pb-2 z-20
+        shadow-3xl"
         style={{ y, touchAction: "none" }}
       >
         <GiftAidButton />
-        <div className="pill"></div>
+        <div className="pill h-2.5 w-32 mt-8 bg-neutral-100 opacity-75 rounded-lg"></div>
       </animated.menu>
     </>
   );

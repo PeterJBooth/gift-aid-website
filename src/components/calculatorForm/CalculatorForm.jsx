@@ -9,8 +9,10 @@ const CalculatorForm = () => {
   const { setLivesInScotland, livesInScotland } = UseCalculatorContext();
 
   return (
-    <div className="calculator-form">
-      <p className="form-title">Gift Aid Calculator</p>
+    <div className="calculator-form ml-1 flex max-w-80 flex-col">
+      <p className="form-title ml-[-0.1rem]  text-3xl font-bold tracking-[-0.04rem]	">
+        Gift Aid Calculator
+      </p>
       <SelectInputSection />
       <CheckboxInput
         title="I Live In Scotland"
@@ -24,8 +26,8 @@ const CalculatorForm = () => {
         }}
       />
       <PensionSection />
-      <div className="line-break-container">
-        <hr />
+      <div className="z-20 bg-neutral-25 py-4">
+        <hr className="h-px border-none bg-neutral-100" />
       </div>
 
       <AdvancedOptionsSection />
