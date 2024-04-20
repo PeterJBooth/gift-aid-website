@@ -54,10 +54,10 @@ const SelectInput = ({
             />
           </div>
           <div
-            className={`hover:border-blue-550 flex rounded-r-md border p-px hover:border-2${
+            className={`hover:border-blue-550 flex rounded-r-md border hover:border-2${
               activeSelectInput === id
                 ? " border-blue-550 border-2 p-0"
-                : " border-neutral-100 hover:p-0"
+                : " border-neutral-100 p-px hover:p-0"
             }`}
             onClick={() => {
               setTextInputActive(true);

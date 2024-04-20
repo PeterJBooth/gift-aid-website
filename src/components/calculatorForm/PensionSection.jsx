@@ -17,13 +17,13 @@ const PensionSection = () => {
     enter: {
       opacity: 1,
       y: 0,
-      maxHeight: 88,
+      maxHeight: 118,
       paddingTop: 16,
       paddingBottom: 8,
     },
     leave: {
       opacity: 0,
-      y: -88,
+      y: -118,
       maxHeight: 0,
       paddingTop: 0,
       paddingBottom: 0,
@@ -46,7 +46,7 @@ const PensionSection = () => {
         title="I Contribute To a Pension"
         setCheckboxState={setContributesToPension}
         checkboxState={contributesToPension}
-        zIndex={4}
+        zIndex={40}
       />
       {componentTransition((style, item) =>
         item === true ? (
@@ -58,7 +58,7 @@ const PensionSection = () => {
           />
         ) : (
           ""
-        )
+        ),
       )}
     </>
   );

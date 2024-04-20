@@ -32,7 +32,7 @@ const CheckboxInput = ({
           <img className="h-5 stroke-[3px]" src={checkMark} alt="check mark" />
         )}
       </div>
-      <div className="checkbox-title leading-0 flex  text-lg font-bold">
+      <div className="leading-0 flex max-w-[calc(100%-39px)] text-lg font-bold">
         {title}
         {informationBox && (
           <MoreInfoProvider

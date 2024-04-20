@@ -86,6 +86,7 @@ module.exports = {
         "3xl": "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
         custom1:
           "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+        custom2: "0px 2px 4px 0px rgba(0, 0, 0, 0.12)",
       },
       maxWidth: {
         "8xl": "88rem",

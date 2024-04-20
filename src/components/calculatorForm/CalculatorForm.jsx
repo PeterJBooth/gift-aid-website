@@ -18,7 +18,7 @@ const CalculatorForm = () => {
         title="I Live In Scotland"
         setCheckboxState={setLivesInScotland}
         checkboxState={livesInScotland}
-        zIndex={5}
+        zIndex={50}
         informationBox={{
           title: "Scottish Tax Impact",
           content:

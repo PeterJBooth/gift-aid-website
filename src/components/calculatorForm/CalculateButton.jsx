@@ -20,7 +20,7 @@ const CalculateButton = () => {
 
   return (
     <button
-      className="calculate-button"
+      className="calculate-button shadow-custom2 mt-4 flex cursor-pointer items-center justify-center rounded-md bg-orange-600 px-14 py-4  text-lg font-bold leading-[1.3rem] text-white transition-all duration-75 hover:bg-[#fa7900] active:bg-orange-600 active:shadow-none"
       onClick={() => {
         handleButtonClick();
       }}
