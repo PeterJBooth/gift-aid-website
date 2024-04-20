@@ -10,26 +10,30 @@ const InfoPage = () => {
     <>
       <ScreenTypeContextProvider>
         <Header giftAidButtonActive={false} />
-        <div className="coming-soon h1">Coming Soon</div>
-
-        {/* <main>
-          <div className="summary-info-container">
-            <div className="info-page-title">What Is Gift Aid?</div>
-            <div className="title2">
-              Gift Aid is a UK government scheme that allows charities to
-              reclaim the basic rate of tax on donations made by taxpayers,
-              increasing the value of the donation at no extra cost to the
-              donor.
+        <main>
+          <div className="m-auto max-w-10xl px-custom ">
+            <div className=" mt-24 flex w-[30rem] flex-col gap-6">
+              <div className="text-[55px] font-black tracking-[-1.1px]">
+                What Is Gift Aid?
+              </div>
+              <div className="leading-6">
+                Gift Aid is a UK government scheme that allows charities to
+                reclaim the basic rate of tax on donations made by taxpayers,
+                increasing the value of the donation at no extra cost to the
+                donor.
+              </div>
             </div>
           </div>
-          <div className="blue-stripe">
-            <div className="how-does-gift-aid-work-section">
-              <div className="donation-icon-container">
+          <div className="mt-32 flex min-h-[22rem] items-center justify-center bg-blue-50">
+            <div className="flex w-full items-center justify-center">
+              <div className=" flex w-1/2 items-center justify-center pr-8">
                 <img src={donationIcon} alt="Donation Icon" />
               </div>
-              <div className="how-does-gift-aid-work-summary-container">
-                <div className="h1 bold">How Does Gift Aid work?</div>
-                <div className="title2">
+              <div className="flex w-1/2 flex-col gap-6 py-12 pr-8">
+                <div className="text-3xl font-bold">
+                  How Does Gift Aid work?
+                </div>
+                <div className="leading-6">
                   When a taxpayer makes a donation, the charity can reclaim 25p
                   every time £1 is donated, boosting the donation by 25%.
                   <br />
@@ -44,7 +48,7 @@ const InfoPage = () => {
             </div>
           </div>
 
-          <div className="assumptions-section">
+          <div className="mx-auto mt-32 flex max-w-10xl items-center justify-center px-custom">
             <div className="assumptions-summary-container">
               <div className="h1 bold">
                 Some Assumptions Made When Determining Gift Aid Eligibility...
@@ -88,8 +92,8 @@ const InfoPage = () => {
               />
             </div>
           </div>
-        </main> */}
-        {/* <Footer /> */}
+        </main>
+        <Footer />
       </ScreenTypeContextProvider>
     </>
   );

@@ -29,7 +29,7 @@ const FormSection = () => {
 
         opacity: 0,
       },
-    }
+    },
   );
 
   const mobileResultPopupTransition = useTransition(
@@ -50,7 +50,7 @@ const FormSection = () => {
 
         opacity: 0,
       },
-    }
+    },
   );
 
   const displayContent = () => {
@@ -61,7 +61,7 @@ const FormSection = () => {
           {popupIsActive === false && <PageTitle />}
 
           {resultPopupTransition((style, item) =>
-            item === true ? <ResultPopup style={style} /> : ""
+            item === true ? <ResultPopup style={style} /> : "",
           )}
         </>
       );
@@ -75,14 +75,14 @@ const FormSection = () => {
             item === true ? (
               <>
                 <animated.div
-                  className="dimmer"
+                  className="fixed bottom-0 left-0 right-0 top-0 z-50 bg-[#7878785d]"
                   style={{ opacity: style.opacity }}
                 ></animated.div>
                 <ResultPopup style={style} />
               </>
             ) : (
               ""
-            )
+            ),
           )}
         </>
       );
@@ -90,7 +90,7 @@ const FormSection = () => {
   };
 
   return (
-    <div className="calculator-and-result-container flex flex-col desktop:flex-row items-center desktop:items-start my-40 justify-between px-custom max-w-10xl mx-auto w-full ">
+    <div className="calculator-and-result-container mx-auto my-40 flex w-full max-w-10xl flex-col items-center justify-between px-custom desktop:flex-row desktop:items-start ">
       {displayContent()}
     </div>
   );

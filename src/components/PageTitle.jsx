@@ -2,7 +2,6 @@ import tickIcon from "../assets/tick-icon.svg";
 import openHandIcon from "../assets/hand-open-icon.svg";
 import circleIcon from "../assets/circle.svg";
 import underline from "../assets/underline1.svg";
-import "../calculator-form.css";
 
 const PageTitle = () => {
   return (
