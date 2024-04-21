@@ -14,9 +14,9 @@ const AdvancedOptionsSection = () => {
   } = UseCalculatorContext();
 
   const advancedOptionsTransition = useTransition(usingAdvancedOptions, {
-    from: { opacity: 0, y: -151, maxHeight: 0 },
-    enter: { opacity: 1, y: 0, maxHeight: 151 },
-    leave: { opacity: 0, y: -151, maxHeight: 0 },
+    from: { opacity: 0, y: -176, maxHeight: 0 },
+    enter: { opacity: 1, y: 0, maxHeight: 176 },
+    leave: { opacity: 0, y: -176, maxHeight: 0 },
   });
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const AdvancedOptionsSection = () => {
           </animated.div>
         ) : (
           ""
-        )
+        ),
       )}
     </>
   );

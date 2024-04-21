@@ -59,7 +59,7 @@ const Question = ({ question, answer, answerHeight }) => {
             </animated.div>
           ) : (
             ""
-          )
+          ),
         )}
       </div>
     </div>

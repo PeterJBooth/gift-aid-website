@@ -13,6 +13,8 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
     activeSelectInput,
   } = UseCalculatorContext();
 
+  const fixedAmount = "fixed amount";
+
   const inputRef = useRef();
   const [validationMessageDisplayed, setvalidationMessageIsDisplayed] =
     useState(false);
@@ -28,7 +30,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
       },
       enter: {
         opacity: 1,
-        maxHeight: 16,
+        maxHeight: 24,
         paddingTop: 8,
         paddingBottom: 8,
       },
@@ -38,7 +40,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
         paddingTop: 0,
         paddingBottom: 0,
       },
-    }
+    },
   );
 
   const validationMessageTransition = useTransition(
@@ -52,7 +54,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
       },
       enter: {
         opacity: 1,
-        maxHeight: 16,
+        maxHeight: 24,
         paddingTop: 8,
         paddingBottom: 8,
       },
@@ -62,7 +64,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
         paddingTop: 0,
         paddingBottom: 0,
       },
-    }
+    },
   );
 
   const handleToggleSignClick = (elementClicked) => {
@@ -78,6 +80,8 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
     if (elementClicked === "pound-toggle" && pensionformat !== "fixed amount") {
       setPensionformat("fixed amount");
     }
+
+    // console.log(pensionformat);
   };
 
   const handleInputChange = (e) => {
@@ -103,8 +107,11 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
 
   return (
     <>
-      <animated.div className="toggle-input-container" style={style}>
-        <div className="input-title">
+      <animated.div
+        className="toggle-input-container z-30 flex flex-col bg-neutral-25"
+        style={style}
+      >
+        <div className="flex select-none text-lg font-bold">
           Pension Contribution
           <MoreInfoProvider
             title={"Pension Contribution"}
@@ -116,14 +123,12 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           />
         </div>
 
-        <div id="pension-select-input" className="toggle-input">
-          <div className="toggle">
+        <div id="pension-select-input" className="flex pt-4">
+          <div className="relative flex cursor-pointer select-none rounded-l-md border border-neutral-100 bg-neutral-50">
             <div
-              className={
-                pensionformat === "percentage"
-                  ? "toggle-sign white-text"
-                  : "toggle-sign"
-              }
+              className={`z-10 flex size-12 items-center justify-center text-center text-lg font-bold transition-colors ${
+                pensionformat === "percentage" ? "text-neutral-25" : ""
+              }`}
               onClick={() => {
                 handleToggleSignClick("percentage-toggle");
               }}
@@ -131,11 +136,9 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
               %
             </div>
             <div
-              className={
-                pensionformat === "fixed amount"
-                  ? "toggle-sign white-text"
-                  : "toggle-sign"
-              }
+              className={`z-10 flex size-12 items-center justify-center text-center text-lg font-bold transition-colors ${
+                pensionformat === fixedAmount ? "text-neutral-25" : ""
+              }`}
               onClick={() => {
                 handleToggleSignClick("pound-toggle");
               }}
@@ -143,16 +146,12 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
               £
             </div>
             <div
-              className={
-                pensionformat === "percentage"
-                  ? "toggle-slider left"
-                  : "toggle-slider right"
-              }
+              className={`absolute left-0 size-12 rounded-md bg-blue-700 transition-all ${pensionformat === "percentage" ? "  translate-x-0" : "translate-x-full"}`}
             ></div>
           </div>
           <input
             type="number"
-            className="text-input"
+            className="text-input hover:border-blue-550 focus:border-blue-550 w-full rounded-r-md border border-neutral-100 bg-neutral-25 px-4 py-px hover:border-2 hover:px-[15px] hover:py-0 focus:border-2 focus:px-[15px] focus:py-0 focus:outline-none"
             min="1"
             max={pensionformat === "percentage" ? "100" : ""}
             ref={inputRef}
@@ -164,15 +163,18 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
       </animated.div>
       {informationMessageTransition((style, item) =>
         item === true ? (
-          <animated.div style={style} className="message information">
-            <IoInformationCircle className="information-circle" />
+          <animated.div
+            style={style}
+            className="flex items-center gap-1 bg-neutral-25 text-xs2 text-blue-500"
+          >
+            <IoInformationCircle className="size-[0.9rem]" />
             <p>
               Please state your <b>monthly</b> pension contribution
             </p>
           </animated.div>
         ) : (
           ""
-        )
+        ),
       )}
       {validationMessageTransition((style, item) =>
         item === true ? (
@@ -182,7 +184,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           />
         ) : (
           ""
-        )
+        ),
       )}
     </>
   );
