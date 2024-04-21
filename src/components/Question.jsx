@@ -53,7 +53,7 @@ const Question = ({ question, answer }) => {
             </div>
           ) : (
             ""
-          )
+          ),
         )}
       </div>
     </div>

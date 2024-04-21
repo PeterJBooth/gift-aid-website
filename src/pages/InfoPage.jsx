@@ -49,19 +49,17 @@ const InfoPage = () => {
           </div>
 
           <div className="mx-auto mt-32 flex max-w-10xl items-center justify-center px-custom">
-            <div className="assumptions-summary-container">
-              <div className="h1 bold">
+            <div className="flex w-2/3 flex-col gap-6">
+              <div className="text-3xl font-bold">
                 Some Assumptions Made When Determining Gift Aid Eligibility...
               </div>
-              <div className="title2">
+              <div className="leading-6">
                 For simplicity the following was not considered when determining
                 gift aid eligibility:
-                <ul>
+                <ul className="list-inside">
                   <li>Capital gains or dividends tax Tax relief</li>
                   <li>for job expenses Tax relief that landlords can claim</li>
-                  <li>
-                    Tax relief when paying back certain types of loans
-                  </li>{" "}
+                  <li>Tax relief when paying back certain types of loans</li>
                   <li> Tax relief for married couples and parents</li>
                 </ul>
                 <br />
@@ -70,20 +68,20 @@ const InfoPage = () => {
                 can donate and claim gift aid.
               </div>
             </div>
-            <div className="assumption-icon-container">
+            <div className="flex h-full w-1/3 items-center justify-center">
               <img
                 src={assumptionIcon}
-                className="assumption-icon"
+                className="w-56"
                 alt="Assumption Icon"
               />
             </div>
           </div>
 
-          <div className="qna-section">
-            <div className="h1 bold">Frequently Asked Question</div>
-            <hr />
+          <div className=" mx-auto  mt-32 flex w-[35rem] flex-col items-center justify-center gap-12">
+            <div className="text-3xl font-bold">Frequently Asked Question</div>
+            <hr className="h-px w-full border-none bg-neutral-200" />
 
-            <div className="questions-container">
+            <div className="questions-container flex w-full flex-col gap-12 ">
               <Question
                 question="Is Gift Aid only applicable to cash donations?"
                 answer="No, Gift Aid can be claimed on various types of donations, including
