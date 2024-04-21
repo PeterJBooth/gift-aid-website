@@ -38,23 +38,23 @@ const Question = ({ question, answer, answerHeight }) => {
   });
 
   return (
-    <div className="question-container">
+    <div className="flex w-full items-start gap-8">
       <img
         src={vIcon}
         alt="Toggle"
-        className={isExpanded ? "v-icon rotated" : "v-icon"}
+        className={` mt-[0.20rem] cursor-pointer transition-all hover:opacity-70 ${isExpanded ? "v-icon" : "v-icon rotate-180"}`}
         onClick={() => {
           handleClick();
         }}
       />
 
-      <div className="question-and-answer">
-        <div className="title2 bold top-align white question-title">
+      <div className="flex flex-col items-start justify-start overflow-hidden">
+        <div className="z-20 w-full bg-neutral-25 pb-2 font-bold leading-6">
           {question}
         </div>
         {expandTransition((style, item) =>
           item === true ? (
-            <animated.div className="title2" style={style}>
+            <animated.div className="leading-6" style={style}>
               {answer}
             </animated.div>
           ) : (

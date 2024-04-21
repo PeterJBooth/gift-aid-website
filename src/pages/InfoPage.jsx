@@ -81,20 +81,20 @@ const InfoPage = () => {
             <div className="text-3xl font-bold">Frequently Asked Question</div>
             <hr className="h-px w-full border-none bg-neutral-200" />
 
-            <div className="questions-container flex w-full flex-col gap-12 ">
+            <div className="flex w-full flex-col gap-12 ">
               <Question
                 question="Is Gift Aid only applicable to cash donations?"
                 answer="No, Gift Aid can be claimed on various types of donations, including
           those made by debit or credit card, standing order, cheque, or through
           a fundraising event."
-                answerHeight={72}
+                answerHeight={88}
               />
               <Question
                 question="Is Gift Aid only applicable to cash donations?"
                 answer="No, Gift Aid can be claimed on various types of donations, including
           those made by debit or credit card, standing order, cheque, or through
           a fundraising event."
-                answerHeight={72}
+                answerHeight={88}
               />
             </div>
           </div>
