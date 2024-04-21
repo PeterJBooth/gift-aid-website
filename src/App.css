@@ -143,19 +143,22 @@ ul {
   align-items: start;
   justify-content: start;
   flex-direction: column;
-  gap: 1.5rem;
+  overflow: hidden;
 }
 
 .v-icon {
-  padding-top: 0.15rem;
+  margin-top: 0.15rem;
   cursor: pointer;
-  transition: 0.1s;
+  transition: 0.2s;
 }
 
 .v-icon:hover {
   opacity: 0.7;
 }
 
+.v-icon.rotated {
+  transform: rotate(180deg);
+}
 .coming-soon {
   margin-top: 10rem;
   width: 100vw;
@@ -163,4 +166,16 @@ ul {
 
   font-size: 55px;
   font-weight: 800;
+}
+
+.white {
+  background-color: white;
+}
+
+.question-title {
+  font-weight: 600;
+  background-color: var(--background-white);
+  width: 100%;
+  z-index: 2;
+  padding-bottom: 0.5rem;
 }
