@@ -111,7 +111,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
         className="toggle-input-container z-30 flex flex-col bg-neutral-25"
         style={style}
       >
-        <div className="flex select-none text-lg font-bold">
+        <div className=" flex select-none text-lg font-bold leading-5">
           Pension Contribution
           <MoreInfoProvider
             title={"Pension Contribution"}

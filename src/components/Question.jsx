@@ -17,7 +17,8 @@ const Question = ({ question, answer, answerHeight }) => {
     from: {
       opacity: 0,
       maxHeight: 0,
-      y: -answerHeight,
+      y: 0,
+      // y: -answerHeight + 16,
       paddingTop: 0,
       paddingBottom: 0,
     },
@@ -31,7 +32,8 @@ const Question = ({ question, answer, answerHeight }) => {
     leave: {
       opacity: 0,
       maxHeight: 0,
-      y: -answerHeight,
+      // y: -answerHeight + 16,
+      y: 0,
       paddingTop: 0,
       paddingBottom: 0,
     },
@@ -48,13 +50,13 @@ const Question = ({ question, answer, answerHeight }) => {
         }}
       />
 
-      <div className="flex flex-col items-start justify-start overflow-hidden">
+      <div className="flex flex-col items-start justify-start ">
         <div className="z-20 w-full bg-neutral-25 pb-2 font-bold leading-6">
           {question}
         </div>
         {expandTransition((style, item) =>
           item === true ? (
-            <animated.div className="leading-6" style={style}>
+            <animated.div className="text-wrap leading-6" style={style}>
               {answer}
             </animated.div>
           ) : (

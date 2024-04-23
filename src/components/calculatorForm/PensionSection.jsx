@@ -13,17 +13,23 @@ const PensionSection = () => {
   } = UseCalculatorContext();
 
   const componentTransition = useTransition(contributesToPension, {
-    from: { opacity: 0, y: -88, maxHeight: 0, paddingTop: 0, paddingBottom: 0 },
+    from: {
+      opacity: 0,
+      y: -94,
+      maxHeight: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
     enter: {
       opacity: 1,
       y: 0,
-      maxHeight: 118,
+      maxHeight: 110,
       paddingTop: 16,
       paddingBottom: 8,
     },
     leave: {
       opacity: 0,
-      y: -118,
+      y: -94,
       maxHeight: 0,
       paddingTop: 0,
       paddingBottom: 0,
