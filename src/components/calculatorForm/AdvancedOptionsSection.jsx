@@ -42,7 +42,7 @@ const AdvancedOptionsSection = () => {
         informationBox={{
           title: "Advanced Options",
           content:
-            "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayer, who claim the below forms of tax relief.",
+            "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayers, who claim the forms of tax relief shown below.",
         }}
       />
       {advancedOptionsTransition((style, item) =>

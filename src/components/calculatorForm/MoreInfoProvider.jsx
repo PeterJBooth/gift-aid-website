@@ -28,7 +28,7 @@ const MoreInfoProvider = ({ title, content }) => {
       {showingInfoBox === true && (
         <div
           // ref={infoBoxRef}
-          className="shadow-custom1 absolute left-1/2 top-9 z-50 flex w-[21rem] -translate-x-1/2 flex-col gap-5 rounded-md border border-neutral-100 bg-neutral-25 p-6 before:absolute before:-top-px before:right-1/2 before:size-6 before:-translate-y-1/2 before:translate-x-1/2 before:rotate-45 before:border-l before:border-t before:border-neutral-100 before:bg-neutral-25 before:content-['']"
+          className="absolute left-1/2 top-9 z-50 flex w-[21rem] -translate-x-1/2 flex-col gap-5 rounded-md border border-neutral-100 bg-neutral-25 p-6 shadow-custom1 before:absolute before:-top-px before:right-1/2 before:size-6 before:-translate-y-1/2 before:translate-x-1/2 before:rotate-45 before:border-l before:border-t before:border-neutral-100 before:bg-neutral-25 before:content-['']"
           onClick={() => RemoveInfoBox()}
         >
           <IoMdClose
@@ -39,7 +39,12 @@ const MoreInfoProvider = ({ title, content }) => {
             }}
           />
           <div>{title}</div>
-          <div className=" text-sm font-normal ">{content}</div>
+          <div
+            className=" block whitespace-pre-line text-sm font-normal
+"
+          >
+            {content}
+          </div>
         </div>
       )}
     </div>
