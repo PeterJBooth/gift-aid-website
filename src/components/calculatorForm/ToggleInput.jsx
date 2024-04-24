@@ -111,15 +111,15 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
         className="toggle-input-container z-30 flex flex-col bg-neutral-25"
         style={style}
       >
-        <div className="flex select-none text-lg font-bold">
+        <div className=" flex select-none text-lg font-bold leading-5">
           Pension Contribution
           <MoreInfoProvider
             title={"Pension Contribution"}
-            content={`If you contribute to a pension via the PAYE system, please input themonthly amount here.
-
-              This calculation assumes that you contribute to your pension from your net pay, thereby receiving tax relief on contributions from HMRC. If you are unsure if this the case, it is recommended to enter the amount you contribute anyway.
-              
-              You can enter the contribution as a percentage of your salary (e.g. 8%) or provide the actual amount you contribute per month (e.g. £300).)`}
+            content={`If you contribute to a pension via the PAYE system, please input the monthly amount here.
+            
+              This calculation assumes that you contribute to your pension from your net pay, thereby receiving tax relief on contributions from HMRC. If you are unsure whether this the case, it is recommended to enter the amount you contribute anyway.
+          
+              You can enter the contribution as a percentage of your salary (e.g. 8%) or provide the actual amount you contribute per month (e.g. £300).`}
           />
         </div>
 
@@ -151,7 +151,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           </div>
           <input
             type="number"
-            className="text-input hover:border-blue-550 focus:border-blue-550 w-full rounded-r-md border border-neutral-100 bg-neutral-25 px-4 py-px hover:border-2 hover:px-[15px] hover:py-0 focus:border-2 focus:px-[15px] focus:py-0 focus:outline-none"
+            className="text-input w-full rounded-r-md border border-neutral-100 bg-neutral-25 px-4 py-px hover:border-2 hover:border-blue-550 hover:px-[15px] hover:py-0 focus:border-2 focus:border-blue-550 focus:px-[15px] focus:py-0 focus:outline-none"
             min="1"
             max={pensionformat === "percentage" ? "100" : ""}
             ref={inputRef}

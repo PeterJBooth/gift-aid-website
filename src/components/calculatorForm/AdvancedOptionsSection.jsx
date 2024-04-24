@@ -14,9 +14,9 @@ const AdvancedOptionsSection = () => {
   } = UseCalculatorContext();
 
   const advancedOptionsTransition = useTransition(usingAdvancedOptions, {
-    from: { opacity: 0, y: -176, maxHeight: 0 },
-    enter: { opacity: 1, y: 0, maxHeight: 176 },
-    leave: { opacity: 0, y: -176, maxHeight: 0 },
+    from: { opacity: 0, y: -144, maxHeight: 0 },
+    enter: { opacity: 1, y: 0, maxHeight: 144 },
+    leave: { opacity: 0, y: -144, maxHeight: 0 },
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const AdvancedOptionsSection = () => {
         informationBox={{
           title: "Advanced Options",
           content:
-            "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayer, who claim the below forms of tax relief.",
+            "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayers, who claim the forms of tax relief shown below.",
         }}
       />
       {advancedOptionsTransition((style, item) =>

@@ -3,12 +3,12 @@ import vIcon from "../assets/info-page/v-icon.svg";
 import { useTransition, animated, useSpring } from "@react-spring/web";
 import { MdHeight } from "react-icons/md";
 
-const Question = ({ question, answer }) => {
+const Question = ({ question, answer, answerHeight }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [props, api] = useSpring(() => ({ height: "0px" }), []);
 
-  const answerRef = useRef(null);
+  const testRef = useRef(null);
 
   const handleClick = () => {
     if (!isExpanded) {
@@ -18,19 +18,19 @@ const Question = ({ question, answer }) => {
     }
     api.start({
       from: {
-        height: isExpanded ? answerRef.current.offsetHeight : 0,
+        height: isExpanded ? testRef.current.offsetHeight : 0,
         opacity: isExpanded ? 1 : 0,
       },
       to: {
-        height: isExpanded ? 0 : answerRef.current.offsetHeight,
+        height: isExpanded ? 0 : testRef.current.offsetHeight,
         opacity: isExpanded ? 0 : 1,
       },
     });
   };
 
   const handleClick2 = () => {
-    console.log(answerRef.current.offsetHeight);
-    // console.log(answerRef);
+    console.log(testRef.current.offsetHeight);
+    // console.log(testRef);
   };
 
   return (
@@ -57,7 +57,7 @@ const Question = ({ question, answer }) => {
           style={{ ...props }}
         >
           <div
-            ref={answerRef}
+            ref={testRef}
             className="absolute bottom-0 left-0 right-0 pt-5 leading-6"
           >
             {answer}

@@ -1,5 +1,4 @@
 import "./global.css";
-import "./App.css";
 import { MainPage } from "./pages/MainPage";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { InfoPage } from "./pages/InfoPage";

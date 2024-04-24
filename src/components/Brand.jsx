@@ -13,8 +13,8 @@ const Brand = ({ defaultSize }) => {
 
   return (
     <div
-      className={`flex gap-2 items-center cursor-pointer ${
-        screenType.isMobile || defaultSize === "small" ? "" : "h-11 my-2"
+      className={`flex cursor-pointer select-none items-center gap-2 ${
+        screenType.isMobile || defaultSize === "small" ? "" : "my-2 h-11"
       }`}
       onClick={() => {
         handleBrandingClick();
@@ -29,7 +29,7 @@ const Brand = ({ defaultSize }) => {
         alt="logo icon"
       />
       <div
-        className={`brand-name text-black font-roboto-slab font-black  ${
+        className={`brand-name font-roboto-slab font-black text-black  ${
           screenType.isMobile || defaultSize === "small"
             ? "text-xl tracking-[0.012rem]"
             : "text-3xl tracking-[0.018rem]"
