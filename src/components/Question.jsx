@@ -28,11 +28,6 @@ const Question = ({ question, answer }) => {
     });
   };
 
-  const handleClick2 = () => {
-    console.log(answerRef.current.offsetHeight);
-    // console.log(answerRef);
-  };
-
   return (
     <div className="flex w-full items-start gap-8">
       <img
@@ -45,10 +40,7 @@ const Question = ({ question, answer }) => {
       />
 
       <div className="flex w-full flex-col items-start justify-start overflow-hidden">
-        <div
-          className="z-20 w-full bg-neutral-25 pb-1 font-bold leading-6 "
-          onClick={handleClick2}
-        >
+        <div className="z-20 w-full bg-neutral-25 pb-1 font-bold leading-6 ">
           {question}
         </div>
 
