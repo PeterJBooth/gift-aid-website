@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import vIcon from "../assets/info-page/v-icon.svg";
-import { useTransition, animated, useSpring } from "@react-spring/web";
-import { MdHeight } from "react-icons/md";
+import { animated, useSpring } from "@react-spring/web";
 
 const Question = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);

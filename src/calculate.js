@@ -9,7 +9,7 @@ const getGiftAidEligibilityInformation = (
   claimsAdditionalPensionTaxRelief,
   selectedIncomeInterval,
   selectedDonationInterval,
-  pensionformat
+  pensionformat,
 ) => {
   // console.log("income " + selectedIncomeInterval);
   // console.log("donation " + selectedDonationInterval);
@@ -27,51 +27,52 @@ const getGiftAidEligibilityInformation = (
   const convertedPensionContribution = convertToFixedAmount(
     pensionContribution,
     pensionformat,
-    grossIncome
+    grossIncome,
   );
 
   const incomeTaxTable = createIncomeTaxTable(grossIncome, livesInScotland);
+  console.log(incomeTaxTable);
   let incomeTaxAmount = calculateIncomeTax(incomeTaxTable);
   const taxBand = getTaxPayersTaxBand(incomeTaxTable);
   let pensionTaxReliefAmount = calculatePensionTaxRelief(
     convertedPensionContribution,
     claimsAdditionalPensionTaxRelief,
-    taxBand
+    taxBand,
   );
 
   const convertedIncomeTaxAmount = convertToDonationTimeScale(
     incomeTaxAmount,
     selectedIncomeInterval,
-    selectedDonationInterval
+    selectedDonationInterval,
   );
   const convertedPensionTaxReliefAmount = convertToDonationTimeScale(
     pensionTaxReliefAmount,
     selectedIncomeInterval,
-    selectedDonationInterval
+    selectedDonationInterval,
   );
 
   const totalTaxPaid = calculateTotalTaxPaid(
     convertedIncomeTaxAmount,
-    convertedPensionTaxReliefAmount
+    convertedPensionTaxReliefAmount,
   );
 
   const giftAidToClaim = calculateGiftAidToClaim(donationAmount);
   const giftAidTaxRelief = calculateGiftAidTaxRelief(
     claimsAdditionalGiftAidTaxRelief,
     donationAmount,
-    taxBand
+    taxBand,
   );
 
   const canClaimGiftAid = determineIfCanClaimGiftAid(
     giftAidToClaim,
     giftAidTaxRelief,
-    totalTaxPaid
+    totalTaxPaid,
   );
 
   const giftAidDonationCap = calculateGiftAidDonationCap(
     claimsAdditionalGiftAidTaxRelief,
     totalTaxPaid,
-    taxBand
+    taxBand,
   );
   const giftAidEligibilityInformation = {
     convertedPensionContribution: convertedPensionContribution,
@@ -189,7 +190,7 @@ const getTaxBands = (grossIncome, livesInScotland) => {
 const calculateIncomeTax = (incomeTaxTable) => {
   const incomeTaxAmount = incomeTaxTable.reduce(
     (incomeTaxAmount, taxBand) => incomeTaxAmount + taxBand.taxAmount,
-    0
+    0,
   );
 
   return incomeTaxAmount;
@@ -213,7 +214,7 @@ const calculateIncomeTaxInEachBand = (taxBands, grossIncome) => {
       upperLimit != null
         ? Math.min(
             Math.max(grossIncome - lowerLimit, 0),
-            upperLimit - lowerLimit
+            upperLimit - lowerLimit,
           )
         : Math.max(grossIncome - lowerLimit, 0);
 
@@ -228,11 +229,11 @@ const calculateIncomeTaxInEachBand = (taxBands, grossIncome) => {
 const calculatePensionTaxRelief = (
   pensionContribution,
   claimsAdditionalPensionTaxRelief,
-  taxBand
+  taxBand,
 ) => {
   const taxReliefPercentage = getPensionTaxReliefPercentage(
     taxBand,
-    claimsAdditionalPensionTaxRelief
+    claimsAdditionalPensionTaxRelief,
   );
   const pensionTaxRelief = pensionContribution * taxReliefPercentage;
   return pensionTaxRelief;
@@ -240,7 +241,7 @@ const calculatePensionTaxRelief = (
 
 const getPensionTaxReliefPercentage = (
   taxBand,
-  claimsAdditionalPensionTaxRelief
+  claimsAdditionalPensionTaxRelief,
 ) => {
   if (claimsAdditionalPensionTaxRelief && taxBand.taxRate > 20) {
     // If Basic Rate pays 80 -> They get 20 in relief
@@ -267,7 +268,7 @@ const getTaxPayersTaxBand = (incomeTaxTable) => {
 const convertToDonationTimeScale = (
   inputAmount,
   interval,
-  donationInterval
+  donationInterval,
 ) => {
   if (interval === donationInterval) {
     return inputAmount;
@@ -296,7 +297,7 @@ const calculateGiftAidToClaim = (donationAmount) => {
 const determineIfCanClaimGiftAid = (
   giftAidToClaim,
   giftAidTaxRelief,
-  totalTaxPaid
+  totalTaxPaid,
 ) => {
   const canClaimGiftAid = giftAidToClaim <= totalTaxPaid - giftAidTaxRelief;
   return canClaimGiftAid;
@@ -305,7 +306,7 @@ const determineIfCanClaimGiftAid = (
 const calculateGiftAidTaxRelief = (
   claimsAdditionalGiftAidTaxRelief,
   donationAmount,
-  taxBand
+  taxBand,
 ) => {
   if (claimsAdditionalGiftAidTaxRelief && taxBand.taxRate > 20) {
     // Donation * Gift Aid Claim Percentage Increase * Tax Relief Percentage
@@ -321,7 +322,7 @@ const calculateGiftAidTaxRelief = (
 const calculateGiftAidDonationCap = (
   claimsAdditionalGiftAidTaxRelief,
   totalTaxPaid,
-  taxBand
+  taxBand,
 ) => {
   // console.log(taxBand.taxRate > 20);
 

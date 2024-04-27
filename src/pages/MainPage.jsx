@@ -6,6 +6,8 @@ import { Footer } from "../components/Footer";
 import { ScreenTypeContextProvider } from "../context/ScreenTypeContext";
 import { PopupContextProvider } from "../context/PopupContext";
 import { BackgroundShapes } from "../components/BackgroundShapes";
+import { IncomeTaxCard } from "../components/IncomeTaxCard";
+import { BreakdownSection } from "../components/breakdownSection/BreakdownSection";
 
 const MainPage = () => {
   return (
@@ -17,6 +19,7 @@ const MainPage = () => {
             <BackgroundShapes />
             <CalculatorContextProvider>
               <FormSection />
+              <BreakdownSection />
             </CalculatorContextProvider>
           </main>
           <Footer />
