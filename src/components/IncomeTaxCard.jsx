@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import vIcon from "../assets/info-page/v-icon.svg";
 import arrowIcon from "../assets/arrow.svg";
 import largeArrowIcon from "../assets/large-arrow.svg";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import { UseCalculatorContext } from "../context/CalculatorContext";
+import { useSpring, animated, useTransition } from "@react-spring/web";
 
 const IncomeTaxCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { screenType } = useScreenTypeContext();
   const { grossIncome } = UseCalculatorContext();
+  const expandedSectionRef = useRef(null);
+
+  const [props, api] = useSpring(() => ({ height: "0px" }), []);
+
   const eligibilityInformation = {
     grossIncome: 90000,
     convertedPensionContribution: 0,
@@ -71,27 +76,41 @@ const IncomeTaxCard = () => {
     timeInterval: "Year",
   };
 
+  const summaryInformationTransition = useTransition(!isExpanded, {
+    from: {
+      opacity: 1,
+      y: 0,
+    },
+    enter: {
+      opacity: 1,
+      y: 0,
+    },
+    leave: {
+      opacity: 0,
+      y: -30,
+      maxHeight: 0,
+      padding: 0,
+    },
+  });
+
   const handleClick = () => {
     if (isExpanded) {
       setIsExpanded(false);
     } else {
       setIsExpanded(true);
     }
+
+    api.start({
+      from: {
+        height: isExpanded ? expandedSectionRef.current.offsetHeight : 0,
+        opacity: isExpanded ? 1 : 0,
+      },
+      to: {
+        height: isExpanded ? 0 : expandedSectionRef.current.offsetHeight,
+        opacity: isExpanded ? 0 : 1,
+      },
+    });
   };
-
-  function formatNumber(number) {
-    if (number == null || number === 0) return "-";
-
-    number = addCommasToNumber(number);
-    return "£" + number;
-  }
-
-  function addCommasToNumber(number) {
-    if (number == null) return "";
-
-    // return number;
-    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  }
 
   const displayRows = () => {
     if (eligibilityInformation.incomeTaxTable == null) return;
@@ -148,37 +167,50 @@ const IncomeTaxCard = () => {
         )}
       </div>
       <div>The table shows the tax rates you pay in each tax band</div>
-      {!isExpanded && (
-        <div className="mx-auto flex gap-2 tablet:gap-3">
-          <div>
-            <div className=" text-right text-sm tablet:text-xl">Income</div>
-            <div className="  tablet:text-2.5xl text-xl font-bold text-turquoise-600">
-              £{addCommasToNumber(eligibilityInformation.grossIncome)}
+      {summaryInformationTransition((style, item) =>
+        item === true ? (
+          <animated.div
+            className="mx-auto flex gap-2 tablet:gap-3"
+            style={style}
+          >
+            <div>
+              <div className=" text-right text-sm tablet:text-xl">Income</div>
+              <div className="  tablet:text-2.5xl text-xl font-bold text-turquoise-600">
+                £{addCommasToNumber(eligibilityInformation.grossIncome)}
+              </div>
             </div>
-          </div>
-          <div>
-            <img
-              src={
-                screenType.isDesktop || screenType.isLargeDesktop
-                  ? largeArrowIcon
-                  : arrowIcon
-              }
-              alt="Arrow pointing right"
-              className={` -mt-2 transition-all duration-500 desktop:-mt-4`}
-            />
-          </div>
-          <div>
-            <div className=" whitespace-nowrap  text-sm tablet:text-xl">
-              Income tax
+            <div>
+              <img
+                src={
+                  screenType.isDesktop || screenType.isLargeDesktop
+                    ? largeArrowIcon
+                    : arrowIcon
+                }
+                alt="Arrow pointing right"
+                className={` -mt-2 transition-all duration-500 desktop:-mt-4`}
+              />
             </div>
-            <div className=" tablet:text-2.5xl text-xl font-bold text-neutral-900">
-              £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+            <div>
+              <div className=" whitespace-nowrap  text-sm tablet:text-xl">
+                Income tax
+              </div>
+              <div className=" tablet:text-2.5xl text-xl font-bold text-neutral-900">
+                £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+              </div>
             </div>
-          </div>
-        </div>
+          </animated.div>
+        ) : (
+          ""
+        ),
       )}
-      {isExpanded && (
-        <>
+      <animated.div
+        className="relative w-full overflow-hidden"
+        style={{ ...props }}
+      >
+        <div
+          className=" absolute left-0 right-0 top-0 "
+          ref={expandedSectionRef}
+        >
           <div className="w-full overflow-x-auto ">
             <table className="w-full largePhone:table-fixed">
               <thead>
@@ -228,8 +260,8 @@ const IncomeTaxCard = () => {
               £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </animated.div>
       <img
         src={vIcon}
         alt="Toggle"
@@ -241,5 +273,19 @@ const IncomeTaxCard = () => {
     </div>
   );
 };
+
+function formatNumber(number) {
+  if (number == null || number === 0) return "-";
+
+  number = addCommasToNumber(number);
+  return "£" + number;
+}
+
+function addCommasToNumber(number) {
+  if (number == null) return "";
+
+  // return number;
+  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
 
 export { IncomeTaxCard };
