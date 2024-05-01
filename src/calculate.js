@@ -31,7 +31,6 @@ const getGiftAidEligibilityInformation = (
   );
 
   const incomeTaxTable = createIncomeTaxTable(grossIncome, livesInScotland);
-  console.log(incomeTaxTable);
   let incomeTaxAmount = calculateIncomeTax(incomeTaxTable);
   const taxBand = getTaxPayersTaxBand(incomeTaxTable);
   let pensionTaxReliefAmount = calculatePensionTaxRelief(
@@ -75,6 +74,7 @@ const getGiftAidEligibilityInformation = (
     taxBand,
   );
   const giftAidEligibilityInformation = {
+    grossIncome: grossIncome,
     convertedPensionContribution: convertedPensionContribution,
     incomeTaxTable: incomeTaxTable,
     incomeTaxAmount: incomeTaxAmount,
@@ -90,7 +90,7 @@ const getGiftAidEligibilityInformation = (
     informationRetrieved: true,
     timeInterval: selectedDonationInterval,
   };
-
+  console.log(giftAidEligibilityInformation);
   // console.log(incomeTaxTable);
   // console.log(taxBand);
   console.log("Income Tax: " + incomeTaxAmount);
@@ -124,64 +124,90 @@ const getTaxBands = (grossIncome, livesInScotland) => {
     let taxBands = [
       {
         name: "personalAllowance",
+        displayName: "Personal Allowance",
         lowerLimit: 0,
         upperLimit: personalAllowance,
         taxRate: 0,
       },
       {
         name: "starterRate",
+        displayName: "Starter Rate",
+
         lowerLimit: personalAllowance,
         upperLimit: 2306 + personalAllowance,
         taxRate: 19,
       },
       {
         name: "basicRate",
+        displayName: "Basic Rate",
+
         lowerLimit: 2306 + personalAllowance,
         upperLimit: 13991 + personalAllowance,
         taxRate: 20,
       },
       {
-        name: "intermidiateRate",
+        name: "intermediateRate",
+        displayName: "Intermediate Rate",
+
         lowerLimit: 13991 + personalAllowance,
         upperLimit: 31092 + personalAllowance,
         taxRate: 21,
       },
       {
         name: "higherRate",
+        displayName: "Higher Rate",
+
         lowerLimit: 31092 + personalAllowance,
         upperLimit: 62430 + personalAllowance,
         taxRate: 42,
       },
       {
         name: "advancedRate",
+        displayName: "Advanced Rate",
+
         lowerLimit: 62430 + personalAllowance,
         upperLimit: 125140,
         taxRate: 45,
       },
-      { name: "additionalRate", lowerLimit: 125140, taxRate: 48 },
+      {
+        name: "additionalRate",
+        displayName: "Additional Rate",
+        lowerLimit: 125140,
+        taxRate: 48,
+      },
     ];
     return taxBands;
   } else {
     let taxBands = [
       {
         name: "personalAllowance",
+        displayName: "Personal Allowance",
         lowerLimit: 0,
         upperLimit: personalAllowance,
         taxRate: 0,
       },
       {
         name: "basicRate",
+        displayName: "Basic Rate",
+
         lowerLimit: personalAllowance,
         upperLimit: 37700 + personalAllowance,
         taxRate: 20,
       },
       {
         name: "higherRate",
+        displayName: "Higher Rate",
+
         lowerLimit: 37700 + personalAllowance,
         upperLimit: 125140,
         taxRate: 40,
       },
-      { name: "additionalRate", lowerLimit: 125140, taxRate: 45 },
+      {
+        name: "additionalRate",
+        displayName: "Additional Rate",
+        lowerLimit: 125140,
+        taxRate: 45,
+      },
     ];
     return taxBands;
   }

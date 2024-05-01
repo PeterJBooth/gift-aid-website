@@ -93,7 +93,7 @@ const CalculatorContextProvider = (props) => {
       claimsAdditionalPensionRelief,
       selectedIncomeInterval,
       selectedDonationInterval,
-      pensionformat
+      pensionformat,
     );
 
     setEligibilityInformation(giftAidEligibilityInformation);
@@ -105,6 +105,7 @@ const CalculatorContextProvider = (props) => {
       value={{
         setSelectedIncomeInterval,
         setGrossIncome,
+        grossIncome,
         setSelectedDonationInterval,
         setDonationAmount,
         setLivesInScotland,
