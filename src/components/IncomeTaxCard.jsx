@@ -1,19 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import vIcon from "../assets/info-page/v-icon.svg";
 import arrowIcon from "../assets/arrow.svg";
 import largeArrowIcon from "../assets/large-arrow.svg";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import { UseCalculatorContext } from "../context/CalculatorContext";
 import { useSpring, animated, useTransition } from "@react-spring/web";
+import { MoreInfoProvider } from "./calculatorForm/MoreInfoProvider";
 
 const IncomeTaxCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { screenType } = useScreenTypeContext();
-  const { grossIncome } = UseCalculatorContext();
   const expandedSectionRef = useRef(null);
-
-  const [props, api] = useSpring(() => ({ height: "0px" }), []);
-
+  const summaryInfoRef = useRef(null);
   const eligibilityInformation = {
     grossIncome: 90000,
     convertedPensionContribution: 0,
@@ -76,20 +74,22 @@ const IncomeTaxCard = () => {
     timeInterval: "Year",
   };
 
-  const summaryInformationTransition = useTransition(!isExpanded, {
+  const [props, api] = useSpring(() => ({ height: "88px" }), []);
+  const [insideProps, InsideApi] = useSpring(() => ({ y: 0 }), []);
+  const [tableSectionProps, tableSectionApi] = useSpring(
+    () => ({ opacity: 0 }),
+    [],
+  );
+
+  const inputInfoTransition = useTransition(isExpanded === true, {
     from: {
-      opacity: 1,
-      y: 0,
+      opacity: 0,
     },
     enter: {
       opacity: 1,
-      y: 0,
     },
     leave: {
       opacity: 0,
-      y: -30,
-      maxHeight: 0,
-      padding: 0,
     },
   });
 
@@ -102,13 +102,27 @@ const IncomeTaxCard = () => {
 
     api.start({
       from: {
-        height: isExpanded ? expandedSectionRef.current.offsetHeight : 0,
-        opacity: isExpanded ? 1 : 0,
+        height: isExpanded
+          ? expandedSectionRef.current.offsetHeight -
+            summaryInfoRef.current.offsetHeight -
+            32
+          : summaryInfoRef.current.offsetHeight,
       },
       to: {
-        height: isExpanded ? 0 : expandedSectionRef.current.offsetHeight,
-        opacity: isExpanded ? 0 : 1,
+        height: isExpanded
+          ? summaryInfoRef.current.offsetHeight
+          : expandedSectionRef.current.offsetHeight -
+            summaryInfoRef.current.offsetHeight -
+            32,
       },
+    });
+    InsideApi.start({
+      from: { y: isExpanded ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
+      to: { y: isExpanded ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
+    });
+    tableSectionApi.start({
+      from: { opacity: isExpanded ? 1 : 0 },
+      to: { opacity: isExpanded ? 0 : 1 },
     });
   };
 
@@ -118,19 +132,31 @@ const IncomeTaxCard = () => {
     return eligibilityInformation.incomeTaxTable.map((taxBand) => {
       return (
         <tr key={taxBand.name}>
-          <td className=" border-b border-neutral-100  py-10 pr-4 leading-6">
+          <td className=" border-b  border-neutral-100 py-10 pr-4 leading-6">
             {taxBand.displayName}
           </td>
-          <td className=" border-b border-neutral-100 px-4 text-right leading-6">
-            {taxBand.upperLimit
-              ? "£" +
-                addCommasToNumber(taxBand.lowerLimit) +
-                " - £" +
-                addCommasToNumber(taxBand.upperLimit)
-              : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
+          <td className=" justify-end  border-b border-neutral-100 px-4 py-10 text-right leading-6">
+            <div className="flex justify-end whitespace-nowrap">
+              {taxBand.upperLimit
+                ? "£" +
+                  addCommasToNumber(taxBand.lowerLimit) +
+                  " - £" +
+                  addCommasToNumber(taxBand.upperLimit)
+                : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
+              {taxBand.displayName === "Personal Allowance" ? (
+                <MoreInfoProvider
+                  title={"Personal Allowance Reduction"}
+                  content={`Your personal allowance goes down by £1 for every £2 that your gross income is above £100,000.
+                    
+                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(Math.max(eligibilityInformation.grossIncome - 100000, 0) * 2)}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </td>
           <td
-            className={`  max-w-4 border-b border-neutral-100 px-4 text-right leading-6  ${taxBand.incomeInBand !== 0 ? "" : "pr-8"}`}
+            className={`max-w-4 border-b border-neutral-100 px-4 text-right leading-6  ${taxBand.incomeInBand !== 0 ? "" : "pr-8"}`}
           >
             {formatNumber(taxBand.incomeInBand)}
           </td>
@@ -149,119 +175,127 @@ const IncomeTaxCard = () => {
 
   return (
     <div className=" relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10 shadow-xl">
-      <div className="flex w-full justify-between">
-        <div
-          className={` leading-5   transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
-        >
-          Income Tax
-        </div>
-        {isExpanded && (
-          <div className="flex flex-col gap-2">
-            <div className=" tablet:text-2.5xl text-right  text-turquoise-600 tablet:font-bold">
-              £{addCommasToNumber(eligibilityInformation.grossIncome)}
-            </div>
-            <div className=" text-right text-neutral-300 tablet:text-xl">
-              Income
-            </div>
-          </div>
-        )}
-      </div>
-      <div>The table shows the tax rates you pay in each tax band</div>
-      {summaryInformationTransition((style, item) =>
-        item === true ? (
-          <animated.div
-            className="mx-auto flex gap-2 tablet:gap-3"
-            style={style}
+      <div className="flex w-full justify-between gap-8">
+        <div className="flex flex-col gap-8">
+          <div
+            className={` leading-5   transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
           >
-            <div>
-              <div className=" text-right text-sm tablet:text-xl">Income</div>
-              <div className="  tablet:text-2.5xl text-xl font-bold text-turquoise-600">
+            Income Tax
+          </div>
+          <div>The table shows the tax rates you pay in each tax band</div>
+        </div>
+        {inputInfoTransition((style, item) =>
+          item === true ? (
+            <animated.div className="flex flex-col gap-2" style={style}>
+              <div className=" text-right text-turquoise-600  tablet:text-2.5xl tablet:font-bold">
                 £{addCommasToNumber(eligibilityInformation.grossIncome)}
               </div>
-            </div>
-            <div>
-              <img
-                src={
-                  screenType.isDesktop || screenType.isLargeDesktop
-                    ? largeArrowIcon
-                    : arrowIcon
-                }
-                alt="Arrow pointing right"
-                className={` -mt-2 transition-all duration-500 desktop:-mt-4`}
-              />
-            </div>
-            <div>
-              <div className=" whitespace-nowrap  text-sm tablet:text-xl">
-                Income tax
+              <div className=" text-right text-neutral-300 tablet:text-xl">
+                Income
               </div>
-              <div className=" tablet:text-2.5xl text-xl font-bold text-neutral-900">
-                £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
-              </div>
-            </div>
-          </animated.div>
-        ) : (
-          ""
-        ),
-      )}
-      <animated.div
-        className="relative w-full overflow-hidden"
-        style={{ ...props }}
-      >
-        <div
-          className=" absolute left-0 right-0 top-0 "
-          ref={expandedSectionRef}
+            </animated.div>
+          ) : (
+            ""
+          ),
+        )}
+      </div>
+      <div className="flex w-full items-center justify-center">
+        <animated.div
+          className="relative w-full overflow-y-clip overflow-x-visible"
+          style={{ ...props }}
         >
-          <div className="w-full overflow-x-auto ">
-            <table className="w-full largePhone:table-fixed">
-              <thead>
-                <tr className="">
-                  <th className=" w-[20%]  border-b border-neutral-100  py-4 pr-4 text-left font-normal text-neutral-400">
-                    Band
-                  </th>
-                  <th className=" w-[20%] min-w-28 border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                    Earnings Range
-                  </th>
-                  <th className=" w-[25%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                    Amount Earned in Tax Band
-                  </th>
-                  <th className=" border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                    Tax Rate
-                  </th>
-                  <th className=" border-b border-neutral-100 pl-4 text-right font-normal text-neutral-400">
-                    Tax Amount
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {displayRows()}
-                <tr>
-                  <td className="   py-10 pr-4 leading-6"></td>
-                  <td className="  px-4 text-right leading-6"></td>
-                  <td className="max-w-4  px-4 text-right leading-6"></td>
-                  <td className="  px-4 text-right leading-6"></td>
-                  <td className="  pl-4  text-right">
-                    <div className=" flex justify-end gap-3 whitespace-nowrap">
-                      <div className="text-neutral-400 ">Sum</div>
-                      <div className="font-bold">
-                        £
-                        {addCommasToNumber(
-                          eligibilityInformation.incomeTaxAmount,
-                        )}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="mx-auto flex flex-col items-center gap-2">
-            <div className=" text-sm font-bold tablet:text-xl ">Income Tax</div>
-            <div className=" tablet:text-2.5xl text-xl font-bold text-orange-400">
-              £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+          <animated.div
+            className=" absolute left-0 right-0 top-0 flex flex-col gap-8 overflow-visible"
+            ref={expandedSectionRef}
+            style={{ ...insideProps }}
+          >
+            <div
+              className="mx-auto flex gap-2 pt-8 tablet:gap-3"
+              ref={summaryInfoRef}
+            >
+              <div>
+                <div className="text-right text-sm tablet:text-xl">Income</div>
+                <div className="text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
+                  £{addCommasToNumber(eligibilityInformation.grossIncome)}
+                </div>
+              </div>
+              <div>
+                <img
+                  src={
+                    screenType.isDesktop || screenType.isLargeDesktop
+                      ? largeArrowIcon
+                      : arrowIcon
+                  }
+                  alt="Arrow pointing right"
+                  className={` -mt-2 transition-all duration-500 desktop:-mt-4`}
+                />
+              </div>
+              <div>
+                <div className=" whitespace-nowrap  text-sm tablet:text-xl">
+                  Income tax
+                </div>
+                <div className=" text-xl font-bold text-neutral-900 tablet:text-2.5xl">
+                  £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </animated.div>
+            <animated.div style={{ ...tableSectionProps }}>
+              <div className="w-full overflow-x-auto ">
+                <table className="w-full tablet:table-fixed">
+                  <thead>
+                    <tr className="">
+                      <th className=" w-[20%]  border-b border-neutral-100  py-4 pr-4 text-left font-normal text-neutral-400">
+                        Band
+                      </th>
+                      <th className=" w-[20%] min-w-28 border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                        Earnings Range
+                      </th>
+                      <th className=" w-[25%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                        Amount Earned in Tax Band
+                      </th>
+                      <th className=" border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                        Tax Rate
+                      </th>
+                      <th className=" border-b border-neutral-100 pl-4 text-right font-normal text-neutral-400">
+                        Tax Amount
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {displayRows()}
+                    <tr>
+                      <td className="   py-10 pr-4 leading-6"></td>
+                      <td className="  px-4 text-right leading-6"></td>
+                      <td className="max-w-4  px-4 text-right leading-6"></td>
+                      <td className="  px-4 text-right leading-6"></td>
+                      <td className="  pl-4  text-right">
+                        <div className=" flex justify-end gap-3 whitespace-nowrap">
+                          <div className="text-neutral-400 ">Sum</div>
+                          <div className="font-bold">
+                            £
+                            {addCommasToNumber(
+                              eligibilityInformation.incomeTaxAmount,
+                            )}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mx-auto mt-8 flex flex-col items-center gap-2">
+                <div className=" text-sm font-bold tablet:text-xl ">
+                  Income Tax
+                </div>
+                <div className=" text-xl font-bold text-orange-400 tablet:text-2.5xl">
+                  £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+                </div>
+              </div>
+            </animated.div>
+          </animated.div>
+        </animated.div>
+      </div>
+
       <img
         src={vIcon}
         alt="Toggle"

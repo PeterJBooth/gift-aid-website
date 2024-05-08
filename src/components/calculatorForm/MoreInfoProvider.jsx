@@ -17,7 +17,7 @@ const MoreInfoProvider = ({ title, content }) => {
     setShowingInfoBox(false);
   };
   return (
-    <div className="relative z-50 ml-2">
+    <div className=" relative z-50 ml-2 overflow-visible text-left">
       <FaRegQuestionCircle
         className="cursor-pointer pb-[0.15rem] text-blue-700 hover:text-blue-200 active:text-blue-700"
         size={14}
@@ -27,7 +27,6 @@ const MoreInfoProvider = ({ title, content }) => {
       />
       {showingInfoBox === true && (
         <div
-          // ref={infoBoxRef}
           className="absolute left-1/2 top-9 z-50 flex w-[21rem] -translate-x-1/2 flex-col gap-5 rounded-md border border-neutral-100 bg-neutral-25 p-6 shadow-custom1 before:absolute before:-top-px before:right-1/2 before:size-6 before:-translate-y-1/2 before:translate-x-1/2 before:rotate-45 before:border-l before:border-t before:border-neutral-100 before:bg-neutral-25 before:content-['']"
           onClick={() => RemoveInfoBox()}
         >
@@ -38,10 +37,10 @@ const MoreInfoProvider = ({ title, content }) => {
               RemoveInfoBox();
             }}
           />
-          <div>{title}</div>
+          <div className=" text-lg font-bold">{title}</div>
           <div
             className=" block whitespace-pre-line text-sm font-normal
-"
+        "
           >
             {content}
           </div>
