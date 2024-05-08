@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import vIcon from "../assets/info-page/v-icon.svg";
-import arrowIcon from "../assets/arrow.svg";
-import largeArrowIcon from "../assets/large-arrow.svg";
-import { useScreenTypeContext } from "../context/ScreenTypeContext";
-import { UseCalculatorContext } from "../context/CalculatorContext";
+import vIcon from "../../assets/info-page/v-icon.svg";
+import arrowIcon from "../../assets/arrow.svg";
+import largeArrowIcon from "../../assets/large-arrow.svg";
+import { useScreenTypeContext } from "../../context/ScreenTypeContext";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { useSpring, animated, useTransition } from "@react-spring/web";
-import { MoreInfoProvider } from "./calculatorForm/MoreInfoProvider";
+import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 
 const IncomeTaxCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);

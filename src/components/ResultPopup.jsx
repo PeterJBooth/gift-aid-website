@@ -8,7 +8,7 @@ import { useScreenTypeContext } from "../context/ScreenTypeContext";
 const ResultPopup = ({ style }) => {
   const { eligibilityInformation } = UseCalculatorContext();
   const { screenType } = useScreenTypeContext();
-  const { setPopupIsActive } = usePopupContext();
+  const { setPopupIsActive, breakdownSectionRef } = usePopupContext();
 
   const displayResultMessage = () => {
     if (eligibilityInformation.canClaimGiftAid) {
@@ -70,6 +70,7 @@ const ResultPopup = ({ style }) => {
     if (screenType.isMobile || screenType.isTablet) {
       setPopupIsActive(false);
     }
+    breakdownSectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
