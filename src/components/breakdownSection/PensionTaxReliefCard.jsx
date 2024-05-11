@@ -7,13 +7,11 @@ import { useSpring, animated, useTransition } from "@react-spring/web";
 import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 import { addCommasToNumber, formatNumber } from "../../utils/formatNumber";
 
-const IncomeTaxCard = () => {
+const PensionTaxReliefCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { screenType } = useScreenTypeContext();
   const expandedSectionRef = useRef(null);
   const summaryInfoRef = useRef(null);
-  const inputRef = useRef(null);
-
   const eligibilityInformation = {
     grossIncome: 90000,
     convertedPensionContribution: 0,
@@ -87,22 +85,17 @@ const IncomeTaxCard = () => {
     [],
   );
 
-  const [inputProps, inputApi] = useSpring(
-    () => ({ opacity: 0, height: 0 }),
-    [],
-  );
-
-  // const inputInfoTransition = useTransition(isExpanded === true, {
-  //   from: {
-  //     opacity: 0,
-  //   },
-  //   enter: {
-  //     opacity: 1,
-  //   },
-  //   leave: {
-  //     opacity: 0,
-  //   },
-  // });
+  const inputInfoTransition = useTransition(isExpanded === true, {
+    from: {
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+    },
+    leave: {
+      opacity: 0,
+    },
+  });
 
   const handleClick = () => {
     if (isExpanded) {
@@ -139,19 +132,6 @@ const IncomeTaxCard = () => {
     summaryInfoApi.start({
       from: { opacity: isExpanded ? 0 : 1 },
       to: { opacity: isExpanded ? 1 : 0 },
-    });
-
-    console.log(inputRef.current.offsetHeight);
-
-    inputApi.start({
-      from: {
-        opacity: isExpanded ? 1 : 0,
-        height: isExpanded ? inputRef.current.offsetHeight : 0,
-      },
-      to: {
-        opacity: isExpanded ? 0 : 1,
-        height: isExpanded ? 0 : inputRef.current.offsetHeight,
-      },
     });
   };
 
@@ -207,24 +187,26 @@ const IncomeTaxCard = () => {
       <div className="flex w-full justify-between gap-8">
         <div className="flex flex-col gap-8">
           <div
-            className={` leading-5 transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
+            className={` leading-5   transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
           >
-            Income Tax
+            Pension Tax Relief
           </div>
+          <div>The table shows the tax rates you pay in each tax band</div>
         </div>
-        <animated.div className=" relative  w-32" style={inputProps}>
-          <div
-            className="absolute left-0 right-0 flex flex-col gap-2"
-            ref={inputRef}
-          >
-            <div className=" text-right text-turquoise-600  tablet:text-2.5xl tablet:font-bold">
-              £{addCommasToNumber(eligibilityInformation.grossIncome)}
-            </div>
-            <div className=" text-right text-neutral-300 tablet:text-xl">
-              Income
-            </div>
-          </div>
-        </animated.div>
+        {inputInfoTransition((style, item) =>
+          item === true ? (
+            <animated.div className="flex flex-col gap-2" style={style}>
+              <div className=" text-right text-turquoise-600  tablet:text-2.5xl tablet:font-bold">
+                £{addCommasToNumber(eligibilityInformation.grossIncome)}
+              </div>
+              <div className=" text-right text-neutral-300 tablet:text-xl">
+                Income
+              </div>
+            </animated.div>
+          ) : (
+            ""
+          ),
+        )}
       </div>
       <div className="flex w-full items-center justify-center">
         <animated.div
@@ -232,7 +214,7 @@ const IncomeTaxCard = () => {
           style={{ ...props }}
         >
           <animated.div
-            className=" absolute left-0 right-0 top-0 flex flex-col gap-8 overflow-visible"
+            className="absolute left-0 right-0 top-0 flex flex-col gap-8 overflow-visible"
             ref={expandedSectionRef}
             style={{ ...insideProps }}
           >
@@ -267,11 +249,9 @@ const IncomeTaxCard = () => {
                 </div>
               </div>
             </animated.div>
+
             <animated.div style={{ ...tableSectionProps }}>
-              <div className=" flex w-full flex-col gap-8 overflow-x-auto ">
-                <div>
-                  The table shows the tax rates you pay in each tax band
-                </div>
+              <div className="w-full overflow-x-auto ">
                 <table className="w-full tablet:table-fixed">
                   <thead>
                     <tr className="">
@@ -339,4 +319,4 @@ const IncomeTaxCard = () => {
   );
 };
 
-export { IncomeTaxCard };
+export { PensionTaxReliefCard };
