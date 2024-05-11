@@ -3,7 +3,6 @@ import vIcon from "../../assets/info-page/v-icon.svg";
 import arrowIcon from "../../assets/arrow.svg";
 import largeArrowIcon from "../../assets/large-arrow.svg";
 import { useScreenTypeContext } from "../../context/ScreenTypeContext";
-import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { useSpring, animated, useTransition } from "@react-spring/web";
 import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 
@@ -80,6 +79,10 @@ const IncomeTaxCard = () => {
     () => ({ opacity: 0 }),
     [],
   );
+  const [summaryInfoProps, summaryInfoApi] = useSpring(
+    () => ({ opacity: 1 }),
+    [],
+  );
 
   const inputInfoTransition = useTransition(isExpanded === true, {
     from: {
@@ -123,6 +126,11 @@ const IncomeTaxCard = () => {
     tableSectionApi.start({
       from: { opacity: isExpanded ? 1 : 0 },
       to: { opacity: isExpanded ? 0 : 1 },
+    });
+
+    summaryInfoApi.start({
+      from: { opacity: isExpanded ? 0 : 1 },
+      to: { opacity: isExpanded ? 1 : 0 },
     });
   };
 
@@ -209,9 +217,10 @@ const IncomeTaxCard = () => {
             ref={expandedSectionRef}
             style={{ ...insideProps }}
           >
-            <div
+            <animated.div
               className="mx-auto flex gap-2 pt-8 tablet:gap-3"
               ref={summaryInfoRef}
+              style={{ ...summaryInfoProps }}
             >
               <div>
                 <div className="text-right text-sm tablet:text-xl">Income</div>
@@ -238,7 +247,7 @@ const IncomeTaxCard = () => {
                   £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
                 </div>
               </div>
-            </div>
+            </animated.div>
             <animated.div style={{ ...tableSectionProps }}>
               <div className="w-full overflow-x-auto ">
                 <table className="w-full tablet:table-fixed">

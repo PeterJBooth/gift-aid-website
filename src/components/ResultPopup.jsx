@@ -4,11 +4,13 @@ import { UseCalculatorContext } from "../context/CalculatorContext";
 import { IoMdClose } from "react-icons/io";
 import { usePopupContext } from "../context/PopupContext";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
+import { useBreakdownContext } from "../context/BreakdownContext";
 
 const ResultPopup = ({ style }) => {
   const { eligibilityInformation } = UseCalculatorContext();
   const { screenType } = useScreenTypeContext();
-  const { setPopupIsActive, breakdownSectionRef } = usePopupContext();
+  const { setPopupIsActive } = usePopupContext();
+  const { breakdownSectionRef, setIsVisible } = useBreakdownContext();
 
   const displayResultMessage = () => {
     if (eligibilityInformation.canClaimGiftAid) {
@@ -70,7 +72,10 @@ const ResultPopup = ({ style }) => {
     if (screenType.isMobile || screenType.isTablet) {
       setPopupIsActive(false);
     }
-    breakdownSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    setIsVisible(true);
+    setTimeout(() => {
+      breakdownSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (

@@ -1,16 +1,21 @@
-import { useRef } from "react";
 import { IncomeTaxCard } from "./IncomeTaxCard";
-import { usePopupContext } from "../../context/PopupContext";
+import { useBreakdownContext } from "../../context/BreakdownContext";
 
 const BreakdownSection = () => {
-  const { breakdownSectionRef } = usePopupContext();
+  const { breakdownSectionRef, isVisible } = useBreakdownContext();
+  // console.log(useBreakdownContext());
 
   return (
-    <div
-      className="mx-auto max-w-10xl gap-12 px-custom pb-40"
-      ref={breakdownSectionRef}
-    >
-      <IncomeTaxCard />
+    <div ref={breakdownSectionRef}>
+      {isVisible && (
+        <div className="mx-auto flex max-w-10xl flex-col gap-20 px-custom pb-40 pt-40 ">
+          <IncomeTaxCard />
+          <IncomeTaxCard />
+          <IncomeTaxCard />
+          <IncomeTaxCard />
+          <IncomeTaxCard />
+        </div>
+      )}
     </div>
   );
 };

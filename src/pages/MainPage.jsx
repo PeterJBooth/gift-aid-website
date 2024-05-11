@@ -8,6 +8,7 @@ import { PopupContextProvider } from "../context/PopupContext";
 import { BackgroundShapes } from "../components/BackgroundShapes";
 import { IncomeTaxCard } from "../components/breakdownSection/IncomeTaxCard";
 import { BreakdownSection } from "../components/breakdownSection/BreakdownSection";
+import { BreakdownContextProvider } from "../context/BreakdownContext";
 
 const MainPage = () => {
   return (
@@ -17,10 +18,12 @@ const MainPage = () => {
           <Header giftAidButtonActive={true} />
           <main>
             <BackgroundShapes />
-            <CalculatorContextProvider>
-              <FormSection />
-              <BreakdownSection />
-            </CalculatorContextProvider>
+            <BreakdownContextProvider>
+              <CalculatorContextProvider>
+                <FormSection />
+                <BreakdownSection />
+              </CalculatorContextProvider>
+            </BreakdownContextProvider>
           </main>
           <Footer />
         </PopupContextProvider>
