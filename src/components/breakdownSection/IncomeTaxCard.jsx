@@ -163,7 +163,7 @@ const IncomeTaxCard = () => {
     return eligibilityInformation.incomeTaxTable.map((taxBand) => {
       return (
         <tr key={taxBand.name}>
-          <td className=" sticky left-0 border-b border-neutral-100  bg-white py-10 pr-4 leading-6">
+          <td className="sticky left-0 border-b border-neutral-100  bg-white py-10 pr-4 leading-6">
             {taxBand.displayName}
           </td>
           <td className=" justify-end  border-b border-neutral-100 px-4 py-10 text-right leading-6">
@@ -175,7 +175,8 @@ const IncomeTaxCard = () => {
                   addCommasToNumber(taxBand.upperLimit)
                 : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
               {taxBand.displayName === "Personal Allowance" &&
-              eligibilityInformation.grossIncome > 100000 ? (
+              eligibilityInformation.grossIncome > 100000 &&
+              screenType.isMobile !== true ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
                   content={`Your personal allowance goes down by £1 for every £2 that your gross income is above £100,000.
@@ -209,11 +210,11 @@ const IncomeTaxCard = () => {
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
       <div className="flex w-full justify-between gap-8">
         <div
-          className={` leading-5 transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
+          className={` min-w-[105px] leading-5 transition-all ${isExpanded ? "text-xl tablet:text-2.5xl  tablet:leading-6" : "text-xl"} `}
         >
           Income Tax
         </div>
-        <animated.div className="relative w-32" style={inputProps}>
+        <animated.div className={`relative w-32 `} style={inputProps}>
           <div
             className="absolute left-0 right-0 flex flex-col gap-2"
             ref={inputRef}
@@ -279,7 +280,7 @@ const IncomeTaxCard = () => {
                   <table className="w-full min-w-[41rem] overflow-scroll overflow-x-auto rounded-md   tablet:table-fixed">
                     <thead>
                       <tr>
-                        <th className=" sticky left-0 w-[20%] border-b  border-neutral-100 bg-white  py-4 pr-4 text-left font-normal text-neutral-400">
+                        <th className="  sticky left-0 w-[20%] border-b  border-neutral-100 bg-white  py-4 pr-4 text-left font-normal text-neutral-400">
                           Band
                         </th>
                         <th className=" w-[20%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">

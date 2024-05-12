@@ -196,7 +196,7 @@ const PensionTaxReliefCard = () => {
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
       <div className="flex w-full justify-between gap-8">
         <div
-          className={`leading-5 transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
+          className={`min-w-[135px] leading-5 transition-all ${isExpanded ? "text-xl tablet:text-2.5xl  tablet:leading-6" : "text-xl"} `}
         >
           Pension Tax Relief
         </div>
