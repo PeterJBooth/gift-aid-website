@@ -6,6 +6,7 @@ import { useScreenTypeContext } from "../../context/ScreenTypeContext";
 import { useSpring, animated, useTransition } from "@react-spring/web";
 import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 import { addCommasToNumber, formatNumber } from "../../utils/formatNumber";
+import { UseCalculatorContext } from "../../context/CalculatorContext";
 
 const IncomeTaxCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -14,69 +15,71 @@ const IncomeTaxCard = () => {
   const summaryInfoRef = useRef(null);
   const inputRef = useRef(null);
 
-  const eligibilityInformation = {
-    grossIncome: 90000,
-    convertedPensionContribution: 0,
-    incomeTaxTable: [
-      {
-        name: "personalAllowance",
-        displayName: "Personal Allowance",
-        lowerLimit: 0,
-        upperLimit: 12570,
-        taxRate: 0,
-        incomeInBand: 12570,
-        taxAmount: 0,
-      },
-      {
-        name: "basicRate",
-        displayName: "Basic Rate",
-        lowerLimit: 12570,
-        upperLimit: 50270,
-        taxRate: 20,
-        incomeInBand: 37700,
-        taxAmount: 7540,
-      },
-      {
-        name: "higherRate",
-        displayName: "Higher Rate",
-        lowerLimit: 50270,
-        upperLimit: 125140,
-        taxRate: 40,
-        incomeInBand: 39730,
-        taxAmount: 15892,
-      },
-      {
-        name: "additionalRate",
-        displayName: "Additional Rate",
-        lowerLimit: 125140,
-        taxRate: 45,
-        incomeInBand: 0,
-        taxAmount: 0,
-      },
-    ],
-    incomeTaxAmount: 23432,
-    taxBand: {
-      name: "higherRate",
-      displayName: "Higher Rate",
-      lowerLimit: 50270,
-      upperLimit: 125140,
-      taxRate: 40,
-      incomeInBand: 39730,
-      taxAmount: 15892,
-    },
-    pensionTaxReliefAmount: 0,
-    convertedIncomeTaxAmount: 23432,
-    convertedPensionTaxReliefAmount: 0,
-    totalTaxPaid: 23432,
-    giftAidToClaim: 2500,
-    canClaimGiftAid: true,
-    giftAidTaxRelief: 0,
-    giftAidDonationCap: 93728,
-    informationRetrieved: true,
-    timeInterval: "Year",
-  };
+  const { eligibilityInformation } = UseCalculatorContext();
 
-  const [props, api] = useSpring(() => ({ height: "88px" }), []);
+  // const eligibilityInformation = {
+  //   grossIncome: 90000,
+  //   convertedPensionContribution: 0,
+  //   incomeTaxTable: [
+  //     {
+  //       name: "personalAllowance",
+  //       displayName: "Personal Allowance",
+  //       lowerLimit: 0,
+  //       upperLimit: 12570,
+  //       taxRate: 0,
+  //       incomeInBand: 12570,
+  //       taxAmount: 0,
+  //     },
+  //     {
+  //       name: "basicRate",
+  //       displayName: "Basic Rate",
+  //       lowerLimit: 12570,
+  //       upperLimit: 50270,
+  //       taxRate: 20,
+  //       incomeInBand: 37700,
+  //       taxAmount: 7540,
+  //     },
+  //     {
+  //       name: "higherRate",
+  //       displayName: "Higher Rate",
+  //       lowerLimit: 50270,
+  //       upperLimit: 125140,
+  //       taxRate: 40,
+  //       incomeInBand: 39730,
+  //       taxAmount: 15892,
+  //     },
+  //     {
+  //       name: "additionalRate",
+  //       displayName: "Additional Rate",
+  //       lowerLimit: 125140,
+  //       taxRate: 45,
+  //       incomeInBand: 0,
+  //       taxAmount: 0,
+  //     },
+  //   ],
+  //   incomeTaxAmount: 23432,
+  //   taxBand: {
+  //     name: "higherRate",
+  //     displayName: "Higher Rate",
+  //     lowerLimit: 50270,
+  //     upperLimit: 125140,
+  //     taxRate: 40,
+  //     incomeInBand: 39730,
+  //     taxAmount: 15892,
+  //   },
+  //   pensionTaxReliefAmount: 0,
+  //   convertedIncomeTaxAmount: 23432,
+  //   convertedPensionTaxReliefAmount: 0,
+  //   totalTaxPaid: 23432,
+  //   giftAidToClaim: 2500,
+  //   canClaimGiftAid: true,
+  //   giftAidTaxRelief: 0,
+  //   giftAidDonationCap: 93728,
+  //   informationRetrieved: true,
+  //   timeInterval: "Year",
+  // };
+
+  const [mainProps, mainApi] = useSpring(() => ({ height: "100px" }), []);
   const [insideProps, InsideApi] = useSpring(() => ({ y: 0 }), []);
   const [tableSectionProps, tableSectionApi] = useSpring(
     () => ({ opacity: 0 }),
@@ -111,7 +114,7 @@ const IncomeTaxCard = () => {
       setIsExpanded(true);
     }
 
-    api.start({
+    mainApi.start({
       from: {
         height: isExpanded
           ? expandedSectionRef.current.offsetHeight -
@@ -127,6 +130,7 @@ const IncomeTaxCard = () => {
             32,
       },
     });
+
     InsideApi.start({
       from: { y: isExpanded ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
       to: { y: isExpanded ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
@@ -140,8 +144,6 @@ const IncomeTaxCard = () => {
       from: { opacity: isExpanded ? 0 : 1 },
       to: { opacity: isExpanded ? 1 : 0 },
     });
-
-    console.log(inputRef.current.offsetHeight);
 
     inputApi.start({
       from: {
@@ -172,7 +174,8 @@ const IncomeTaxCard = () => {
                   " - £" +
                   addCommasToNumber(taxBand.upperLimit)
                 : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
-              {taxBand.displayName === "Personal Allowance" ? (
+              {taxBand.displayName === "Personal Allowance" &&
+              eligibilityInformation.grossIncome > 100000 ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
                   content={`Your personal allowance goes down by £1 for every £2 that your gross income is above £100,000.
@@ -205,14 +208,12 @@ const IncomeTaxCard = () => {
   return (
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
       <div className="flex w-full justify-between gap-8">
-        <div className="flex flex-col gap-8">
-          <div
-            className={` leading-5 transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
-          >
-            Income Tax
-          </div>
+        <div
+          className={` leading-5 transition-all ${isExpanded ? "tablet:text-2.5xl   tablet:leading-6" : "text-xl"} `}
+        >
+          Income Tax
         </div>
-        <animated.div className=" relative  w-32" style={inputProps}>
+        <animated.div className="relative w-32" style={inputProps}>
           <div
             className="absolute left-0 right-0 flex flex-col gap-2"
             ref={inputRef}
@@ -221,7 +222,7 @@ const IncomeTaxCard = () => {
               £{addCommasToNumber(eligibilityInformation.grossIncome)}
             </div>
             <div className=" text-right text-neutral-300 tablet:text-xl">
-              Income
+              Yearly Income
             </div>
           </div>
         </animated.div>
@@ -229,7 +230,7 @@ const IncomeTaxCard = () => {
       <div className="flex w-full items-center justify-center">
         <animated.div
           className="relative w-full overflow-y-clip overflow-x-visible"
-          style={{ ...props }}
+          style={{ ...mainProps }}
         >
           <animated.div
             className=" absolute left-0 right-0 top-0 flex flex-col gap-8 overflow-visible"
@@ -241,8 +242,10 @@ const IncomeTaxCard = () => {
               ref={summaryInfoRef}
               style={{ ...summaryInfoProps }}
             >
-              <div>
-                <div className="text-right text-sm tablet:text-xl">Income</div>
+              <div className=" flex flex-col gap-1 tablet:gap-2">
+                <div className="text-right text-sm tablet:text-xl">
+                  Yearly Income
+                </div>
                 <div className="text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
                   £{addCommasToNumber(eligibilityInformation.grossIncome)}
                 </div>
@@ -258,9 +261,9 @@ const IncomeTaxCard = () => {
                   className={` -mt-2 transition-all duration-500 desktop:-mt-4`}
                 />
               </div>
-              <div>
+              <div className="flex flex-col gap-1 tablet:gap-2">
                 <div className=" whitespace-nowrap  text-sm tablet:text-xl">
-                  Income tax
+                  Income Tax
                 </div>
                 <div className=" text-xl font-bold text-neutral-900 tablet:text-2.5xl">
                   £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}

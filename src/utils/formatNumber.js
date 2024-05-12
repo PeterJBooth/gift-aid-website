@@ -9,6 +9,8 @@ function addCommasToNumber(number) {
   if (number == null) return "";
 
   // return number;
-  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  return Math.round(number)
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 export { formatNumber, addCommasToNumber };
