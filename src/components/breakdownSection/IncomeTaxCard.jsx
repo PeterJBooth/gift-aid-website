@@ -163,7 +163,7 @@ const IncomeTaxCard = () => {
     return eligibilityInformation.incomeTaxTable.map((taxBand) => {
       return (
         <tr key={taxBand.name}>
-          <td className=" border-b  border-neutral-100 py-10 pr-4 leading-6">
+          <td className=" sticky left-0 border-b border-neutral-100  bg-white py-10 pr-4 leading-6">
             {taxBand.displayName}
           </td>
           <td className=" justify-end  border-b border-neutral-100 px-4 py-10 text-right leading-6">
@@ -196,7 +196,7 @@ const IncomeTaxCard = () => {
             {addCommasToNumber(taxBand.taxRate)}%
           </td>
           <td
-            className={` border-b border-neutral-100 pl-4  text-right ${taxBand.taxAmount !== 0 ? "" : "pr-4"}`}
+            className={` border-b border-neutral-100 pl-4  text-right ${taxBand.taxAmount !== 0 ? " pr-4" : "pr-8"}`}
           >
             {formatNumber(taxBand.taxAmount)}
           </td>
@@ -271,51 +271,53 @@ const IncomeTaxCard = () => {
               </div>
             </animated.div>
             <animated.div style={{ ...tableSectionProps }}>
-              <div className=" flex w-full flex-col gap-8 overflow-x-auto ">
+              <div className=" flex w-full flex-col gap-8 ">
                 <div>
                   The table shows the tax rates you pay in each tax band
                 </div>
-                <table className="w-full tablet:table-fixed">
-                  <thead>
-                    <tr className="">
-                      <th className=" w-[20%]  border-b border-neutral-100  py-4 pr-4 text-left font-normal text-neutral-400">
-                        Band
-                      </th>
-                      <th className=" w-[20%] min-w-28 border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                        Earnings Range
-                      </th>
-                      <th className=" w-[25%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                        Amount Earned in Tax Band
-                      </th>
-                      <th className=" border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
-                        Tax Rate
-                      </th>
-                      <th className=" border-b border-neutral-100 pl-4 text-right font-normal text-neutral-400">
-                        Tax Amount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {displayRows()}
-                    <tr>
-                      <td className="   py-10 pr-4 leading-6"></td>
-                      <td className="  px-4 text-right leading-6"></td>
-                      <td className="max-w-4  px-4 text-right leading-6"></td>
-                      <td className="  px-4 text-right leading-6"></td>
-                      <td className="  pl-4  text-right">
-                        <div className=" flex justify-end gap-3 whitespace-nowrap">
-                          <div className="text-neutral-400 ">Sum</div>
-                          <div className="font-bold">
-                            £
-                            {addCommasToNumber(
-                              eligibilityInformation.incomeTaxAmount,
-                            )}
+                <div className="shadow-custom5 overflow-x-auto rounded-md tablet:shadow-none">
+                  <table className="w-full min-w-[41rem] overflow-scroll overflow-x-auto rounded-md   tablet:table-fixed">
+                    <thead>
+                      <tr>
+                        <th className=" sticky left-0 w-[20%] border-b  border-neutral-100 bg-white  py-4 pr-4 text-left font-normal text-neutral-400">
+                          Band
+                        </th>
+                        <th className=" w-[20%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                          Earnings Range
+                        </th>
+                        <th className=" w-[25%] border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                          Amount Earned in Tax Band
+                        </th>
+                        <th className=" border-b border-neutral-100 px-4 text-right font-normal text-neutral-400">
+                          Tax Rate
+                        </th>
+                        <th className="border-b border-neutral-100 pl-4  pr-4 text-right font-normal text-neutral-400">
+                          Tax Amount
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {displayRows()}
+                      <tr>
+                        <td className="   py-10 pr-4 leading-6"></td>
+                        <td className="  px-4 text-right leading-6"></td>
+                        <td className="max-w-4  px-4 text-right leading-6"></td>
+                        <td className="  px-4 text-right leading-6"></td>
+                        <td className="  pl-4  pr-4 text-right">
+                          <div className=" flex justify-end gap-3 whitespace-nowrap">
+                            <div className="text-neutral-400 ">Sum</div>
+                            <div className="font-bold">
+                              £
+                              {addCommasToNumber(
+                                eligibilityInformation.incomeTaxAmount,
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div className="mx-auto mt-8 flex flex-col items-center gap-2">
                 <div className=" text-sm font-bold tablet:text-xl ">

@@ -200,7 +200,7 @@ const PensionTaxReliefCard = () => {
         >
           Pension Tax Relief
         </div>
-        <animated.div className="relative w-96" style={inputProps}>
+        <animated.div className="relative w-72" style={inputProps}>
           <div
             className="absolute left-0 right-0 flex flex-col gap-2"
             ref={inputRef}
@@ -271,8 +271,8 @@ const PensionTaxReliefCard = () => {
               style={expandedSectionProps}
               className="flex flex-col gap-12"
             >
-              <div className="flex w-full justify-center gap-32">
-                <div className="flex flex-col gap-4">
+              <div className="flex w-full flex-col-reverse justify-center gap-12 largePhone:px-12  tablet:flex-row tablet:gap-32">
+                <div className="flex flex-col items-center gap-4">
                   <div className="h-[22rem]  w-40 rounded-md shadow-lg">
                     <div className=" flex h-[22%] w-full items-center justify-center rounded-t-md bg-orange-500 text-center font-bold leading-5 text-neutral-25 opacity-90">
                       Tax Relief <br />£
@@ -280,6 +280,7 @@ const PensionTaxReliefCard = () => {
                         eligibilityInformation.pensionTaxReliefAmount,
                       )}
                     </div>
+
                     <div className=" flex h-[78%] w-full items-center justify-center  rounded-b-md bg-turquoise-600  text-center font-bold leading-5 text-neutral-25 opacity-90">
                       Contribution <br /> £{" "}
                       {addCommasToNumber(
@@ -292,7 +293,7 @@ const PensionTaxReliefCard = () => {
                   </div>
                 </div>
 
-                <div className="flex w-96 flex-col gap-4 ">
+                <div className="flex w-full flex-col gap-4 tablet:w-96 ">
                   <div className=" text-base font-bold ">Tax Relief</div>
                   <div className="flex flex-col gap-6">
                     <div className="leading-6">

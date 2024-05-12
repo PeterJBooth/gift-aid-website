@@ -9,7 +9,7 @@ const BreakdownSection = () => {
   return (
     <div ref={breakdownSectionRef}>
       {isVisible && (
-        <div className="mx-auto flex max-w-10xl flex-col gap-20 px-custom pb-40 pt-40 ">
+        <div className="mx-auto flex max-w-10xl flex-col gap-20 px-2 pb-40 pt-40 tablet:px-custom ">
           <IncomeTaxCard />
           <PensionTaxReliefCard />
 
