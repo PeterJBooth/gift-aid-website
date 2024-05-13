@@ -247,7 +247,7 @@ const IncomeTaxCard = () => {
                 <div className="text-right text-sm tablet:text-xl">
                   Yearly Income
                 </div>
-                <div className="text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
+                <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
                   £{addCommasToNumber(eligibilityInformation.grossIncome)}
                 </div>
               </div>

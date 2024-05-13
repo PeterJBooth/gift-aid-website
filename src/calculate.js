@@ -9,7 +9,7 @@ const getGiftAidEligibilityInformation = (
   claimsAdditionalPensionTaxRelief,
   selectedIncomeInterval,
   selectedDonationInterval,
-  pensionformat,
+  pensionFormat,
 ) => {
   // console.log("income " + selectedIncomeInterval);
   // console.log("donation " + selectedDonationInterval);
@@ -26,7 +26,7 @@ const getGiftAidEligibilityInformation = (
 
   const convertedPensionContribution = convertToFixedAmount(
     pensionContribution,
-    pensionformat,
+    pensionFormat,
     grossIncome,
   );
 
@@ -75,6 +75,8 @@ const getGiftAidEligibilityInformation = (
   );
   const giftAidEligibilityInformation = {
     grossIncome: grossIncome,
+    pensionContribution: pensionContribution,
+    pensionFormat: pensionFormat,
     convertedPensionContribution: convertedPensionContribution,
     incomeTaxTable: incomeTaxTable,
     incomeTaxAmount: incomeTaxAmount,

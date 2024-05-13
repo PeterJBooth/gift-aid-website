@@ -12,7 +12,7 @@ const CalculatorContextProvider = (props) => {
   const [livesInScotland, setLivesInScotland] = useState(false);
 
   const [contributesToPension, setContributesToPension] = useState(false);
-  const [pensionformat, setPensionformat] = useState("percentage");
+  const [pensionFormat, setPensionFormat] = useState("percentage");
   const [pensionContribution, setPensionContribution] = useState(0);
 
   const [claimsAdditionalGiftAidRelief, setClaimsAdditionalGiftAidRelief] =
@@ -59,7 +59,7 @@ const CalculatorContextProvider = (props) => {
     }
 
     const isInvalidPensionPercentage =
-      pensionformat === "percentage" &&
+      pensionFormat === "percentage" &&
       (pensionContribution > 100 || pensionContribution < 0);
 
     if (isInvalidPensionPercentage) {
@@ -93,7 +93,7 @@ const CalculatorContextProvider = (props) => {
       claimsAdditionalPensionRelief,
       selectedIncomeInterval,
       selectedDonationInterval,
-      pensionformat,
+      pensionFormat,
     );
 
     setEligibilityInformation(giftAidEligibilityInformation);
@@ -112,8 +112,8 @@ const CalculatorContextProvider = (props) => {
         livesInScotland,
         setContributesToPension,
         contributesToPension,
-        pensionformat,
-        setPensionformat,
+        pensionFormat: pensionFormat,
+        setPensionFormat: setPensionFormat,
         setUsingAdvancedOptions,
         usingAdvancedOptions,
         claimsAdditionalGiftAidRelief,

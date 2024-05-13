@@ -7,8 +7,8 @@ import { MoreInfoProvider } from "./MoreInfoProvider";
 
 const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
   const {
-    pensionformat,
-    setPensionformat,
+    pensionFormat,
+    setPensionFormat,
     contributesToPension,
     activeSelectInput,
   } = UseCalculatorContext();
@@ -20,7 +20,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
     useState(false);
 
   const informationMessageTransition = useTransition(
-    pensionformat === "fixed amount" && contributesToPension === true,
+    pensionFormat === "fixed amount" && contributesToPension === true,
     {
       from: {
         opacity: 0,
@@ -70,18 +70,16 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
   const handleToggleSignClick = (elementClicked) => {
     if (
       elementClicked === "percentage-toggle" &&
-      pensionformat !== "percentage"
+      pensionFormat !== "percentage"
     ) {
-      setPensionformat("percentage");
+      setPensionFormat("percentage");
       document.getElementById("pensionInput").value = "";
       setInputValue("");
     }
 
-    if (elementClicked === "pound-toggle" && pensionformat !== "fixed amount") {
-      setPensionformat("fixed amount");
+    if (elementClicked === "pound-toggle" && pensionFormat !== "fixed amount") {
+      setPensionFormat("fixed amount");
     }
-
-    // console.log(pensionformat);
   };
 
   const handleInputChange = (e) => {
@@ -95,15 +93,15 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
       validationMessageDisplayed === false &&
       activeSelectInput !== "pensionInput" &&
       (inputValue > 100 || inputValue < 0) &&
-      pensionformat === "percentage";
+      pensionFormat === "percentage";
 
     if (inputedInvalidPercentage) {
       setvalidationMessageIsDisplayed(true);
     }
-    if (activeSelectInput === id || pensionformat !== "percentage") {
+    if (activeSelectInput === id || pensionFormat !== "percentage") {
       setvalidationMessageIsDisplayed(false);
     }
-  }, [activeSelectInput, pensionformat]);
+  }, [activeSelectInput, pensionFormat]);
 
   return (
     <>
@@ -127,7 +125,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           <div className="relative flex cursor-pointer select-none rounded-l-md border border-neutral-100 bg-neutral-50">
             <div
               className={`z-10 flex size-12 items-center justify-center text-center text-lg font-bold transition-colors ${
-                pensionformat === "percentage" ? "text-neutral-25" : ""
+                pensionFormat === "percentage" ? "text-neutral-25" : ""
               }`}
               onClick={() => {
                 handleToggleSignClick("percentage-toggle");
@@ -137,7 +135,7 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
             </div>
             <div
               className={`z-10 flex size-12 items-center justify-center text-center text-lg font-bold transition-colors ${
-                pensionformat === fixedAmount ? "text-neutral-25" : ""
+                pensionFormat === fixedAmount ? "text-neutral-25" : ""
               }`}
               onClick={() => {
                 handleToggleSignClick("pound-toggle");
@@ -146,14 +144,14 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
               £
             </div>
             <div
-              className={`absolute left-0 size-12 rounded-md bg-blue-700 transition-all ${pensionformat === "percentage" ? "  translate-x-0" : "translate-x-full"}`}
+              className={`absolute left-0 size-12 rounded-md bg-blue-700 transition-all ${pensionFormat === "percentage" ? "  translate-x-0" : "translate-x-full"}`}
             ></div>
           </div>
           <input
             type="number"
             className="text-input w-full rounded-r-md border border-neutral-100 bg-neutral-25 px-4 py-px hover:border-2 hover:border-blue-550 hover:px-[15px] hover:py-0 focus:border-2 focus:border-blue-550 focus:px-[15px] focus:py-0 focus:outline-none"
             min="1"
-            max={pensionformat === "percentage" ? "100" : ""}
+            max={pensionFormat === "percentage" ? "100" : ""}
             ref={inputRef}
             id={id}
             onChange={(e) => handleInputChange(e)}
