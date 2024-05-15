@@ -26,11 +26,6 @@ const getGiftAidEligibilityInformation = (
     taxBand,
   );
 
-  const convertedIncomeTaxAmount = convertToDonationTimeScale(
-    incomeTaxAmount,
-    selectedIncomeInterval,
-    selectedDonationInterval,
-  );
   const convertedPensionTaxReliefAmount = convertToDonationTimeScale(
     pensionTaxReliefAmount,
     selectedIncomeInterval,
@@ -38,7 +33,7 @@ const getGiftAidEligibilityInformation = (
   );
 
   const totalTaxPaid = calculateTotalTaxPaid(
-    convertedIncomeTaxAmount,
+    incomeTaxAmount,
     convertedPensionTaxReliefAmount,
   );
 
@@ -72,7 +67,6 @@ const getGiftAidEligibilityInformation = (
     incomeTaxAmount: incomeTaxAmount,
     taxBand: taxBand,
     pensionTaxReliefAmount: pensionTaxReliefAmount,
-    convertedIncomeTaxAmount: convertedIncomeTaxAmount,
     convertedPensionTaxReliefAmount: convertedPensionTaxReliefAmount,
     totalTaxPaid: totalTaxPaid,
     giftAidToClaim: giftAidToClaim,

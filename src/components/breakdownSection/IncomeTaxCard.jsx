@@ -81,62 +81,13 @@ const IncomeTaxCard = () => {
 
   console.log(eligibilityInformation.selectedIncomeInterval);
 
-  // const displayRows = () => {
-  //   if (eligibilityInformation.incomeTaxTable == null) return;
-
-  //   return eligibilityInformation.incomeTaxTable.map((taxBand) => {
-  //     return (
-  //       <tr key={taxBand.name}>
-  //         <td className="sticky left-0 border-b border-neutral-100  bg-white py-10 pr-4 leading-6">
-  //           {taxBand.displayName}
-  //         </td>
-  //         <td className=" justify-end  border-b border-neutral-100 px-4 py-10 text-right leading-6">
-  //           <div className="flex justify-end whitespace-nowrap">
-  //             {taxBand.upperLimit
-  //               ? "£" +
-  //                 addCommasToNumber(taxBand.lowerLimit) +
-  //                 " - £" +
-  //                 addCommasToNumber(taxBand.upperLimit)
-  //               : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
-  //             {taxBand.displayName === "Personal Allowance" &&
-  //             eligibilityInformation.grossIncome > 100000 &&
-  //             screenType.isMobile !== true ? (
-  //               <MoreInfoProvider
-  //                 title={"Personal Allowance Reduction"}
-  //                 content={`Your personal allowance goes down by £1 for every £2 that your gross income is above £100,000.
-
-  //                   Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(Math.max(eligibilityInformation.grossIncome - 100000, 0) * 2)}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
-  //               />
-  //             ) : (
-  //               ""
-  //             )}
-  //           </div>
-  //         </td>
-  //         <td
-  //           className={`max-w-4 border-b border-neutral-100 px-4 text-right leading-6  ${taxBand.incomeInBand !== 0 ? "" : "pr-8"}`}
-  //         >
-  //           {formatNumber(taxBand.incomeInBand)}
-  //         </td>
-  //         <td className=" border-b border-neutral-100 px-4 text-right leading-6">
-  //           {addCommasToNumber(taxBand.taxRate)}%
-  //         </td>
-  //         <td
-  //           className={` border-b border-neutral-100 pl-4  text-right ${taxBand.taxAmount !== 0 ? " pr-4" : "pr-8"}`}
-  //         >
-  //           {formatNumber(taxBand.taxAmount)}
-  //         </td>
-  //       </tr>
-  //     );
-  //   });
-  // };
-
   return (
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
       <CardHeading
         inputProps={inputProps}
         inputRef={inputRef}
-        cardTitle={`${eligibilityInformation.selectedIncomeInterval === "Year" ? "Yearly" : "Monthly"} Income Tax`}
-        inputDisplayTitle={`${eligibilityInformation.selectedIncomeInterval === "Year" ? "Yearly" : "Monthly"} Income`}
+        cardTitle="Income Tax"
+        inputDisplayTitle="Income"
         inputDisplayAmount={eligibilityInformation.grossIncome}
         isExpanded={isExpanded}
       />

@@ -23,24 +23,14 @@ const IncomeTaxCardContent = ({
       (eligibilityInformation.selectedIncomeInterval === "Year" ? 1 : 12),
   );
 
-  const determineGrossYearlyIncome = () => {
-    if (eligibilityInformation.selectedIncomeInterval === "Year") {
-      return eligibilityInformation.grossIncome;
-    }
-
-    if (eligibilityInformation.selectedIncomeInterval === "Month") {
-      return eligibilityInformation.grossIncome * 12;
-    }
-  };
-
   const determineReductionInPersonalAllowance = () => {
-    if (determineGrossYearlyIncome() < 100000) {
+    if (eligibilityInformation.grossIncome < 100000) {
       return 0;
     }
 
     return Math.min(
       basicPersonalAllowance,
-      (determineGrossYearlyIncome() - 100000) * 2,
+      (eligibilityInformation.grossIncome - 100000) * 2,
     );
   };
 
@@ -62,13 +52,13 @@ const IncomeTaxCardContent = ({
                   addCommasToNumber(taxBand.upperLimit)
                 : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
               {taxBand.displayName === "Personal Allowance" &&
-              determineGrossYearlyIncome() > 100000 &&
+              eligibilityInformation.grossIncome > 100000 &&
               screenType.isMobile !== true ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
-                  content={`Your yearly personal allowance of £${addCommasToNumber(basicPersonalAllowance)} goes down by £1 for every £2 that your gross income is above £100,000.
+                  content={`Your personal allowance of £${addCommasToNumber(basicPersonalAllowance)} goes down by £1 for every £2 that your gross income is above £100,000.
                     
-                    Your yearly gross income is ${eligibilityInformation.selectedIncomeInterval === "Year" ? "" : "assumed to be"} £${addCommasToNumber(determineGrossYearlyIncome())}. Therefore, your yearly personal allowance has been reduced by £${addCommasToNumber(determineReductionInPersonalAllowance())}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
+                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(determineReductionInPersonalAllowance())}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
                 />
               ) : (
                 ""
@@ -110,12 +100,7 @@ const IncomeTaxCardContent = ({
             style={{ ...summaryInfoProps }}
           >
             <div className=" flex flex-col gap-1 tablet:gap-2">
-              <div className="text-right text-sm tablet:text-xl">
-                {eligibilityInformation.selectedIncomeInterval === "Year"
-                  ? "Yearly"
-                  : "Monthly"}{" "}
-                Income
-              </div>
+              <div className="text-right text-sm tablet:text-xl">Income</div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
                 £{addCommasToNumber(eligibilityInformation.grossIncome)}
               </div>

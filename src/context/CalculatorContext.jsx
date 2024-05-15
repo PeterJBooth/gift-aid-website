@@ -3,7 +3,6 @@ import { getGiftAidEligibilityInformation } from "../calculate";
 const CalculatorContext = createContext();
 
 const CalculatorContextProvider = (props) => {
-  const [selectedIncomeInterval, setSelectedIncomeInterval] = useState("Year");
   const [grossIncome, setGrossIncome] = useState(null);
 
   const [selectedDonationInterval, setSelectedDonationInterval] =
@@ -91,7 +90,6 @@ const CalculatorContextProvider = (props) => {
       pensionContribution,
       claimsAdditionalGiftAidRelief,
       claimsAdditionalPensionRelief,
-      selectedIncomeInterval,
       selectedDonationInterval,
       pensionFormat,
     );
@@ -103,7 +101,6 @@ const CalculatorContextProvider = (props) => {
   return (
     <CalculatorContext.Provider
       value={{
-        setSelectedIncomeInterval,
         setGrossIncome,
         grossIncome,
         setSelectedDonationInterval,

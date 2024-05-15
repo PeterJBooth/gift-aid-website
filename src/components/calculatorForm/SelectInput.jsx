@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef } from "react";
 import toogleIcon from "../../assets/toggle.svg";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { ValidationMessage } from "./ValidationMessage";
@@ -12,8 +11,6 @@ const SelectInput = ({
   validationMessage,
   validationError,
 }) => {
-  const [textInputActive, setTextInputActive] = useState(false);
-  let inputRef = useRef();
   const { activeSelectInput, validationErrors, removeValidationError } =
     UseCalculatorContext();
 
@@ -54,15 +51,11 @@ const SelectInput = ({
             />
           </div>
           <div
-            className={`hover:border-blue-550 flex rounded-r-md border hover:border-2${
+            className={`flex rounded-r-md border hover:border-blue-550 hover:border-2${
               activeSelectInput === id
-                ? " border-blue-550 border-2 p-0"
+                ? " border-2 border-blue-550 p-0"
                 : " border-neutral-100 p-px hover:p-0"
             }`}
-            onClick={() => {
-              setTextInputActive(true);
-            }}
-            ref={inputRef}
           >
             <div
               className={`flex items-center justify-end pl-2 ${activeSelectInput === id ? "" : ""}`}
