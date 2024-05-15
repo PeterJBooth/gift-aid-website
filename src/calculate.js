@@ -62,6 +62,7 @@ const getGiftAidEligibilityInformation = (
   );
   const giftAidEligibilityInformation = {
     grossIncome: grossIncome,
+    selectedIncomeInterval: selectedIncomeInterval,
     pensionContribution: pensionContribution,
     claimsAdditionalGiftAidTaxRelief: claimsAdditionalGiftAidTaxRelief,
     claimsAdditionalPensionTaxRelief: claimsAdditionalPensionTaxRelief,
@@ -79,7 +80,7 @@ const getGiftAidEligibilityInformation = (
     giftAidTaxRelief: giftAidTaxRelief,
     giftAidDonationCap: giftAidDonationCap,
     informationRetrieved: true,
-    timeInterval: selectedDonationInterval,
+    selectedDonationInterval: selectedDonationInterval,
   };
   console.log(giftAidEligibilityInformation);
   // console.log(incomeTaxTable);

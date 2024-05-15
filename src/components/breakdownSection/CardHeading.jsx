@@ -12,9 +12,9 @@ const CardHeading = forwardRef(
     isExpanded,
   }) => {
     return (
-      <div className="flex w-full justify-between gap-8">
+      <div className="flex w-full justify-between gap-8 ">
         <div
-          className={`min-w-[135px] leading-5 transition-all ${isExpanded ? "text-xl tablet:text-2.5xl  tablet:leading-6" : "text-xl"} `}
+          className={`min-w-[135px] leading-6 transition-all ${isExpanded ? "text-xl tablet:text-2.5xl  tablet:leading-6" : "text-xl"} `}
         >
           {cardTitle}
         </div>

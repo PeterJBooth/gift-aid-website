@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 
 const InputDisplay = ({ props, inputRef, amount, title }) => {
   return (
-    <animated.div className="relative w-72" style={props}>
+    <animated.div className="relative w-60 tablet:w-72" style={props}>
       <div
         className="absolute left-0 right-0 flex flex-col gap-2"
         ref={inputRef}

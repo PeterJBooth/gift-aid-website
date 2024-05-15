@@ -46,7 +46,7 @@ const ResultPopup = ({ style }) => {
             {addCommasToNumber(
               Math.round(eligibilityInformation.giftAidDonationCap),
             )}{" "}
-            a {eligibilityInformation.timeInterval.toLowerCase()}
+            a {eligibilityInformation.selectedDonationInterval.toLowerCase()}
           </b>{" "}
           and still tick the gift aid box
         </div>

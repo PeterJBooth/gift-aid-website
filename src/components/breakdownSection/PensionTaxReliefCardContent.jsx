@@ -26,8 +26,6 @@ const PensionTaxReliefCardContent = ({
     pensionTaxReliefAmount,
   } = eligibilityInformation;
 
-  console.log(claimsAdditionalPensionTaxRelief);
-
   const diagramHeights =
     "h-[20%] h-[25%] h-[30%] h-[35%] h-[40%] h-[45%] h-[50%] h-[55%] h-[60%] h-[65%] h-[70%] h-[75%] h-[80%]";
 

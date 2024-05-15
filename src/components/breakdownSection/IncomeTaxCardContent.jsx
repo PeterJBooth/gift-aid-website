@@ -18,6 +18,32 @@ const IncomeTaxCardContent = ({
   const { eligibilityInformation } = UseCalculatorContext();
   const { screenType } = useScreenTypeContext();
 
+  console.log(
+    eligibilityInformation.grossIncome *
+      (eligibilityInformation.selectedIncomeInterval === "Year" ? 1 : 12),
+  );
+
+  const determineGrossYearlyIncome = () => {
+    if (eligibilityInformation.selectedIncomeInterval === "Year") {
+      return eligibilityInformation.grossIncome;
+    }
+
+    if (eligibilityInformation.selectedIncomeInterval === "Month") {
+      return eligibilityInformation.grossIncome * 12;
+    }
+  };
+
+  const determineReductionInPersonalAllowance = () => {
+    if (determineGrossYearlyIncome() < 100000) {
+      return 0;
+    }
+
+    return Math.min(
+      basicPersonalAllowance,
+      (determineGrossYearlyIncome() - 100000) * 2,
+    );
+  };
+
   const displayRows = () => {
     if (eligibilityInformation.incomeTaxTable == null) return;
 
@@ -36,13 +62,13 @@ const IncomeTaxCardContent = ({
                   addCommasToNumber(taxBand.upperLimit)
                 : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
               {taxBand.displayName === "Personal Allowance" &&
-              eligibilityInformation.grossIncome > 100000 &&
+              determineGrossYearlyIncome() > 100000 &&
               screenType.isMobile !== true ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
-                  content={`Your personal allowance of ${basicPersonalAllowance} goes down by £1 for every £2 that your gross income is above £100,000.
+                  content={`Your yearly personal allowance of £${addCommasToNumber(basicPersonalAllowance)} goes down by £1 for every £2 that your gross income is above £100,000.
                     
-                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(Math.max(Math.min(basicPersonalAllowance, (eligibilityInformation.grossIncome - 100000) * 2)), 0)}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
+                    Your yearly gross income is ${eligibilityInformation.selectedIncomeInterval === "Year" ? "" : "assumed to be"} £${addCommasToNumber(determineGrossYearlyIncome())}. Therefore, your yearly personal allowance has been reduced by £${addCommasToNumber(determineReductionInPersonalAllowance())}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
                 />
               ) : (
                 ""
@@ -85,7 +111,10 @@ const IncomeTaxCardContent = ({
           >
             <div className=" flex flex-col gap-1 tablet:gap-2">
               <div className="text-right text-sm tablet:text-xl">
-                Yearly Income
+                {eligibilityInformation.selectedIncomeInterval === "Year"
+                  ? "Yearly"
+                  : "Monthly"}{" "}
+                Income
               </div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
                 £{addCommasToNumber(eligibilityInformation.grossIncome)}
@@ -174,3 +203,47 @@ const IncomeTaxCardContent = ({
 };
 
 export { IncomeTaxCardContent };
+
+// Income Year
+// Pension Percentage
+// Donation Year
+
+// Simple keep everything yearly
+
+// Income Year
+// Pension Monthly
+// Donation Year
+
+// Simple keep everything yearly
+
+// Income Year
+// Pension Percentage
+// Donation Month
+
+// I like the idea of Yearly Income tax, yearly percentage, And converting at total
+
+// Income Year
+// Pension Month
+// Donation Month
+
+// I like the idea of Yearly Income tax, Monthly Pension, And converting at total
+
+// Income Year
+// Donation Month
+
+// I like the idea of Yearly Income tax, Monthly Pension 0, And converting at total
+
+// Income Month
+// Pension Month/Percentge
+// Donation Month
+
+// I like the idea of Monthly Income tax, Monthly Pension
+
+// Income Month
+// Pension Month/Percentge
+// Donation Year
+
+// Have a information message stating we will assume that this monthly income is the same accross the tax year
+// Convert at the total card
+
+// Can't do monthly income

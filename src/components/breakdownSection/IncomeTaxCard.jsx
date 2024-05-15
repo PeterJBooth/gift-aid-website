@@ -79,6 +79,8 @@ const IncomeTaxCard = () => {
     });
   };
 
+  console.log(eligibilityInformation.selectedIncomeInterval);
+
   // const displayRows = () => {
   //   if (eligibilityInformation.incomeTaxTable == null) return;
 
@@ -133,8 +135,8 @@ const IncomeTaxCard = () => {
       <CardHeading
         inputProps={inputProps}
         inputRef={inputRef}
-        cardTitle="Income Tax"
-        inputDisplayTitle="Yearly Income"
+        cardTitle={`${eligibilityInformation.selectedIncomeInterval === "Year" ? "Yearly" : "Monthly"} Income Tax`}
+        inputDisplayTitle={`${eligibilityInformation.selectedIncomeInterval === "Year" ? "Yearly" : "Monthly"} Income`}
         inputDisplayAmount={eligibilityInformation.grossIncome}
         isExpanded={isExpanded}
       />
