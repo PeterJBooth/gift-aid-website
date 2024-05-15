@@ -5,7 +5,6 @@ import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { addCommasToNumber, formatNumber } from "../../utils/formatNumber";
 import { useScreenTypeContext } from "../../context/ScreenTypeContext";
-import { useEffect } from "react";
 
 const IncomeTaxCardContent = ({
   mainProps,

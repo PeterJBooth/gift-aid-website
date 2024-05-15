@@ -1,5 +1,3 @@
-// Consider when tax paid is negative.
-
 const getGiftAidEligibilityInformation = (
   grossIncome,
   donationAmount,
@@ -11,19 +9,6 @@ const getGiftAidEligibilityInformation = (
   selectedDonationInterval,
   pensionFormat,
 ) => {
-  // console.log("income " + selectedIncomeInterval);
-  // console.log("donation " + selectedDonationInterval);
-
-  // Cost units are in £
-
-  // info we need
-  // Income Tax Table (Tax amount) x
-  // Income Tax Amount x
-  // Tax Band x
-  // Adjust Pension Amount (if original Percentage)
-  // Pension Tax Relief x
-  // gift
-
   const convertedPensionContribution = convertToFixedAmount(
     pensionContribution,
     pensionFormat,
@@ -76,6 +61,8 @@ const getGiftAidEligibilityInformation = (
   const giftAidEligibilityInformation = {
     grossIncome: grossIncome,
     pensionContribution: pensionContribution,
+    claimsAdditionalGiftAidTaxRelief: claimsAdditionalGiftAidTaxRelief,
+    claimsAdditionalPensionTaxRelief: claimsAdditionalPensionTaxRelief,
     pensionFormat: pensionFormat,
     convertedPensionContribution: convertedPensionContribution,
     incomeTaxTable: incomeTaxTable,
@@ -364,4 +351,5 @@ const calculateGiftAidDonationCap = (
     return giftAidDonationCap;
   }
 };
+
 export { getGiftAidEligibilityInformation };
