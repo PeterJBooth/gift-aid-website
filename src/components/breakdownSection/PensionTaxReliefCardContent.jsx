@@ -187,3 +187,4 @@ const PensionTaxReliefCardContent = ({
 };
 
 export { PensionTaxReliefCardContent };
+//Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2)

@@ -1,3 +1,5 @@
+const basicPersonalAllowance = 12570;
+
 const getGiftAidEligibilityInformation = (
   grossIncome,
   donationAmount,
@@ -214,8 +216,9 @@ const calculateIncomeTax = (incomeTaxTable) => {
 const getPersonalAllowance = (grossIncome) => {
   const personalAllowance =
     grossIncome < 100000
-      ? 12570
-      : 12570 - Math.min(12570, (grossIncome - 100000) * 2);
+      ? basicPersonalAllowance
+      : basicPersonalAllowance -
+        Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2);
   // console.log(personalAllowance);
   return personalAllowance;
 };
@@ -352,4 +355,4 @@ const calculateGiftAidDonationCap = (
   }
 };
 
-export { getGiftAidEligibilityInformation };
+export { getGiftAidEligibilityInformation, basicPersonalAllowance };

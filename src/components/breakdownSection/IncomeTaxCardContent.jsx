@@ -5,6 +5,7 @@ import { MoreInfoProvider } from "../calculatorForm/MoreInfoProvider";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { addCommasToNumber, formatNumber } from "../../utils/formatNumber";
 import { useScreenTypeContext } from "../../context/ScreenTypeContext";
+import { basicPersonalAllowance } from "../../calculate";
 
 const IncomeTaxCardContent = ({
   mainProps,
@@ -28,7 +29,7 @@ const IncomeTaxCardContent = ({
           </td>
           <td className=" justify-end  border-b border-neutral-100 px-4 py-10 text-right leading-6">
             <div className="flex justify-end whitespace-nowrap">
-              {taxBand.upperLimit
+              {taxBand.upperLimit != null || taxBand.upperLimit === 0
                 ? "£" +
                   addCommasToNumber(taxBand.lowerLimit) +
                   " - £" +
@@ -39,9 +40,9 @@ const IncomeTaxCardContent = ({
               screenType.isMobile !== true ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
-                  content={`Your personal allowance goes down by £1 for every £2 that your gross income is above £100,000.
+                  content={`Your personal allowance of ${basicPersonalAllowance} goes down by £1 for every £2 that your gross income is above £100,000.
                     
-                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(Math.max(eligibilityInformation.grossIncome - 100000, 0) * 2)}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
+                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(Math.max(Math.min(basicPersonalAllowance, (eligibilityInformation.grossIncome - 100000) * 2)), 0)}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
                 />
               ) : (
                 ""
