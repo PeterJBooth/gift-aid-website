@@ -7,16 +7,16 @@ const getGiftAidEligibilityInformation = (
   pensionContribution,
   claimsAdditionalGiftAidTaxRelief,
   claimsAdditionalPensionTaxRelief,
-  selectedIncomeInterval,
   selectedDonationInterval,
   pensionFormat,
 ) => {
-  const convertedPensionContribution = convertToFixedAmount(
+  const convertedPensionContribution = convertToFixedYearlyAmount(
     pensionContribution,
     pensionFormat,
     grossIncome,
   );
 
+  console.log(pensionFormat, "pension");
   const incomeTaxTable = createIncomeTaxTable(grossIncome, livesInScotland);
   let incomeTaxAmount = calculateIncomeTax(incomeTaxTable);
   const taxBand = getTaxPayersTaxBand(incomeTaxTable);
@@ -26,11 +26,13 @@ const getGiftAidEligibilityInformation = (
     taxBand,
   );
 
-  const convertedPensionTaxReliefAmount = convertToDonationTimeScale(
-    pensionTaxReliefAmount,
-    selectedIncomeInterval,
-    selectedDonationInterval,
-  );
+  // const convertedPensionTaxReliefAmount = convertToDonationTimeScale(
+  //   pensionTaxReliefAmount,
+  //   selectedIncomeInterval,
+  //   selectedDonationInterval,
+  // );
+
+  const convertedPensionTaxReliefAmount = pensionTaxReliefAmount;
 
   const totalTaxPaid = calculateTotalTaxPaid(
     incomeTaxAmount,
@@ -57,7 +59,6 @@ const getGiftAidEligibilityInformation = (
   );
   const giftAidEligibilityInformation = {
     grossIncome: grossIncome,
-    selectedIncomeInterval: selectedIncomeInterval,
     pensionContribution: pensionContribution,
     claimsAdditionalGiftAidTaxRelief: claimsAdditionalGiftAidTaxRelief,
     claimsAdditionalPensionTaxRelief: claimsAdditionalPensionTaxRelief,
@@ -91,9 +92,11 @@ const getGiftAidEligibilityInformation = (
   return giftAidEligibilityInformation;
 };
 
-const convertToFixedAmount = (inputAmount, format, grossIncome) => {
+const convertToFixedYearlyAmount = (inputAmount, format, grossIncome) => {
   inputAmount =
-    format === "fixed amount" ? inputAmount : (inputAmount * grossIncome) / 100;
+    format === "fixed amount"
+      ? inputAmount * 12 // monthly -> yearly
+      : (inputAmount * grossIncome) / 100; // percentage -> yearly amount
 
   return inputAmount;
 };

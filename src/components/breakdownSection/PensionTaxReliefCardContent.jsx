@@ -80,13 +80,13 @@ const PensionTaxReliefCardContent = ({
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
                 £{addCommasToNumber(convertedPensionContribution)}
               </div>
-
-              {pensionFormat === "percentage" && (
-                <div className="text-right text-xs2 text-turquoise-600">
-                  &#40;
-                  {addCommasToNumber(pensionContribution)}% of Income&#41;
-                </div>
-              )}
+              <div className="text-right text-xs2 text-turquoise-600">
+                &#40;
+                {pensionFormat === "percentage"
+                  ? `${addCommasToNumber(pensionContribution)}% of Income`
+                  : `or £${addCommasToNumber(pensionContribution)}/month`}
+                &#41;
+              </div>
             </div>
             <div>
               <img

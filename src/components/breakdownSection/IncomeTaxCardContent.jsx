@@ -18,26 +18,27 @@ const IncomeTaxCardContent = ({
   const { eligibilityInformation } = UseCalculatorContext();
   const { screenType } = useScreenTypeContext();
 
-  console.log(
-    eligibilityInformation.grossIncome *
-      (eligibilityInformation.selectedIncomeInterval === "Year" ? 1 : 12),
-  );
+  const {
+    grossIncome,
+    selectedIncomeInterval,
+    incomeTaxTable,
+    incomeTaxAmount,
+  } = eligibilityInformation;
+
+  console.log(grossIncome * (selectedIncomeInterval === "Year" ? 1 : 12));
 
   const determineReductionInPersonalAllowance = () => {
-    if (eligibilityInformation.grossIncome < 100000) {
+    if (grossIncome < 100000) {
       return 0;
     }
 
-    return Math.min(
-      basicPersonalAllowance,
-      (eligibilityInformation.grossIncome - 100000) * 2,
-    );
+    return Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2);
   };
 
   const displayRows = () => {
-    if (eligibilityInformation.incomeTaxTable == null) return;
+    if (incomeTaxTable == null) return;
 
-    return eligibilityInformation.incomeTaxTable.map((taxBand) => {
+    return incomeTaxTable.map((taxBand) => {
       return (
         <tr key={taxBand.name}>
           <td className="sticky left-0 border-b border-neutral-100  bg-white py-10 pr-4 leading-6">
@@ -52,13 +53,13 @@ const IncomeTaxCardContent = ({
                   addCommasToNumber(taxBand.upperLimit)
                 : "Over £" + addCommasToNumber(taxBand.lowerLimit)}
               {taxBand.displayName === "Personal Allowance" &&
-              eligibilityInformation.grossIncome > 100000 &&
+              grossIncome > 100000 &&
               screenType.isMobile !== true ? (
                 <MoreInfoProvider
                   title={"Personal Allowance Reduction"}
                   content={`Your personal allowance of £${addCommasToNumber(basicPersonalAllowance)} goes down by £1 for every £2 that your gross income is above £100,000.
                     
-                    Your gross income is £${addCommasToNumber(eligibilityInformation.grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(determineReductionInPersonalAllowance())}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
+                    Your gross income is £${addCommasToNumber(grossIncome)}. Therefore, your personal allowance has been reduced by £${addCommasToNumber(determineReductionInPersonalAllowance())}, and as result is £${addCommasToNumber(taxBand.upperLimit)}.`}
                 />
               ) : (
                 ""
@@ -100,9 +101,11 @@ const IncomeTaxCardContent = ({
             style={{ ...summaryInfoProps }}
           >
             <div className=" flex flex-col gap-1 tablet:gap-2">
-              <div className="text-right text-sm tablet:text-xl">Income</div>
+              <div className="text-right text-sm tablet:text-xl">
+                Yearly Income
+              </div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
-                £{addCommasToNumber(eligibilityInformation.grossIncome)}
+                £{addCommasToNumber(grossIncome)}
               </div>
             </div>
             <div>
@@ -121,7 +124,7 @@ const IncomeTaxCardContent = ({
                 Income Tax
               </div>
               <div className=" text-xl font-bold text-neutral-900 tablet:text-2.5xl">
-                £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+                £{addCommasToNumber(incomeTaxAmount)}
               </div>
             </div>
           </animated.div>
@@ -160,10 +163,7 @@ const IncomeTaxCardContent = ({
                         <div className=" flex justify-end gap-3 whitespace-nowrap">
                           <div className="text-neutral-400 ">Sum</div>
                           <div className="font-bold">
-                            £
-                            {addCommasToNumber(
-                              eligibilityInformation.incomeTaxAmount,
-                            )}
+                            £{addCommasToNumber(incomeTaxAmount)}
                           </div>
                         </div>
                       </td>
@@ -177,7 +177,7 @@ const IncomeTaxCardContent = ({
                 Income Tax
               </div>
               <div className=" text-xl font-bold text-orange-400 tablet:text-2.5xl">
-                £{addCommasToNumber(eligibilityInformation.incomeTaxAmount)}
+                £{addCommasToNumber(incomeTaxAmount)}
               </div>
             </div>
           </animated.div>
@@ -193,42 +193,26 @@ export { IncomeTaxCardContent };
 // Pension Percentage
 // Donation Year
 
-// Simple keep everything yearly
+// Everything is in year units, don't have to worry about converting anywhere
 
 // Income Year
 // Pension Monthly
 // Donation Year
 
-// Simple keep everything yearly
+// pension Conversion needs happen at the very beggining
 
 // Income Year
 // Pension Percentage
 // Donation Month
 
-// I like the idea of Yearly Income tax, yearly percentage, And converting at total
+// donation conversion at the end
 
 // Income Year
 // Pension Month
 // Donation Month
 
-// I like the idea of Yearly Income tax, Monthly Pension, And converting at total
+// pension Conversion needs happen at the very beggining
+// donation conversion at the end
 
 // Income Year
 // Donation Month
-
-// I like the idea of Yearly Income tax, Monthly Pension 0, And converting at total
-
-// Income Month
-// Pension Month/Percentge
-// Donation Month
-
-// I like the idea of Monthly Income tax, Monthly Pension
-
-// Income Month
-// Pension Month/Percentge
-// Donation Year
-
-// Have a information message stating we will assume that this monthly income is the same accross the tax year
-// Convert at the total card
-
-// Can't do monthly income
