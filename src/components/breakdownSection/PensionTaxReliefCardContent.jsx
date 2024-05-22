@@ -116,7 +116,7 @@ const PensionTaxReliefCardContent = ({
               <div className="flex flex-col items-center gap-4">
                 <div className=" h-80 w-36 rounded-md  shadow-lg largePhone:h-[22rem] largePhone:w-40">
                   <div
-                    className={`flex h-[${claimsAdditionalPensionTaxRelief ? Math.max(Math.floor(taxBand.taxRate / 5) * 5, 20) : 20}%] w-full items-center justify-center rounded-t-md bg-orange-500 text-center font-bold leading-5 text-neutral-25 opacity-90`}
+                    className={`flex h-[${claimsAdditionalPensionTaxRelief ? Math.max(Math.floor(taxBand.taxRate / 5) * 5, 20) : 20}%] opacity-90œ w-full items-center justify-center rounded-t-md bg-orange-500 text-center font-bold leading-5 text-neutral-25`}
                   >
                     Tax Relief <br />£
                     {addCommasToNumber(pensionTaxReliefAmount)}

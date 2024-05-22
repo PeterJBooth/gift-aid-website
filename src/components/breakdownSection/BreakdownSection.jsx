@@ -2,6 +2,7 @@ import { IncomeTaxCard } from "./IncomeTaxCard";
 import { useBreakdownContext } from "../../context/BreakdownContext";
 import { PensionTaxReliefCard } from "./PensionTaxReliefCard";
 import { TotalTaxCard } from "./TotalTaxCard";
+import { GiftAidEligibilityCard } from "./GiftAidEligibilityCard";
 
 const BreakdownSection = () => {
   const { breakdownSectionRef, isVisible } = useBreakdownContext();
@@ -14,6 +15,7 @@ const BreakdownSection = () => {
           <IncomeTaxCard />
           <PensionTaxReliefCard />
           <TotalTaxCard />
+          <GiftAidEligibilityCard />
         </div>
       )}
     </div>

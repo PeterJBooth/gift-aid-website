@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { usePopupContext } from "../context/PopupContext";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import { useBreakdownContext } from "../context/BreakdownContext";
+import { ResultMessage } from "./ResultMessage";
 
 const ResultPopup = ({ style }) => {
   const { eligibilityInformation } = UseCalculatorContext();
@@ -83,7 +84,7 @@ const ResultPopup = ({ style }) => {
       className="result-popup-container fixed left-1/2 top-1/2 z-50 min-w-[min(30.8rem,95%)] -translate-x-1/2 -translate-y-1/2 pt-4 desktop:static "
       style={style}
     >
-      <div className="flex flex-col items-center rounded-[46px] bg-blue-700 px-10 pb-10 pt-28 text-center largeDesktop:px-20 largeDesktop:pb-12 largeDesktop:pt-32">
+      <div className="flex flex-col items-center rounded-[46px] bg-blue-700 px-8 pb-10 pt-28 text-center largePhone:px-10 largeDesktop:px-20 largeDesktop:pb-12 largeDesktop:pt-32">
         <IoMdClose
           className="absolute right-8 top-11 cursor-pointer text-neutral-100 hover:text-neutral-50 active:text-neutral-100 desktop:hidden"
           size={28}
@@ -92,7 +93,9 @@ const ResultPopup = ({ style }) => {
           }}
         />
 
-        {displayResultMessage()}
+        <ResultMessage
+          canClaimGiftAid={eligibilityInformation.canClaimGiftAid}
+        />
         <div className="mt-14 flex flex-col items-center ">
           {displayResultDescription()}
           <button

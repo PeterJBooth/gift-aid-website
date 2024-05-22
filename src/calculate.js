@@ -70,6 +70,7 @@ const getGiftAidEligibilityInformation = (
     pensionTaxReliefAmount: pensionTaxReliefAmount,
     convertedPensionTaxReliefAmount: convertedPensionTaxReliefAmount,
     totalTaxPaid: totalTaxPaid,
+    donationAmount: donationAmount,
     giftAidToClaim: giftAidToClaim,
     canClaimGiftAid: canClaimGiftAid,
     giftAidTaxRelief: giftAidTaxRelief,
