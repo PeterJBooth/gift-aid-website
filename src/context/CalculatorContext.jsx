@@ -45,7 +45,6 @@ const CalculatorContextProvider = (props) => {
   }, [activeSelectInput]);
 
   const validateFormInputs = () => {
-    console.log("validate");
     // Restart Validation
     const validationErrors = [];
 
@@ -66,7 +65,6 @@ const CalculatorContextProvider = (props) => {
     }
 
     setValidationErrors(validationErrors);
-    console.log(validationErrors);
 
     const isValid = validationErrors.length === 0;
     return isValid;
@@ -77,7 +75,6 @@ const CalculatorContextProvider = (props) => {
       return error !== validationError;
     });
 
-    console.log(newValidationErrors);
     setValidationErrors(newValidationErrors);
     return;
   };

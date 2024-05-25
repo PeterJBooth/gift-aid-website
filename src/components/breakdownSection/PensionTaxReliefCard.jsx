@@ -92,9 +92,7 @@ const PensionTaxReliefCard = () => {
           inputRef={inputRef}
           cardTitle="Pension Tax Relief"
           inputDisplayTitle="Yearly Pension Contribution"
-          inputDisplayAmount={
-            eligibilityInformation.convertedPensionContribution
-          }
+          inputDisplayAmount={eligibilityInformation.pensionTaxReliefAmount}
           isExpanded={isExpanded}
         />
 

@@ -91,10 +91,6 @@ const TotalTaxCard = () => {
           inputProps={inputProps}
           inputRef={inputRef}
           cardTitle="Total Tax Paid"
-          // inputDisplayTitle="Yearly Pension Contribution"
-          // inputDisplayAmount={
-          //   eligibilityInformation.convertedPensionContribution
-          // }
           isExpanded={isExpanded}
         />
 

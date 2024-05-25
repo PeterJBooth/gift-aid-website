@@ -20,7 +20,6 @@ const PensionTaxReliefCardContent = ({
   const {
     taxBand,
     claimsAdditionalPensionTaxRelief,
-    convertedPensionContribution,
     pensionFormat,
     pensionContribution,
     pensionTaxReliefAmount,
@@ -78,7 +77,7 @@ const PensionTaxReliefCardContent = ({
                 Contribution
               </div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
-                £{addCommasToNumber(convertedPensionContribution)}
+                £{addCommasToNumber(pensionTaxReliefAmount)}
               </div>
               <div className="text-right text-xs2 text-turquoise-600">
                 &#40;
@@ -126,7 +125,7 @@ const PensionTaxReliefCardContent = ({
                     className={` flex h-[${claimsAdditionalPensionTaxRelief ? Math.min(Math.ceil((100 - taxBand.taxRate) / 5) * 5, 80) : 80}%]  w-full items-center justify-center  rounded-b-md bg-turquoise-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
                   >
                     Contribution
-                    <br /> £ {addCommasToNumber(convertedPensionContribution)}
+                    <br /> £ {addCommasToNumber(pensionTaxReliefAmount)}
                   </div>
                 </div>
                 <div className=" w-44 text-center text-xs2 leading-5 text-neutral-400  ">
@@ -158,7 +157,7 @@ const PensionTaxReliefCardContent = ({
                   <div className="leading-6">
                     For a contribution of{" "}
                     <span className=" font-bold text-turquoise-600">
-                      £{addCommasToNumber(convertedPensionContribution)}{" "}
+                      £{addCommasToNumber(pensionTaxReliefAmount)}{" "}
                     </span>
                     to your pension, tax relief will amount to{" "}
                     <span className="font-bold text-orange-400">
