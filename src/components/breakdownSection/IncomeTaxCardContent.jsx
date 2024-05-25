@@ -18,14 +18,8 @@ const IncomeTaxCardContent = ({
   const { eligibilityInformation } = UseCalculatorContext();
   const { screenType } = useScreenTypeContext();
 
-  const {
-    grossIncome,
-    selectedIncomeInterval,
-    incomeTaxTable,
-    incomeTaxAmount,
-  } = eligibilityInformation;
-
-  console.log(grossIncome * (selectedIncomeInterval === "Year" ? 1 : 12));
+  const { grossIncome, incomeTaxTable, incomeTaxAmount } =
+    eligibilityInformation;
 
   const determineReductionInPersonalAllowance = () => {
     if (grossIncome < 100000) {

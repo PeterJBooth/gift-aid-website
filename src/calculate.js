@@ -296,7 +296,6 @@ const determineIfCanClaimGiftAid = (
   selectedDonationInterval,
 ) => {
   totalTaxPaid = totalTaxPaid / (selectedDonationInterval === "Year" ? 1 : 12);
-  console.log(selectedDonationInterval);
   const canClaimGiftAid = giftAidToClaim <= totalTaxPaid - giftAidTaxRelief;
   return canClaimGiftAid;
 };

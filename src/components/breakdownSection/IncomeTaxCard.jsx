@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSpring } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CardHeading } from "./CardHeading";
@@ -13,7 +13,7 @@ const IncomeTaxCard = () => {
 
   const { eligibilityInformation } = UseCalculatorContext();
 
-  const [mainProps, mainApi] = useSpring(() => ({ height: "100px" }), []);
+  const [mainProps, mainApi] = useSpring(() => ({ height: 96 }), []);
   const [insideProps, InsideApi] = useSpring(() => ({ y: 0 }), []);
   const [expandedSectionProps, expandedSectionApi] = useSpring(
     () => ({ opacity: 0 }),
@@ -31,53 +31,91 @@ const IncomeTaxCard = () => {
   const handleClick = () => {
     if (isExpanded) {
       setIsExpanded(false);
+      animateExpandToggle(false);
     } else {
       setIsExpanded(true);
+      animateExpandToggle(true);
     }
+  };
 
+  const animateExpandToggle = (expand) => {
     mainApi.start({
       from: {
-        height: isExpanded
-          ? expandedSectionRef.current.offsetHeight -
-            summaryInfoRef.current.offsetHeight -
-            32
-          : summaryInfoRef.current.offsetHeight,
-      },
-      to: {
-        height: isExpanded
+        height: expand
           ? summaryInfoRef.current.offsetHeight
           : expandedSectionRef.current.offsetHeight -
             summaryInfoRef.current.offsetHeight -
             32,
       },
+      to: {
+        height: expand
+          ? expandedSectionRef.current.offsetHeight -
+            summaryInfoRef.current.offsetHeight -
+            32
+          : summaryInfoRef.current.offsetHeight,
+      },
     });
 
     InsideApi.start({
-      from: { y: isExpanded ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
-      to: { y: isExpanded ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
+      from: { y: expand ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
+      to: { y: expand ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
     });
 
     expandedSectionApi.start({
-      from: { opacity: isExpanded ? 1 : 0 },
-      to: { opacity: isExpanded ? 0 : 1 },
+      from: { opacity: expand ? 0 : 1 },
+      to: { opacity: expand ? 1 : 0 },
     });
 
     summaryInfoApi.start({
-      from: { opacity: isExpanded ? 0 : 1 },
-      to: { opacity: isExpanded ? 1 : 0 },
+      from: { opacity: expand ? 1 : 0 },
+      to: { opacity: expand ? 0 : 1 },
     });
 
     inputApi.start({
       from: {
-        opacity: isExpanded ? 1 : 0,
-        height: isExpanded ? inputRef.current.offsetHeight : 0,
+        opacity: expand ? 0 : 1,
+        height: expand ? 0 : inputRef.current.offsetHeight,
       },
       to: {
-        opacity: isExpanded ? 0 : 1,
-        height: isExpanded ? 0 : inputRef.current.offsetHeight,
+        opacity: expand ? 1 : 0,
+        height: expand ? inputRef.current.offsetHeight : 0,
       },
     });
   };
+
+  const resetSummaryHeight = () => {
+    mainApi.start({
+      from: {
+        height: 96,
+      },
+      to: {
+        height: summaryInfoRef.current.offsetHeight,
+      },
+    });
+  };
+
+  const resetExpandedHeight = () => {
+    console.log(expandedSectionRef.current.offsetHeight);
+    mainApi.start({
+      from: {
+        height: 699,
+      },
+      to: {
+        height:
+          expandedSectionRef.current.offsetHeight -
+          summaryInfoRef.current.offsetHeight -
+          32,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (isExpanded) {
+      resetExpandedHeight();
+    } else {
+      resetSummaryHeight();
+    }
+  }, [eligibilityInformation]);
 
   return (
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">

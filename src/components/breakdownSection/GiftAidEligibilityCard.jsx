@@ -8,12 +8,10 @@ import { GiftAidEligibilityCardContent } from "./GiftAidEligibilityCardContent";
 
 const GiftAidEligibilityCard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { screenType } = useScreenTypeContext();
   const expandedSectionRef = useRef(null);
   const summaryInfoRef = useRef(null);
   const inputRef = useRef(null);
   const { eligibilityInformation } = UseCalculatorContext();
-  const { canClaimGiftAid } = eligibilityInformation;
   // 159 + (eligibilityInformation.canClaimGiftAid ? 75 : 150);
 
   const [mainProps, mainApi] = useSpring(() => ({ height: 0 }), []);
@@ -34,64 +32,91 @@ const GiftAidEligibilityCard = () => {
   const handleClick = () => {
     if (isExpanded) {
       setIsExpanded(false);
+      animateExpandToggle(false);
     } else {
       setIsExpanded(true);
+      animateExpandToggle(true);
     }
+  };
 
+  const animateExpandToggle = (expand) => {
     mainApi.start({
       from: {
-        height: isExpanded
-          ? expandedSectionRef.current.offsetHeight -
-            summaryInfoRef.current.offsetHeight -
-            32
-          : summaryInfoRef.current.offsetHeight,
-      },
-      to: {
-        height: isExpanded
+        height: expand
           ? summaryInfoRef.current.offsetHeight
           : expandedSectionRef.current.offsetHeight -
             summaryInfoRef.current.offsetHeight -
             32,
       },
+      to: {
+        height: expand
+          ? expandedSectionRef.current.offsetHeight -
+            summaryInfoRef.current.offsetHeight -
+            32
+          : summaryInfoRef.current.offsetHeight,
+      },
     });
 
     InsideApi.start({
-      from: { y: isExpanded ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
-      to: { y: isExpanded ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
+      from: { y: expand ? 0 : -summaryInfoRef.current.offsetHeight - 32 },
+      to: { y: expand ? -summaryInfoRef.current.offsetHeight - 32 : 0 },
     });
 
     expandedSectionApi.start({
-      from: { opacity: isExpanded ? 1 : 0 },
-      to: { opacity: isExpanded ? 0 : 1 },
+      from: { opacity: expand ? 0 : 1 },
+      to: { opacity: expand ? 1 : 0 },
     });
 
     summaryInfoApi.start({
-      from: { opacity: isExpanded ? 0 : 1 },
-      to: { opacity: isExpanded ? 1 : 0 },
+      from: { opacity: expand ? 1 : 0 },
+      to: { opacity: expand ? 0 : 1 },
     });
 
     inputApi.start({
       from: {
-        opacity: isExpanded ? 1 : 0,
-        height: isExpanded ? inputRef.current.offsetHeight : 0,
+        opacity: expand ? 0 : 1,
+        height: expand ? 0 : inputRef.current.offsetHeight,
       },
       to: {
-        opacity: isExpanded ? 0 : 1,
-        height: isExpanded ? 0 : inputRef.current.offsetHeight,
+        opacity: expand ? 1 : 0,
+        height: expand ? inputRef.current.offsetHeight : 0,
       },
     });
   };
 
-  useEffect(() => {
+  const resetSummaryHeight = () => {
     mainApi.start({
       from: {
-        height: 0,
+        height: 96,
       },
       to: {
         height: summaryInfoRef.current.offsetHeight,
       },
     });
-  }, [canClaimGiftAid]);
+  };
+
+  const resetExpandedHeight = () => {
+    console.log(expandedSectionRef.current.offsetHeight);
+    mainApi.start({
+      from: {
+        height: 699,
+      },
+      to: {
+        height:
+          expandedSectionRef.current.offsetHeight -
+          summaryInfoRef.current.offsetHeight -
+          32,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (isExpanded) {
+      resetExpandedHeight();
+    } else {
+      resetSummaryHeight();
+    }
+  }, [eligibilityInformation]);
 
   return (
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
