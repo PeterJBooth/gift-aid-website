@@ -136,7 +136,7 @@ const PensionTaxReliefCardContent = ({
               <div className="flex w-full flex-col gap-4 tablet:w-96 ">
                 <div className=" text-base font-bold ">Tax Relief</div>
                 <div className="flex flex-col gap-6">
-                  <div className="leading-6">
+                  <div className="leading-7">
                     As a {displayPensionReliefEligibilityStatus()}, if you
                     invest{" "}
                     <b>
@@ -154,7 +154,7 @@ const PensionTaxReliefCardContent = ({
                     </b>{" "}
                     from the government in the form of tax relief.
                   </div>
-                  <div className="leading-6">
+                  <div className="leading-7">
                     For a contribution of{" "}
                     <span className=" font-bold text-turquoise-600">
                       £{addCommasToNumber(pensionTaxReliefAmount)}{" "}

@@ -71,7 +71,7 @@ const getGiftAidEligibilityInformation = (
     informationRetrieved: true,
     selectedDonationInterval: selectedDonationInterval,
   };
-  console.log(giftAidEligibilityInformation);
+  // console.log(giftAidEligibilityInformation);
   return giftAidEligibilityInformation;
 };
 

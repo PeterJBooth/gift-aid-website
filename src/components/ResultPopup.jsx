@@ -1,4 +1,3 @@
-import checkMark from "../assets/check-mark2.svg";
 import { animated } from "@react-spring/web";
 import { UseCalculatorContext } from "../context/CalculatorContext";
 import { IoMdClose } from "react-icons/io";
@@ -12,29 +11,6 @@ const ResultPopup = ({ style }) => {
   const { screenType } = useScreenTypeContext();
   const { setPopupIsActive } = usePopupContext();
   const { breakdownSectionRef, setIsVisible } = useBreakdownContext();
-
-  const displayResultMessage = () => {
-    if (eligibilityInformation.canClaimGiftAid) {
-      return (
-        <div className="relative text-[40px] font-semibold tracking-[-0.029rem] text-neutral-25 largeDesktop:text-[46px]">
-          You can tick the
-          <br /> gift aid box!
-          <img
-            src={checkMark}
-            alt="check mark"
-            className="absolute right-[3.10rem] top-[-2.30rem] largeDesktop:right-[3.35rem] largeDesktop:top-[-2.85rem] largeDesktop:w-20"
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className="relative text-[40px] font-semibold tracking-[-0.029rem] text-neutral-25 largeDesktop:text-[46px]">
-          Sorry,
-          <br /> you're unable tick the <br /> gift aid box
-        </div>
-      );
-    }
-  };
 
   const displayResultDescription = () => {
     if (Math.round(eligibilityInformation.giftAidDonationCap) !== 0) {

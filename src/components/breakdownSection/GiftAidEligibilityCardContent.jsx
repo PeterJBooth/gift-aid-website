@@ -214,7 +214,7 @@ const GiftAidEligibilityCardContent = ({
                   exceed the total amount of tax you have paid.
                 </div>
               ) : (
-                <div className=" max-w-[32rem]">
+                <div className=" max-w-[32rem] leading-6">
                   The additional amount that the charity can receive through
                   your gift aid donations would {canClaimGiftAid ? "not" : ""}{" "}
                   exceed the total amount of tax you have paid.
