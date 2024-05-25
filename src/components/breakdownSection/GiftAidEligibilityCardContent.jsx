@@ -138,11 +138,16 @@ const GiftAidEligibilityCardContent = ({
                 <span className=" font-bold text-orange-600 ">
                   £{addCommasToNumber(giftAidToClaim)}
                 </span>
-                ) cannot exceed the total amount of tax you have paid (
+                ) cannot exceed the total amount of tax you have paid in a month
+                (
                 <span className=" font-bold text-turquoise-600">
                   £{addCommasToNumber(totalTaxPaid)}
-                </span>
-                ).
+                </span>{" "}
+                or{" "}
+                <span className=" font-bold text-turquoise-600">
+                  £{addCommasToNumber(totalTaxPaid)}
+                </span>{" "}
+                ÷ 12 ).
               </>
             )}
           </div>

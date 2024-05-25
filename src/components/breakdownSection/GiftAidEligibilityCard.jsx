@@ -1,12 +1,7 @@
-import { useRef, useState } from "react";
-import vIcon from "../../assets/info-page/v-icon.svg";
-import arrowIcon from "../../assets/arrow.svg";
-import largeArrowIcon from "../../assets/large-arrow.svg";
+import { useEffect, useRef, useState } from "react";
 import { useScreenTypeContext } from "../../context/ScreenTypeContext";
-import { useSpring, animated } from "@react-spring/web";
-import { addCommasToNumber } from "../../utils/formatNumber";
+import { useSpring } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
-import { InputDisplay } from "./InputDisplay";
 import { CardHeading } from "./CardHeading";
 import { ExpandToggle } from "./ExpandToggle";
 import { GiftAidEligibilityCardContent } from "./GiftAidEligibilityCardContent";
@@ -17,13 +12,11 @@ const GiftAidEligibilityCard = () => {
   const expandedSectionRef = useRef(null);
   const summaryInfoRef = useRef(null);
   const inputRef = useRef(null);
-
   const { eligibilityInformation } = UseCalculatorContext();
+  const { canClaimGiftAid } = eligibilityInformation;
+  // 159 + (eligibilityInformation.canClaimGiftAid ? 75 : 150);
 
-  const [mainProps, mainApi] = useSpring(
-    () => ({ height: screenType.isMobile ? 123 : 147 }),
-    [],
-  );
+  const [mainProps, mainApi] = useSpring(() => ({ height: 0 }), []);
   const [insideProps, InsideApi] = useSpring(() => ({ y: 0 }), []);
   const [expandedSectionProps, expandedSectionApi] = useSpring(
     () => ({ opacity: 0 }),
@@ -44,6 +37,7 @@ const GiftAidEligibilityCard = () => {
     } else {
       setIsExpanded(true);
     }
+    console.log(mainProps);
 
     mainApi.start({
       from: {
@@ -88,6 +82,17 @@ const GiftAidEligibilityCard = () => {
       },
     });
   };
+
+  useEffect(() => {
+    mainApi.start({
+      from: {
+        height: 0,
+      },
+      to: {
+        height: summaryInfoRef.current.offsetHeight,
+      },
+    });
+  }, [canClaimGiftAid]);
 
   return (
     <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">

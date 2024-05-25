@@ -1,12 +1,7 @@
 import { useRef, useState } from "react";
-import vIcon from "../../assets/info-page/v-icon.svg";
-import arrowIcon from "../../assets/arrow.svg";
-import largeArrowIcon from "../../assets/large-arrow.svg";
 import { useScreenTypeContext } from "../../context/ScreenTypeContext";
-import { useSpring, animated } from "@react-spring/web";
-import { addCommasToNumber } from "../../utils/formatNumber";
+import { useSpring } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
-import { InputDisplay } from "./InputDisplay";
 import { CardHeading } from "./CardHeading";
 import { ExpandToggle } from "./ExpandToggle";
 import { PensionTaxReliefCardContent } from "./PensionTaxReliefCardContent";

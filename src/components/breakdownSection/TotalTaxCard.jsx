@@ -4,7 +4,6 @@ import { useSpring } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CardHeading } from "./CardHeading";
 import { ExpandToggle } from "./ExpandToggle";
-import { PensionTaxReliefCardContent } from "./PensionTaxReliefCardContent";
 import { TotalTaxCardContent } from "./TotalTaxCardContent";
 
 const TotalTaxCard = () => {
