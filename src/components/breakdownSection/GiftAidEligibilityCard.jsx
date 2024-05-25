@@ -37,7 +37,6 @@ const GiftAidEligibilityCard = () => {
     } else {
       setIsExpanded(true);
     }
-    console.log(mainProps);
 
     mainApi.start({
       from: {

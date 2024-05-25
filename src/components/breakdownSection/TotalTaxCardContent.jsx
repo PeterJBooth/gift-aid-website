@@ -87,7 +87,7 @@ const TotalTaxCardContent = ({
           >
             <div className=" max-w-[480px] leading-6">
               To find out the whether you can claim gift aid, it is necessary to
-              determine the total amount of tax you’ll have paid.{" "}
+              determine the total amount of tax you’ll have paid in a year.{" "}
             </div>
             <div className=" mx-auto flex flex-col gap-6 largePhone:flex-row">
               <div className="flex flex-col gap-2 px-3 largePhone:gap-6 largePhone:px-0">

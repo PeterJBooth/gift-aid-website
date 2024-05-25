@@ -29,6 +29,7 @@ const GiftAidEligibilityCardContent = ({
     giftAidTaxRelief,
     claimsAdditionalGiftAidTaxRelief,
     totalTaxPaid,
+    selectedDonationInterval,
   } = eligibilityInformation;
 
   const diagramHeights =
@@ -125,10 +126,27 @@ const GiftAidEligibilityCardContent = ({
                     </span>{" "}
                   </div>
                 </div>
-                ) cannot exceed the total amount of tax you have paid ({" "}
+                ) cannot exceed the total amount of tax you have paid{" "}
+                {selectedDonationInterval === "Month" ? " in a month " : " "}(
                 <span className=" font-bold text-turquoise-600">
-                  £{addCommasToNumber(totalTaxPaid)}
+                  £
+                  {addCommasToNumber(
+                    totalTaxPaid /
+                      (selectedDonationInterval === "Year" ? 1 : 12),
+                  )}
                 </span>
+                {selectedDonationInterval === "Month" ? (
+                  <>
+                    {" "}
+                    or{" "}
+                    <span className=" font-bold text-turquoise-600">
+                      £{addCommasToNumber(totalTaxPaid)}
+                    </span>{" "}
+                    ÷ 12
+                  </>
+                ) : (
+                  ""
+                )}
                 ).
               </>
             ) : (
@@ -138,16 +156,28 @@ const GiftAidEligibilityCardContent = ({
                 <span className=" font-bold text-orange-600 ">
                   £{addCommasToNumber(giftAidToClaim)}
                 </span>
-                ) cannot exceed the total amount of tax you have paid in a month
-                (
+                ) cannot exceed the total amount of tax you have paid
+                {selectedDonationInterval === "Month" ? " in a month " : " "}(
                 <span className=" font-bold text-turquoise-600">
-                  £{addCommasToNumber(totalTaxPaid)}
-                </span>{" "}
-                or{" "}
-                <span className=" font-bold text-turquoise-600">
-                  £{addCommasToNumber(totalTaxPaid)}
-                </span>{" "}
-                ÷ 12 ).
+                  £
+                  {addCommasToNumber(
+                    totalTaxPaid /
+                      (selectedDonationInterval === "Year" ? 1 : 12),
+                  )}
+                </span>
+                {selectedDonationInterval === "Month" ? (
+                  <>
+                    {" "}
+                    or{" "}
+                    <span className=" font-bold text-turquoise-600">
+                      £{addCommasToNumber(totalTaxPaid)}
+                    </span>{" "}
+                    ÷ 12
+                  </>
+                ) : (
+                  ""
+                )}
+                ).
               </>
             )}
           </div>

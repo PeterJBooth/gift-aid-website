@@ -1,6 +1,5 @@
 import { animated } from "@react-spring/web";
 import { addCommasToNumber } from "../../utils/formatNumber";
-import { forwardRef } from "react";
 
 const InputDisplay = ({ props, inputRef, amount, title }) => {
   return (
