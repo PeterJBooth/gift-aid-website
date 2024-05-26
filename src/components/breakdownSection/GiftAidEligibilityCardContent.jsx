@@ -32,8 +32,22 @@ const GiftAidEligibilityCardContent = ({
     selectedDonationInterval,
   } = eligibilityInformation;
 
-  const diagramHeights =
-    "h-[17.5%] h-[20%] h-[25%] h-[30%] h-[35%] h-[40%] h-[45%] h-[50%] h-[55%] h-[60%] h-[65%] h-[70%] h-[75%] h-[80%]";
+  const getDiagramHeight = {
+    17.5: "h-[17.5%]",
+    20: "h-[20%]",
+    25: "h-[25%]",
+    30: "h-[30%]",
+    35: "h-[35%]",
+    40: "h-[40%]",
+    45: "h-[45%]",
+    50: "h-[50%]",
+    55: "h-[55%]",
+    60: "h-[60%]",
+    65: "h-[65%]",
+    70: "h-[70%]",
+    75: "h-[75%]",
+    80: "h-[80%]",
+  };
 
   const taxbandsEligibleForAdditionalRelief = [
     "intermediateRate",
@@ -250,18 +264,18 @@ const GiftAidEligibilityCardContent = ({
                 <div className="flex flex-col items-center gap-4">
                   <div className=" h-80 w-36 rounded-md  shadow-lg largePhone:h-[22rem] largePhone:w-40">
                     <div
-                      className={` h-[${getBlockHeightPercentage(giftAidTaxRelief)}%] w-full items-center justify-center rounded-t-md bg-blue-300 text-center font-bold leading-5 text-neutral-25 opacity-90 ${determineGiftAidReliefEligibility() ? "flex" : "hidden"}`}
+                      className={` ${getDiagramHeight[getBlockHeightPercentage(giftAidTaxRelief)]} w-full items-center justify-center rounded-t-md bg-blue-300 text-center font-bold leading-5 text-neutral-25 opacity-90 ${determineGiftAidReliefEligibility() ? "flex" : "hidden"}`}
                     >
                       Tax Relief <br />£{addCommasToNumber(giftAidTaxRelief)}
                     </div>
                     <div
-                      className={`flex  h-[${getBlockHeightPercentage(giftAidToClaim)}%] w-full items-center justify-center  bg-orange-500 text-center font-bold leading-5 text-neutral-25 opacity-90 ${determineGiftAidReliefEligibility() ? "" : "rounded-t-md"}`}
+                      className={`flex   ${getDiagramHeight[getBlockHeightPercentage(giftAidToClaim)]} w-full items-center justify-center  bg-orange-500 text-center font-bold leading-5 text-neutral-25 opacity-90 ${determineGiftAidReliefEligibility() ? "" : "rounded-t-md"}`}
                     >
                       Gift Aid <br />£{addCommasToNumber(giftAidToClaim)}
                     </div>
 
                     <div
-                      className={` flex h-[${100 - (getBlockHeightPercentage(giftAidTaxRelief) + getBlockHeightPercentage(giftAidToClaim))}%]  w-full items-center justify-center  rounded-b-md bg-blue-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
+                      className={` flex ${getDiagramHeight[100 - (getBlockHeightPercentage(giftAidTaxRelief) + getBlockHeightPercentage(giftAidToClaim))]}  w-full items-center justify-center  rounded-b-md bg-blue-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
                     >
                       Donation
                       <br /> £{addCommasToNumber(donationAmount)}

@@ -26,9 +26,22 @@ const PensionTaxReliefCardContent = ({
     yearlyPensionContribution,
   } = eligibilityInformation;
 
-  const diagramHeights =
-    "h-[20%] h-[25%] h-[30%] h-[35%] h-[40%] h-[45%] h-[50%] h-[55%] h-[60%] h-[65%] h-[70%] h-[75%] h-[80%]";
-
+  const getDiagramHeight = {
+    17.5: "h-[17.5%]",
+    20: "h-[20%]",
+    25: "h-[25%]",
+    30: "h-[30%]",
+    35: "h-[35%]",
+    40: "h-[40%]",
+    45: "h-[45%]",
+    50: "h-[50%]",
+    55: "h-[55%]",
+    60: "h-[60%]",
+    65: "h-[65%]",
+    70: "h-[70%]",
+    75: "h-[75%]",
+    80: "h-[80%]",
+  };
   const displayPensionReliefEligibilityStatus = (capitalise) => {
     const taxbandsEligibleForAdditionalRelief = [
       "intermediateRate",
@@ -116,14 +129,14 @@ const PensionTaxReliefCardContent = ({
               <div className="flex flex-col items-center gap-4">
                 <div className=" h-80 w-36 rounded-md  shadow-lg largePhone:h-[22rem] largePhone:w-40">
                   <div
-                    className={`flex h-[${claimsAdditionalPensionTaxRelief ? Math.max(Math.floor(taxBand.taxRate / 5) * 5, 20) : 20}%] opacity-90œ w-full items-center justify-center rounded-t-md bg-orange-500 text-center font-bold leading-5 text-neutral-25`}
+                    className={`flex ${getDiagramHeight[claimsAdditionalPensionTaxRelief ? Math.max(Math.floor(taxBand.taxRate / 5) * 5, 20) : 20]} opacity-90œ w-full items-center justify-center rounded-t-md bg-orange-500 text-center font-bold leading-5 text-neutral-25`}
                   >
                     Tax Relief <br />£
                     {addCommasToNumber(pensionTaxReliefAmount)}
                   </div>
 
                   <div
-                    className={` flex h-[${claimsAdditionalPensionTaxRelief ? Math.min(Math.ceil((100 - taxBand.taxRate) / 5) * 5, 80) : 80}%]  w-full items-center justify-center  rounded-b-md bg-turquoise-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
+                    className={` flex ${getDiagramHeight[claimsAdditionalPensionTaxRelief ? Math.min(Math.ceil((100 - taxBand.taxRate) / 5) * 5, 80) : 80]}  w-full items-center justify-center  rounded-b-md bg-turquoise-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
                   >
                     Contribution
                     <br /> £ {addCommasToNumber(yearlyPensionContribution)}
