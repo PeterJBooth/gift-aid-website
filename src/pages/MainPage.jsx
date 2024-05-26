@@ -6,7 +6,6 @@ import { Footer } from "../components/Footer";
 import { ScreenTypeContextProvider } from "../context/ScreenTypeContext";
 import { PopupContextProvider } from "../context/PopupContext";
 import { BackgroundShapes } from "../components/BackgroundShapes";
-import { IncomeTaxCard } from "../components/breakdownSection/IncomeTaxCard";
 import { BreakdownSection } from "../components/breakdownSection/BreakdownSection";
 import { BreakdownContextProvider } from "../context/BreakdownContext";
 

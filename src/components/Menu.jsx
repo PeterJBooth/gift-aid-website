@@ -15,8 +15,6 @@ const Menu = ({ menuHeight, springProps }) => {
       } else {
         if (my < -100) {
           api.start({ y: -menuHeight, immediate: false });
-          console.log("inactive");
-          console.log(-menuHeight);
         } else {
           api.start({ y: 0, immediate: false });
         }
@@ -29,19 +27,19 @@ const Menu = ({ menuHeight, springProps }) => {
     {
       bounds: { bottom: 0 },
       rubberband: 0.1,
-    }
+    },
   );
 
   return (
     <>
       <animated.menu
         {...bindMenuPosition()}
-        className="fixed -top-8 right-0 left-0 h-48 rounded-3xl bg-neutral-25 flex flex-col justify-end items-center pb-2 z-20
+        className="fixed -top-8 left-0 right-0 z-20 flex h-48 flex-col items-center justify-end rounded-3xl bg-neutral-25 pb-2
         shadow-3xl"
         style={{ y, touchAction: "none" }}
       >
         <GiftAidButton />
-        <div className="pill h-2.5 w-32 mt-8 bg-neutral-100 opacity-75 rounded-lg"></div>
+        <div className="pill mt-8 h-2.5 w-32 rounded-lg bg-neutral-100 opacity-75"></div>
       </animated.menu>
     </>
   );

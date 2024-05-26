@@ -1,4 +1,3 @@
-import { useState } from "react";
 import checkMark from "../../assets/check-mark.svg";
 import { MoreInfoProvider } from "./MoreInfoProvider";
 

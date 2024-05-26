@@ -1,10 +1,6 @@
-import arrowIcon from "../../assets/arrow.svg";
-import largeArrowIcon from "../../assets/large-arrow.svg";
 import { animated } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { addCommasToNumber } from "../../utils/formatNumber";
-import { useScreenTypeContext } from "../../context/ScreenTypeContext";
-import { capitaliseFirstLetter } from "../../utils/capitalise";
 
 const TotalTaxCardContent = ({
   mainProps,
@@ -15,46 +11,9 @@ const TotalTaxCardContent = ({
   summaryInfoProps,
 }) => {
   const { eligibilityInformation } = UseCalculatorContext();
-  const { screenType } = useScreenTypeContext();
 
-  const {
-    taxBand,
-    claimsAdditionalPensionTaxRelief,
-    grossIncome,
-    totalTaxPaid,
-    pensionTaxReliefAmount,
-    incomeTaxAmount,
-  } = eligibilityInformation;
-
-  const diagramHeights =
-    "h-[20%] h-[25%] h-[30%] h-[35%] h-[40%] h-[45%] h-[50%] h-[55%] h-[60%] h-[65%] h-[70%] h-[75%] h-[80%]";
-
-  const displayPensionReliefEligibilityStatus = (capitalise) => {
-    const taxbandsEligibleForAdditionalRelief = [
-      "intermediateRate",
-      "higherRate",
-      "advancedRate",
-      "additionalRate",
-    ];
-
-    let defaultStatus = taxBand.displayName.toLowerCase() + " taxpayer";
-
-    if (capitalise) {
-      defaultStatus = capitaliseFirstLetter(defaultStatus);
-    }
-
-    if (!taxbandsEligibleForAdditionalRelief.includes(taxBand.name)) {
-      return defaultStatus;
-    }
-
-    if (claimsAdditionalPensionTaxRelief) {
-      return defaultStatus + " with additional tax relief";
-    }
-
-    if (!claimsAdditionalPensionTaxRelief) {
-      return defaultStatus + " without additional tax relief";
-    }
-  };
+  const { totalTaxPaid, pensionTaxReliefAmount, incomeTaxAmount } =
+    eligibilityInformation;
 
   return (
     <div className="flex w-full items-center justify-center">

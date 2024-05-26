@@ -40,12 +40,6 @@ const GiftAidEligibilityCard = () => {
   };
 
   const animateExpandToggle = (expand) => {
-    console.log(
-      expandedSectionRef.current.offsetHeight -
-        summaryInfoRef.current.offsetHeight -
-        32,
-    );
-
     mainApi.start({
       from: {
         height: expand
@@ -102,11 +96,6 @@ const GiftAidEligibilityCard = () => {
   };
 
   const resetExpandedHeight = () => {
-    console.log(
-      expandedSectionRef.current.offsetHeight -
-        summaryInfoRef.current.offsetHeight -
-        32,
-    );
     mainApi.start({
       from: {
         height: 699,

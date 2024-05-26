@@ -1,5 +1,3 @@
-import arrowIcon from "../../assets/arrow.svg";
-import largeArrowIcon from "../../assets/large-arrow.svg";
 import { animated } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { addCommasToNumber } from "../../utils/formatNumber";

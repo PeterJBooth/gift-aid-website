@@ -6,7 +6,6 @@ import { GiftAidEligibilityCard } from "./GiftAidEligibilityCard";
 
 const BreakdownSection = () => {
   const { breakdownSectionRef, isVisible } = useBreakdownContext();
-  // console.log(useBreakdownContext());
 
   return (
     <div ref={breakdownSectionRef}>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CheckboxInput } from "./CheckboxInput";
 import { animated, useSpring } from "@react-spring/web";

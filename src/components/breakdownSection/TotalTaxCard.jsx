@@ -100,7 +100,6 @@ const TotalTaxCard = () => {
   };
 
   const resetExpandedHeight = () => {
-    console.log(expandedSectionRef.current.offsetHeight);
     mainApi.start({
       from: {
         height: 699,

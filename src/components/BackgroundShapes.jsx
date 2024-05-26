@@ -1,5 +1,4 @@
 import backgroundShape from "../assets/background-shape.svg";
-import backgroundShape2 from "../assets/background-shape2.svg";
 import backgroundShape3 from "../assets/background-shape3.svg";
 
 const BackgroundShapes = () => {

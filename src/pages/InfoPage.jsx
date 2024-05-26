@@ -4,10 +4,6 @@ import { ScreenTypeContextProvider } from "../context/ScreenTypeContext";
 import donationIcon from "../assets/info-page/donation-icon.svg";
 import assumptionIcon from "../assets/info-page/assumption.png";
 import { Question } from "../components/Question";
-import { useSpring, animated, useTransition } from "@react-spring/web";
-import { useState } from "react";
-
-const data = [1, 2, 3];
 
 const InfoPage = () => {
   return (

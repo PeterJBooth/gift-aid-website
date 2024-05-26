@@ -1,11 +1,8 @@
-import logoIcon from "../assets/logo-medium.svg";
-import logoIconSmall from "../assets/logo-small.svg";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import burgerIcon from "../assets/burger.svg";
 import { GiftAidButton } from "./GiftAidButton";
 import { Menu } from "./Menu";
 import { useSpring } from "@react-spring/web";
-import { useNavigate } from "react-router-dom";
 import { Brand } from "./Brand";
 
 const Header = ({ giftAidButtonActive }) => {
