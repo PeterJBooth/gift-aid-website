@@ -1,6 +1,6 @@
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const MoreInfoProvider = ({ title, content }) => {
   const [showingInfoBox, setShowingInfoBox] = useState(false);
@@ -27,7 +27,9 @@ const MoreInfoProvider = ({ title, content }) => {
       />
       {showingInfoBox === true && (
         <div
-          className="absolute left-1/2 top-9 z-50 flex w-[21rem] -translate-x-1/2 flex-col gap-5 rounded-md border border-neutral-100 bg-neutral-25 p-6 shadow-custom1 before:absolute before:-top-px before:right-1/2 before:size-6 before:-translate-y-1/2 before:translate-x-1/2 before:rotate-45 before:border-l before:border-t before:border-neutral-100 before:bg-neutral-25 before:content-['']"
+          className="absolute right-0  top-9 z-50 flex w-72 translate-x-1/4 flex-col gap-5  rounded-md border  border-neutral-100 bg-neutral-25 p-6 shadow-custom1 before:absolute before:-top-px before:right-1/4 before:size-6 before:-translate-y-1/2 
+           before:translate-x-1/4 before:rotate-45
+          before:border-l before:border-t before:border-neutral-100 before:bg-neutral-25 before:content-[''] largePhone:left-1/2 largePhone:right-auto largePhone:w-[21rem] largePhone:-translate-x-1/2 largePhone:before:right-1/2 largePhone:before:translate-x-1/2"
           onClick={() => RemoveInfoBox()}
         >
           <IoMdClose
