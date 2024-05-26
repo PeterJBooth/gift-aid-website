@@ -8,6 +8,7 @@ const CheckboxInput = ({
   checkboxState,
   zIndex,
   informationBox,
+  isTransparent,
 }) => {
   const clickCheckbox = () => {
     if (checkboxState === true) {
@@ -19,7 +20,7 @@ const CheckboxInput = ({
 
   return (
     <div
-      className="z-20 flex gap-4 bg-neutral-25 py-4"
+      className={`z-20 flex gap-4 py-4 ${isTransparent ? "" : "bg-neutral-25"}`}
       style={{ zIndex: zIndex }}
     >
       <div

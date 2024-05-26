@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { CheckboxInput } from "./CheckboxInput";
-import { useTransition, animated } from "@react-spring/web";
+import { animated, useSpring } from "@react-spring/web";
 
 const AdvancedOptionsSection = () => {
   const {
@@ -13,11 +13,9 @@ const AdvancedOptionsSection = () => {
     usingAdvancedOptions,
   } = UseCalculatorContext();
 
-  const advancedOptionsTransition = useTransition(usingAdvancedOptions, {
-    from: { opacity: 0, y: -144, maxHeight: 0 },
-    enter: { opacity: 1, y: 0, maxHeight: 144 },
-    leave: { opacity: 0, y: -144, maxHeight: 0 },
-  });
+  const [props, api] = useSpring(() => ({ height: 0 }), []);
+  const usingAdvancedOptionPreviousState = useRef(false);
+  const advancedOptionsRef = useRef(null);
 
   useEffect(() => {
     const uncheckHiddenCheckboxes = () => {
@@ -30,6 +28,25 @@ const AdvancedOptionsSection = () => {
       (claimsAdditionalGiftAidRelief || claimsAdditionalPensionRelief)
     ) {
       uncheckHiddenCheckboxes();
+    }
+
+    if (usingAdvancedOptionPreviousState.current !== usingAdvancedOptions) {
+      usingAdvancedOptionPreviousState.current = usingAdvancedOptions;
+
+      api.start({
+        from: {
+          height: usingAdvancedOptions
+            ? 0
+            : advancedOptionsRef.current.offsetHeight,
+          opacity: usingAdvancedOptions ? 0 : 1,
+        },
+        to: {
+          height: usingAdvancedOptions
+            ? advancedOptionsRef.current.offsetHeight
+            : 0,
+          opacity: usingAdvancedOptions ? 1 : 0,
+        },
+      });
     }
   }, [usingAdvancedOptions]);
 
@@ -45,24 +62,26 @@ const AdvancedOptionsSection = () => {
             "The following advanced options are only applicable for intermediate, higher or additional-rate taxpayers, who claim the forms of tax relief shown below.",
         }}
       />
-      {advancedOptionsTransition((style, item) =>
-        item === true ? (
-          <animated.div style={style}>
-            <CheckboxInput
-              title="I Claim Additional Tax Relief On Pension Contributions"
-              setCheckboxState={setClaimsAdditionalPensionRelief}
-              checkboxState={claimsAdditionalPensionRelief}
-            />
-            <CheckboxInput
-              title="I Claim Additional Tax Relief On Gift Aid Donations"
-              setCheckboxState={setClaimsAdditionalGiftAidRelief}
-              checkboxState={claimsAdditionalGiftAidRelief}
-            />
-          </animated.div>
-        ) : (
-          ""
-        ),
-      )}
+
+      <animated.div style={props} className="relative overflow-hidden">
+        <div
+          className="absolute bottom-0 left-0 right-0"
+          ref={advancedOptionsRef}
+        >
+          <CheckboxInput
+            title="I Claim Additional Tax Relief On Pension Contributions"
+            setCheckboxState={setClaimsAdditionalPensionRelief}
+            checkboxState={claimsAdditionalPensionRelief}
+            isTransparent={true}
+          />
+          <CheckboxInput
+            title="I Claim Additional Tax Relief On Gift Aid Donations"
+            setCheckboxState={setClaimsAdditionalGiftAidRelief}
+            checkboxState={claimsAdditionalGiftAidRelief}
+            isTransparent={true}
+          />
+        </div>
+      </animated.div>
     </>
   );
 };
