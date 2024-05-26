@@ -87,8 +87,7 @@ module.exports = {
         custom1:
           "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
         custom2: "0px 2px 4px 0px rgba(0, 0, 0, 0.12)",
-        custom3: "rgba(149, 157, 165, 0.2) 0px 10px 24px;",
-        custom4: "box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px",
+        custom3: "0px 10px 24px rgba(149, 157, 165, 0.2) ",
         custom5: "inset -24px -1px 46px -44px rgba(0,0,0,0.09);",
       },
       maxWidth: {

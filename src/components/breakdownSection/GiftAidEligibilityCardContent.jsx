@@ -348,4 +348,3 @@ const GiftAidEligibilityCardContent = ({
 };
 
 export { GiftAidEligibilityCardContent };
-//Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2)

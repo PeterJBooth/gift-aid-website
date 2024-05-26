@@ -17,7 +17,7 @@ const ResultMessage = ({ canClaimGiftAid, darkText, smallText }) => {
         </div>
       ) : (
         <div
-          className={`relative text-center text-[32px]  ${smallText ? "largePhone:text-[32px]" : "largePhone:text-[40px]"}   font-semibold tracking-[-0.029rem] ${darkText ? "text-black" : "text-neutral-25"} largeDesktop:${smallText ? "text-[38px]" : "text-[46px]"}`}
+          className={`relative text-center text-[32px]  ${smallText ? "largePhone:text-[32px]" : "largePhone:text-[40px]"}   font-semibold tracking-[-0.029rem] ${darkText ? "text-black" : "text-neutral-25"} ${smallText ? "largeDesktop:text-[38px]" : "largeDesktop:text-[46px]"}`}
         >
           Sorry,
           <br /> you're unable tick the <br /> gift aid box

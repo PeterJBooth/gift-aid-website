@@ -28,7 +28,7 @@ const IncomeSelectInput = ({
           Yearly Income Before Tax *
         </p>
         <div
-          className={`flex rounded-md border hover:border-blue-550 hover:border-2${
+          className={`flex rounded-md border hover:border-2 hover:border-blue-550 ${
             activeSelectInput === id
               ? " border-2 border-blue-550 p-0"
               : " border-neutral-100 p-px hover:p-0"
