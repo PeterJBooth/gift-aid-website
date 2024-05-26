@@ -23,6 +23,7 @@ const PensionTaxReliefCardContent = ({
     pensionFormat,
     pensionContribution,
     pensionTaxReliefAmount,
+    yearlyPensionContribution,
   } = eligibilityInformation;
 
   const diagramHeights =
@@ -77,7 +78,7 @@ const PensionTaxReliefCardContent = ({
                 Contribution
               </div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
-                £{addCommasToNumber(pensionTaxReliefAmount)}
+                £{addCommasToNumber(yearlyPensionContribution)}
               </div>
               <div className="text-right text-xs2 text-turquoise-600">
                 &#40;
@@ -125,7 +126,7 @@ const PensionTaxReliefCardContent = ({
                     className={` flex h-[${claimsAdditionalPensionTaxRelief ? Math.min(Math.ceil((100 - taxBand.taxRate) / 5) * 5, 80) : 80}%]  w-full items-center justify-center  rounded-b-md bg-turquoise-600  text-center font-bold leading-5 text-neutral-25 opacity-90`}
                   >
                     Contribution
-                    <br /> £ {addCommasToNumber(pensionTaxReliefAmount)}
+                    <br /> £ {addCommasToNumber(yearlyPensionContribution)}
                   </div>
                 </div>
                 <div className=" w-44 text-center text-xs2 leading-5 text-neutral-400  ">
@@ -155,9 +156,9 @@ const PensionTaxReliefCardContent = ({
                     from the government in the form of tax relief.
                   </div>
                   <div className="leading-7">
-                    For a contribution of{" "}
+                    For a yearly contribution of{" "}
                     <span className=" font-bold text-turquoise-600">
-                      £{addCommasToNumber(pensionTaxReliefAmount)}{" "}
+                      £{addCommasToNumber(yearlyPensionContribution)}{" "}
                     </span>
                     to your pension, tax relief will amount to{" "}
                     <span className="font-bold text-orange-400">

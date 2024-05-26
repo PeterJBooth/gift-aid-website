@@ -124,13 +124,13 @@ const PensionTaxReliefCard = () => {
 
   return (
     eligibilityInformation.pensionContribution != null && (
-      <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
+      <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8">
         <CardHeading
           inputProps={inputProps}
           inputRef={inputRef}
           cardTitle="Pension Tax Relief"
           inputDisplayTitle="Yearly Pension Contribution"
-          inputDisplayAmount={eligibilityInformation.pensionTaxReliefAmount}
+          inputDisplayAmount={eligibilityInformation.yearlyPensionContribution}
           isExpanded={isExpanded}
         />
 

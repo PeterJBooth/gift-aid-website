@@ -5,7 +5,7 @@ import { animated, useSpring } from "@react-spring/web";
 const Question = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const [props, api] = useSpring(() => ({ height: "0px" }), []);
+  const [props, api] = useSpring(() => ({ height: 0 }), []);
 
   const answerRef = useRef(null);
 
@@ -39,7 +39,12 @@ const Question = ({ question, answer }) => {
       />
 
       <div className="flex w-full flex-col items-start justify-start overflow-hidden">
-        <div className="z-20 w-full bg-neutral-25 pb-1 font-bold leading-6 ">
+        <div
+          className="z-20 w-full cursor-pointer bg-neutral-25 pb-1 font-bold leading-6"
+          onClick={() => {
+            handleClick();
+          }}
+        >
           {question}
         </div>
 
@@ -49,7 +54,10 @@ const Question = ({ question, answer }) => {
         >
           <div
             ref={answerRef}
-            className="absolute bottom-0 left-0 right-0 pt-5 leading-6"
+            className="absolute bottom-0 left-0 right-0 pt-5 leading-7"
+            onClick={() => {
+              handleClick();
+            }}
           >
             {answer}
           </div>

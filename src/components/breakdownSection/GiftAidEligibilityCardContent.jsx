@@ -42,6 +42,18 @@ const GiftAidEligibilityCardContent = ({
     "additionalRate",
   ];
 
+  const displayExampleExtraRelief = () => {
+    const exampleExtraRelief = 1.25 * (taxBand.taxRate - 20);
+
+    if (Number.isInteger(exampleExtraRelief)) {
+      return exampleExtraRelief;
+    }
+
+    return exampleExtraRelief.toLocaleString("en", {
+      minimumFractionDigits: 2,
+    });
+  };
+
   const displayGiftAidReliefEligibilityStatus = (capitalise) => {
     let defaultStatus = taxBand.displayName.toLowerCase() + " taxpayer";
 
@@ -182,8 +194,9 @@ const GiftAidEligibilityCardContent = ({
             )}
           </div>
           <div className="leading-7">
-            As it has not exceeded the total amount of tax paid, you can tick
-            the gift aid box.
+            As it would{canClaimGiftAid ? " not " : " "}exceeded the total
+            amount of tax paid, you {canClaimGiftAid ? " can " : " cannot "}{" "}
+            tick the gift aid box.
           </div>
         </div>
       </div>
@@ -265,23 +278,24 @@ const GiftAidEligibilityCardContent = ({
                     </div>
                     <div className="flex flex-col gap-6">
                       <div className="leading-7">
-                        For every £1 you donate, the charity can claim an
-                        additional 25p through gift aid, making your donation
-                        worth £1.25 to the charity.
+                        For a £100 donation, the charity can claim an additional
+                        £25 through gift aid, making your donation worth £125 to
+                        the charity.
                       </div>
                       {determineGiftAidReliefEligibility() && (
                         <div className="leading-7">
                           As an additional rate tax payer who has claimed
                           additional tax relief on gift aid donations, you would
-                          also receive an extra 25p in tax relief.
+                          also receive an extra £{displayExampleExtraRelief()}{" "}
+                          in tax relief.
                         </div>
                       )}
                       <div className="leading-7">
                         For your donation of{" "}
                         <span className=" font-bold text-blue-700">
-                          £{addCommasToNumber(donationAmount)}{" "}
-                        </span>
-                        you the charity can claim an additional{" "}
+                          £{addCommasToNumber(donationAmount)},
+                        </span>{" "}
+                        the charity can claim an additional{" "}
                         <span className=" font-bold text-orange-600">
                           £{addCommasToNumber(giftAidToClaim)}{" "}
                         </span>{" "}

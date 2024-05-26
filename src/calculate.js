@@ -20,7 +20,7 @@ const getGiftAidEligibilityInformation = (
     pensionFormat,
     grossIncome,
   );
-  let pensionTaxReliefAmount = calculatePensionTaxRelief(
+  const pensionTaxReliefAmount = calculatePensionTaxRelief(
     yearlyPensionContribution,
     claimsAdditionalPensionTaxRelief,
     taxBand,
@@ -70,6 +70,7 @@ const getGiftAidEligibilityInformation = (
     giftAidDonationCap: giftAidDonationCap,
     informationRetrieved: true,
     selectedDonationInterval: selectedDonationInterval,
+    yearlyPensionContribution: yearlyPensionContribution,
   };
   // console.log(giftAidEligibilityInformation);
   return giftAidEligibilityInformation;
@@ -195,11 +196,13 @@ const calculateIncomeTax = (incomeTaxTable) => {
 };
 
 const getPersonalAllowance = (grossIncome) => {
+  if (grossIncome < 100000) {
+    return basicPersonalAllowance;
+  }
+
   const personalAllowance =
-    grossIncome < 100000
-      ? basicPersonalAllowance
-      : basicPersonalAllowance -
-        Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2);
+    basicPersonalAllowance -
+    Math.min(basicPersonalAllowance, (grossIncome - 100000) / 2);
 
   return personalAllowance;
 };

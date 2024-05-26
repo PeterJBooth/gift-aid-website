@@ -40,6 +40,12 @@ const GiftAidEligibilityCard = () => {
   };
 
   const animateExpandToggle = (expand) => {
+    console.log(
+      expandedSectionRef.current.offsetHeight -
+        summaryInfoRef.current.offsetHeight -
+        32,
+    );
+
     mainApi.start({
       from: {
         height: expand
@@ -96,7 +102,11 @@ const GiftAidEligibilityCard = () => {
   };
 
   const resetExpandedHeight = () => {
-    console.log(expandedSectionRef.current.offsetHeight);
+    console.log(
+      expandedSectionRef.current.offsetHeight -
+        summaryInfoRef.current.offsetHeight -
+        32,
+    );
     mainApi.start({
       from: {
         height: 699,
@@ -107,6 +117,10 @@ const GiftAidEligibilityCard = () => {
           summaryInfoRef.current.offsetHeight -
           32,
       },
+    });
+    InsideApi.start({
+      from: { y: 0 },
+      to: { y: -summaryInfoRef.current.offsetHeight - 32 },
     });
   };
 
@@ -119,7 +133,7 @@ const GiftAidEligibilityCard = () => {
   }, [eligibilityInformation]);
 
   return (
-    <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-8 py-10">
+    <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8">
       <CardHeading
         inputProps={inputProps}
         inputRef={inputRef}

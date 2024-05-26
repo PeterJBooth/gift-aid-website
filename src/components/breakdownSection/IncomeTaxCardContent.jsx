@@ -26,7 +26,7 @@ const IncomeTaxCardContent = ({
       return 0;
     }
 
-    return Math.min(basicPersonalAllowance, (grossIncome - 100000) * 2);
+    return Math.min(basicPersonalAllowance, (grossIncome - 100000) / 2);
   };
 
   const displayRows = () => {
@@ -99,7 +99,7 @@ const IncomeTaxCardContent = ({
                 Yearly Income
               </div>
               <div className="text-right text-xl font-bold text-turquoise-600 tablet:text-2.5xl">
-                £{addCommasToNumber(grossIncome)}
+                £{grossIncome != null ? addCommasToNumber(grossIncome) : 0}
               </div>
             </div>
             <div>
@@ -124,7 +124,7 @@ const IncomeTaxCardContent = ({
           </animated.div>
           <animated.div style={{ ...expandedSectionProps }}>
             <div className=" flex w-full flex-col gap-8 ">
-              <div>The table shows the tax rates you pay in each tax band</div>
+              <div>The table shows the tax rates you pay in each tax band.</div>
               <div className="shadow-custom5 overflow-x-auto rounded-md tablet:shadow-none">
                 <table className="w-full min-w-[41rem] overflow-scroll overflow-x-auto rounded-md   tablet:table-fixed">
                   <thead>
@@ -182,31 +182,3 @@ const IncomeTaxCardContent = ({
 };
 
 export { IncomeTaxCardContent };
-
-// Income Year
-// Pension Percentage
-// Donation Year
-
-// Everything is in year units, don't have to worry about converting anywhere
-
-// Income Year
-// Pension Monthly
-// Donation Year
-
-// pension Conversion needs happen at the very beggining
-
-// Income Year
-// Pension Percentage
-// Donation Month
-
-// donation conversion at the end
-
-// Income Year
-// Pension Month
-// Donation Month
-
-// pension Conversion needs happen at the very beggining
-// donation conversion at the end
-
-// Income Year
-// Donation Month
