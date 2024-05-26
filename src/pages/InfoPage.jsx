@@ -20,7 +20,7 @@ const InfoPage = () => {
               <div className="text-[40px] font-black tracking-[-1.1px] largePhone:text-[55px]">
                 What Is Gift Aid?
               </div>
-              <div className="leading-6">
+              <div className="leading-7">
                 Gift Aid is a UK government scheme that allows charities to
                 reclaim the basic rate of tax on donations made by taxpayers,
                 increasing the value of the donation at no extra cost to the
@@ -37,7 +37,7 @@ const InfoPage = () => {
                 <div className="text-3xl font-bold">
                   How Does Gift Aid work?
                 </div>
-                <div className="leading-6">
+                <div className="leading-7">
                   When a taxpayer makes a donation, the charity can reclaim 25p
                   for every £1 donated, boosting the donation by 25%.
                   <br />
@@ -57,26 +57,26 @@ const InfoPage = () => {
               <div className="text-3xl font-bold">
                 Some Assumptions Made When Determining Gift Aid Eligibility...
               </div>
-              <div className="max-w-[50rem] leading-6">
+              <div className="max-w-[50rem] leading-7">
                 For simplicity the following was not considered when determining
                 gift aid eligibility:
                 <ul className="list-inside list-disc">
-                  <li className=" leading-6">
-                    Capital gains or dividends tax Tax relief
+                  <li className=" leading-7">
+                    Capital gains or dividends tax Tax relief.
                   </li>
-                  <li className=" leading-6">
-                    Job expenses tax relief that landlords can claim
+                  <li className=" leading-7">
+                    Job expenses tax relief that landlords can claim.
                   </li>
-                  <li className=" leading-6">
-                    Tax relief when paying back certain types of loans
+                  <li className=" leading-7">
+                    Tax relief when paying back certain types of loans.
                   </li>
-                  <li className=" leading-6">
-                    Tax relief for married couples and parents
+                  <li className=" leading-7">
+                    Tax relief for married couples and parents.
                   </li>
                 </ul>
                 <br />
                 These were not considered as they either apply to a small
-                minority of tax payers or have little effect on the amount you
+                minority of tax payers, or have little effect on the amount you
                 can donate and claim gift aid.
               </div>
             </div>
@@ -99,51 +99,43 @@ const InfoPage = () => {
               <Question
                 question="Is Gift Aid only applicable to cash donations?"
                 answer="No, Gift Aid can be claimed on various types of donations, including those made by debit or credit card, standing order, cheque, or through a fundraising event."
-                answerHeight={112} //88
+                //88
               />
               <Question
                 question="What information is required to make a Gift Aid declaration?"
                 answer="Donors need to provide their name, address, and confirm that they are a UK taxpayer. The declaration can be verbal or written."
-                answerHeight={88} // 64
               />
               <Question
                 question="How long does a Gift Aid declaration last?"
                 answer="Declarations can cover past, present, and future donations, but donors should notify the charity if their circumstances change."
-                answerHeight={88} // 64
               />{" "}
               <Question
-                question="Can Gift Aid be backdated for previous donations?"
+                question="Can Gift Aid be claimed for previous donations?"
                 answer="Yes, Gift Aid can be backdated for up to four years if the donor meets the eligibility criteria."
-                answerHeight={64} // 64
               />{" "}
               <Question
                 question="What are the penalties for making a false Gift Aid declaration?"
                 answer="If it is discovered that you claimed Gift Aid on donations for which you were not eligible, HMRC may demand repayment of the tax relief received. This means you may have to pay back the additional 25% that was claimed on your donations."
-                answerHeight={112} // 64
               />{" "}
               <Question
                 question="How does Gift Aid impact higher-rate taxpayers?"
-                answer="Higher-rate taxpayers can claim additional tax relief on their donations, reducing their tax liability."
-                answerHeight={64}
+                answer="Higher-rate taxpayers can claim additional tax relief on their donations, reducing the amount of tax they pay."
               />{" "}
+              <Question
+                question="Can Gift Aid be claimed on behalf of someone else?"
+                answer="No, the individual making the donation must make the Gift Aid declaration."
+              />
               <Question
                 question="Are there any restrictions on Gift Aid for certain organizations or activities?"
                 answer="An organization must be recognized as a charity or community amateur sports club (CASC) to be eligible for claiming Gift Aid. Also, certain activities, like purchasing items at a charity auction, may not qualify."
-                answerHeight={112} //64
               />
               <Question
                 question="How can I verify if the charity I'm donating to is eligible for Gift Aid?"
                 answer="Check with the charity or look for their Gift Aid registration number. Registered charities are eligible."
-                answerHeight={64}
-              />
-              <Question
-                question="Can Gift Aid be claimed on behalf of someone else?"
-                answer="No, the individual making the donation must make the Gift Aid declaration."
-                answerHeight={64}
               />
             </div>
             <hr className="h-px w-full border-none bg-neutral-200" />
-            <div className="text-center leading-6">
+            <div className="text-center leading-7">
               If you still find yourself uncertain about Gift Aid or have
               questions regarding its application to your specific situation, we
               recommend reaching out to the charity you are donating to for

@@ -1,10 +1,9 @@
 import { useTransition } from "@react-spring/web";
 import { UseCalculatorContext } from "../../context/CalculatorContext";
 import { SelectInput } from "./SelectInput";
-
+import { IncomeSelectInput } from "./IncomeSelectInput";
 const SelectInputSection = () => {
   const {
-    setSelectedIncomeInterval,
     setGrossIncome,
     setSelectedDonationInterval,
     setDonationAmount,
@@ -43,9 +42,7 @@ const SelectInputSection = () => {
 
   return (
     <>
-      <SelectInput
-        inputTitle="Income Before Tax *"
-        setSelectValue={setSelectedIncomeInterval}
+      <IncomeSelectInput
         setInputValue={setGrossIncome}
         id="incomeInput"
         validationMessageTransition={incomeValidationMessageTransition}

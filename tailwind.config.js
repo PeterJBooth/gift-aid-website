@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/components/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     colors: {
       white: "#ffffff",
@@ -87,6 +90,9 @@ module.exports = {
         custom1:
           "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
         custom2: "0px 2px 4px 0px rgba(0, 0, 0, 0.12)",
+        custom3: "rgba(149, 157, 165, 0.2) 0px 10px 24px;",
+        custom4: "box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px",
+        custom5: "inset -24px -1px 46px -44px rgba(0,0,0,0.09);",
       },
       maxWidth: {
         "8xl": "88rem",
@@ -98,6 +104,7 @@ module.exports = {
       },
       fontSize: {
         xs2: "0.8125rem",
+        "2.5xl": "29px",
         "3xl": "2rem",
       },
     },

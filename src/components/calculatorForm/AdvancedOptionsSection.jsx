@@ -49,14 +49,14 @@ const AdvancedOptionsSection = () => {
         item === true ? (
           <animated.div style={style}>
             <CheckboxInput
-              title="I Claim Additional Tax Relief On Gift Aid Donations"
-              setCheckboxState={setClaimsAdditionalGiftAidRelief}
-              checkboxState={claimsAdditionalGiftAidRelief}
-            />
-            <CheckboxInput
               title="I Claim Additional Tax Relief On Pension Contributions"
               setCheckboxState={setClaimsAdditionalPensionRelief}
               checkboxState={claimsAdditionalPensionRelief}
+            />
+            <CheckboxInput
+              title="I Claim Additional Tax Relief On Gift Aid Donations"
+              setCheckboxState={setClaimsAdditionalGiftAidRelief}
+              checkboxState={claimsAdditionalGiftAidRelief}
             />
           </animated.div>
         ) : (

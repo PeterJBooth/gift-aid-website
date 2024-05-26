@@ -3,7 +3,6 @@ import { getGiftAidEligibilityInformation } from "../calculate";
 const CalculatorContext = createContext();
 
 const CalculatorContextProvider = (props) => {
-  const [selectedIncomeInterval, setSelectedIncomeInterval] = useState("Year");
   const [grossIncome, setGrossIncome] = useState(null);
 
   const [selectedDonationInterval, setSelectedDonationInterval] =
@@ -12,7 +11,7 @@ const CalculatorContextProvider = (props) => {
   const [livesInScotland, setLivesInScotland] = useState(false);
 
   const [contributesToPension, setContributesToPension] = useState(false);
-  const [pensionformat, setPensionformat] = useState("percentage");
+  const [pensionFormat, setPensionFormat] = useState("percentage");
   const [pensionContribution, setPensionContribution] = useState(0);
 
   const [claimsAdditionalGiftAidRelief, setClaimsAdditionalGiftAidRelief] =
@@ -46,7 +45,6 @@ const CalculatorContextProvider = (props) => {
   }, [activeSelectInput]);
 
   const validateFormInputs = () => {
-    console.log("validate");
     // Restart Validation
     const validationErrors = [];
 
@@ -59,7 +57,7 @@ const CalculatorContextProvider = (props) => {
     }
 
     const isInvalidPensionPercentage =
-      pensionformat === "percentage" &&
+      pensionFormat === "percentage" &&
       (pensionContribution > 100 || pensionContribution < 0);
 
     if (isInvalidPensionPercentage) {
@@ -67,7 +65,6 @@ const CalculatorContextProvider = (props) => {
     }
 
     setValidationErrors(validationErrors);
-    console.log(validationErrors);
 
     const isValid = validationErrors.length === 0;
     return isValid;
@@ -78,7 +75,6 @@ const CalculatorContextProvider = (props) => {
       return error !== validationError;
     });
 
-    console.log(newValidationErrors);
     setValidationErrors(newValidationErrors);
     return;
   };
@@ -91,9 +87,8 @@ const CalculatorContextProvider = (props) => {
       pensionContribution,
       claimsAdditionalGiftAidRelief,
       claimsAdditionalPensionRelief,
-      selectedIncomeInterval,
       selectedDonationInterval,
-      pensionformat
+      pensionFormat,
     );
 
     setEligibilityInformation(giftAidEligibilityInformation);
@@ -103,16 +98,16 @@ const CalculatorContextProvider = (props) => {
   return (
     <CalculatorContext.Provider
       value={{
-        setSelectedIncomeInterval,
         setGrossIncome,
+        grossIncome,
         setSelectedDonationInterval,
         setDonationAmount,
         setLivesInScotland,
         livesInScotland,
         setContributesToPension,
         contributesToPension,
-        pensionformat,
-        setPensionformat,
+        pensionFormat,
+        setPensionFormat,
         setUsingAdvancedOptions,
         usingAdvancedOptions,
         claimsAdditionalGiftAidRelief,
