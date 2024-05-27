@@ -82,7 +82,7 @@ const InfoPage = () => {
                 gift aid eligibility:
                 <ul className="list-inside list-disc">
                   <li className=" leading-7">
-                    Capital gains or dividends tax Tax relief.
+                    Capital gains or dividends tax.
                   </li>
                   <li className=" leading-7">
                     Job expenses tax relief that landlords can claim.
@@ -95,9 +95,10 @@ const InfoPage = () => {
                   </li>
                 </ul>
                 <br />
-                These were not considered as they either apply to a small
-                minority of tax payers, or have little effect on the amount you
-                can donate and claim gift aid.
+                We've also assumed your yearly income is the same accross the
+                2024/2025 tax year These were not considered as they either
+                apply to a small minority of tax payers, or have little effect
+                on the amount you can donate and claim gift aid.
               </div>
             </div>
             <div className="hidden items-center justify-center desktop:flex">

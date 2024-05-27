@@ -1,4 +1,5 @@
 import { UseCalculatorContext } from "../../context/CalculatorContext";
+import { MoreInfoProvider } from "./MoreInfoProvider";
 import { ValidationMessage } from "./ValidationMessage";
 
 const IncomeSelectInput = ({
@@ -24,9 +25,17 @@ const IncomeSelectInput = ({
   return (
     <>
       <div className="flex w-full flex-col gap-4 py-4">
-        <label for={id} className="flex select-none text-lg font-bold">
-          Yearly Income Before Tax *
-        </label>
+        <div className="flex">
+          <label for={id} className="flex select-none text-lg font-bold">
+            Yearly Income Before Tax *
+          </label>
+          <MoreInfoProvider
+            title={"Yearly Income"}
+            content={
+              "This is the amount you will earn, before tax, in the 2024/2025 tax year (from 6 April 2024 to 5 April 2025)."
+            }
+          />
+        </div>
         <div
           className={`flex rounded-md border hover:border-2 hover:border-blue-550 ${
             activeSelectInput === id
