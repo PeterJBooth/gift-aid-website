@@ -65,10 +65,10 @@ const InfoPage = () => {
             </div>
           </section>
           <section
-            id="Assumptions"
+            id="assumptions-section"
             name="Assumptions"
             aria-labelledby="gift-aid-eligibility-assumptions-title"
-            className=" mx-auto mt-40  grid  max-w-10xl  items-center justify-center gap-12 px-custom desktop:grid-cols-[2fr,1fr]"
+            className=" mx-auto grid  max-w-10xl  items-center  justify-center gap-12 px-custom pt-40 desktop:grid-cols-[2fr,1fr]"
           >
             <div className="flex  flex-col gap-6">
               <h2
@@ -95,10 +95,9 @@ const InfoPage = () => {
                   </li>
                 </ul>
                 <br />
-                We've also assumed your yearly income is the same accross the
-                2024/2025 tax year These were not considered as they either
-                apply to a small minority of tax payers, or have little effect
-                on the amount you can donate and claim gift aid.
+                These were not considered as they either apply to a small
+                minority of tax payers, or have little effect on the amount you
+                can donate and claim gift aid.
               </div>
             </div>
             <div className="hidden items-center justify-center desktop:flex">

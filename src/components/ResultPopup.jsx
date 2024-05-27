@@ -6,6 +6,7 @@ import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import { useBreakdownContext } from "../context/BreakdownContext";
 import { ResultMessage } from "./ResultMessage";
 import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const ResultPopup = ({ style }) => {
   const { eligibilityInformation } = UseCalculatorContext();
@@ -58,11 +59,6 @@ const ResultPopup = ({ style }) => {
     }, 100);
   };
 
-  const handleAssumptionsClick = (e) => {
-    e.preventDefault();
-    navigate("/what-is-gift-aid#Assumptions");
-  };
-
   return (
     <animated.section
       className="result-popup-container fixed left-1/2 top-1/2 z-50 min-w-[min(30.8rem,95%)] -translate-x-1/2 -translate-y-1/2 pt-4 desktop:static "
@@ -94,16 +90,12 @@ const ResultPopup = ({ style }) => {
           </button>
           <p className=" mt-8 max-w-[27.8rem] text-xs2 leading-4 text-neutral-50  ">
             The calculation makes standard{" "}
-            <a
-              href="./what-is-gift-aid#Assumptions"
-              aria-label="Assumptions Section in the Information page of the website"
+            <HashLink
               className="font-bold underline"
-              onClick={(e) => {
-                handleAssumptionsClick(e);
-              }}
+              to="/what-is-gift-aid#assumptions-section"
             >
               assumptions
-            </a>{" "}
+            </HashLink>{" "}
             to determine how much you can gift aid. If you have any doubts, we
             recommend you reach out to the charity you wish to donate to.
           </p>
