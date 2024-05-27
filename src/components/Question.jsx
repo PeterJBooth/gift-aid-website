@@ -31,7 +31,7 @@ const Question = ({ question, answer }) => {
     <div className="flex w-full items-start gap-8">
       <img
         src={vIcon}
-        alt="Toggle"
+        alt="Toggle Icon to Expand or Close Question Answer"
         className={` mt-[0.20rem] cursor-pointer transition-all hover:opacity-70 ${isExpanded ? "v-icon" : "v-icon rotate-180"}`}
         onClick={() => {
           handleClick();

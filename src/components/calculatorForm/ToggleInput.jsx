@@ -110,10 +110,10 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
         style={style}
       >
         <div className=" flex select-none text-lg font-bold leading-5">
-          Pension Contribution
+          <label>Pension Contribution</label>
           <MoreInfoProvider
             title={"Pension Contribution"}
-            content={`If you contribute to a pension via the PAYE system, please input the monthly amount here.
+            content={`If you contribute to a pension via the PAYE system, please input the monthly amount, excluding any company contributions.
             
               This calculation assumes that you contribute to your pension from your net pay, thereby receiving tax relief on contributions from HMRC. If you are unsure whether this the case, it is recommended to enter the amount you contribute anyway.
           
@@ -167,7 +167,8 @@ const ToggleInput = ({ id, setInputValue, inputValue, style }) => {
           >
             <IoInformationCircle className="size-[0.9rem]" />
             <p>
-              Please state your <b>monthly</b> pension contribution
+              Please state your <em className="font-bold">monthly</em> pension
+              contribution
             </p>
           </animated.div>
         ) : (

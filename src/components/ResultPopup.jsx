@@ -5,6 +5,7 @@ import { usePopupContext } from "../context/PopupContext";
 import { useScreenTypeContext } from "../context/ScreenTypeContext";
 import { useBreakdownContext } from "../context/BreakdownContext";
 import { ResultMessage } from "./ResultMessage";
+import { useNavigate } from "react-router-dom";
 
 const ResultPopup = ({ style }) => {
   const { eligibilityInformation } = UseCalculatorContext();
@@ -12,10 +13,12 @@ const ResultPopup = ({ style }) => {
   const { setPopupIsActive } = usePopupContext();
   const { breakdownSectionRef, setIsVisible } = useBreakdownContext();
 
+  const navigate = useNavigate();
+
   const displayResultDescription = () => {
     if (Math.round(eligibilityInformation.giftAidDonationCap) !== 0) {
       return (
-        <div className="max-w-[19rem] leading-6 text-neutral-25">
+        <p className="max-w-[19rem] leading-6 text-neutral-25">
           {eligibilityInformation.canClaimGiftAid ? "You" : "However, you"} can
           donate up to around{" "}
           <b>
@@ -26,13 +29,13 @@ const ResultPopup = ({ style }) => {
             a {eligibilityInformation.selectedDonationInterval.toLowerCase()}
           </b>{" "}
           and still tick the gift aid box
-        </div>
+        </p>
       );
     } else {
       return (
-        <div className="max-w-[19rem] leading-6 text-neutral-25">
+        <p className="max-w-[19rem] leading-6 text-neutral-25">
           You cannot donate any amount and tick the gift aid box
-        </div>
+        </p>
       );
     }
   };
@@ -55,10 +58,16 @@ const ResultPopup = ({ style }) => {
     }, 100);
   };
 
+  const handleAssumptionsClick = (e) => {
+    e.preventDefault();
+    navigate("/what-is-gift-aid#Assumptions");
+  };
+
   return (
-    <animated.div
+    <animated.section
       className="result-popup-container fixed left-1/2 top-1/2 z-50 min-w-[min(30.8rem,95%)] -translate-x-1/2 -translate-y-1/2 pt-4 desktop:static "
       style={style}
+      aria-labelledby="result-title"
     >
       <div className="flex flex-col items-center rounded-[46px] bg-blue-700 px-8 pb-10 pt-28 text-center largePhone:px-10 largeDesktop:px-20 largeDesktop:pb-12 largeDesktop:pt-32">
         <IoMdClose
@@ -71,6 +80,7 @@ const ResultPopup = ({ style }) => {
 
         <ResultMessage
           canClaimGiftAid={eligibilityInformation.canClaimGiftAid}
+          id="result-title"
         />
         <div className="mt-14 flex flex-col items-center ">
           {displayResultDescription()}
@@ -82,14 +92,24 @@ const ResultPopup = ({ style }) => {
           >
             See Breakdown
           </button>
-          <div className=" mt-8 max-w-[27.8rem] text-xs2 leading-4 text-neutral-50  ">
-            The calculation makes standard assumptions to determine how much you
-            can gift aid. If you have any doubts, we recommend you reach out to
-            the charity you wish to donate to.
-          </div>
+          <p className=" mt-8 max-w-[27.8rem] text-xs2 leading-4 text-neutral-50  ">
+            The calculation makes standard{" "}
+            <a
+              href="./what-is-gift-aid#Assumptions"
+              aria-label="Assumptions Section in the Information page of the website"
+              className="font-bold underline"
+              onClick={(e) => {
+                handleAssumptionsClick(e);
+              }}
+            >
+              assumptions
+            </a>{" "}
+            to determine how much you can gift aid. If you have any doubts, we
+            recommend you reach out to the charity you wish to donate to.
+          </p>
         </div>
       </div>
-    </animated.div>
+    </animated.section>
   );
 };
 

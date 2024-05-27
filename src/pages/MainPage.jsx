@@ -8,8 +8,14 @@ import { PopupContextProvider } from "../context/PopupContext";
 import { BackgroundShapes } from "../components/BackgroundShapes";
 import { BreakdownSection } from "../components/breakdownSection/BreakdownSection";
 import { BreakdownContextProvider } from "../context/BreakdownContext";
+import { useEffect } from "react";
 
 const MainPage = () => {
+  useEffect(() => {
+    document.title =
+      "Gift Aid Eligibility Checker: Can I Gift Aid My Donation?";
+  }, []);
+
   return (
     <>
       <ScreenTypeContextProvider>

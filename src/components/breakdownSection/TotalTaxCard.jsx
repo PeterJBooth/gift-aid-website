@@ -122,27 +122,28 @@ const TotalTaxCard = () => {
   }, [eligibilityInformation]);
 
   return (
-    eligibilityInformation.pensionContribution != null && (
-      <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8">
-        <CardHeading
-          inputProps={inputProps}
-          inputRef={inputRef}
-          cardTitle="Total Tax Paid"
-          isExpanded={isExpanded}
-        />
+    <section
+      aria-labelledby="total-tax-paid"
+      className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8"
+    >
+      <CardHeading
+        inputProps={inputProps}
+        inputRef={inputRef}
+        cardTitle="Total Tax Paid"
+        isExpanded={isExpanded}
+      />
 
-        <TotalTaxCardContent
-          mainProps={mainProps}
-          expandedSectionRef={expandedSectionRef}
-          expandedSectionProps={expandedSectionProps}
-          insideProps={insideProps}
-          summaryInfoRef={summaryInfoRef}
-          summaryInfoProps={summaryInfoProps}
-        />
+      <TotalTaxCardContent
+        mainProps={mainProps}
+        expandedSectionRef={expandedSectionRef}
+        expandedSectionProps={expandedSectionProps}
+        insideProps={insideProps}
+        summaryInfoRef={summaryInfoRef}
+        summaryInfoProps={summaryInfoProps}
+      />
 
-        <ExpandToggle handleClick={handleClick} isExpanded={isExpanded} />
-      </div>
-    )
+      <ExpandToggle handleClick={handleClick} isExpanded={isExpanded} />
+    </section>
   );
 };
 

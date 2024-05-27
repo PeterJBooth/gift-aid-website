@@ -19,7 +19,16 @@ const Header = ({ giftAidButtonActive }) => {
     }
 
     if (!screenType.isMobile) {
-      return <GiftAidButton />;
+      return (
+        <nav>
+          <ul>
+            <li className="flex">
+              <GiftAidButton />
+            </li>
+          </ul>
+          {/* <GiftAidButton /> */}
+        </nav>
+      );
     } else {
       return (
         <>

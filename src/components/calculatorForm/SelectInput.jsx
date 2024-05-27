@@ -32,7 +32,9 @@ const SelectInput = ({
   return (
     <>
       <div className="flex w-full flex-col gap-4 py-4">
-        <p className="flex select-none text-lg font-bold">{inputTitle}</p>
+        <label for={id} className="flex select-none text-lg font-bold">
+          {inputTitle}
+        </label>
         <div className="flex">
           <div className="single-select relative z-20 rounded-l-md border border-neutral-100 bg-neutral-50 ">
             <select
@@ -46,7 +48,7 @@ const SelectInput = ({
             </select>
             <img
               src={toogleIcon}
-              alt="toggle"
+              alt="Toggle Icon To select Year or Month"
               className="select-toggle pointer-events-none absolute right-[0.1rem] top-[4%] h-[94%] w-5 overflow-hidden bg-neutral-50 pr-2"
             />
           </div>
@@ -68,6 +70,7 @@ const SelectInput = ({
               min="1"
               onChange={(e) => handleInputChange(e)}
               id={id}
+              required="true"
             ></input>
           </div>
         </div>

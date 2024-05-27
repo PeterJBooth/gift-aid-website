@@ -24,9 +24,9 @@ const IncomeSelectInput = ({
   return (
     <>
       <div className="flex w-full flex-col gap-4 py-4">
-        <p className="flex select-none text-lg font-bold">
+        <label for={id} className="flex select-none text-lg font-bold">
           Yearly Income Before Tax *
-        </p>
+        </label>
         <div
           className={`flex rounded-md border hover:border-2 hover:border-blue-550 ${
             activeSelectInput === id
@@ -41,6 +41,7 @@ const IncomeSelectInput = ({
             min="1"
             onChange={(e) => handleInputChange(e)}
             id={id}
+            required="true"
           ></input>
         </div>
       </div>
