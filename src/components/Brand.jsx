@@ -7,18 +7,21 @@ const Brand = ({ defaultSize }) => {
   const navigate = useNavigate();
   const { screenType } = useScreenTypeContext();
 
-  const handleBrandingClick = () => {
+  const handleBrandingClick = (e) => {
+    e.preventDefault();
     navigate("/");
   };
 
   return (
-    <div
+    <a
       className={`flex cursor-pointer select-none items-center gap-2 ${
         screenType.isMobile || defaultSize === "small" ? "" : "my-2 h-11"
       }`}
-      onClick={() => {
-        handleBrandingClick();
+      onClick={(e) => {
+        handleBrandingClick(e);
       }}
+      href="./"
+      aria-label="Website Home Page"
     >
       <img
         src={
@@ -26,7 +29,7 @@ const Brand = ({ defaultSize }) => {
             ? logoIconSmall
             : logoIcon
         }
-        alt="logo icon"
+        alt="Verify My Gift Aid Logo"
       />
       <div
         className={`brand-name font-roboto-slab font-black text-black  ${
@@ -37,18 +40,8 @@ const Brand = ({ defaultSize }) => {
       >
         VerifyMyGiftAid
       </div>
-    </div>
+    </a>
   );
 };
 
 export { Brand };
-
-// <div
-//   className="brand-logo-and-title small"
-//   onClick={() => {
-//     handleClick();
-//   }}
-// >
-//   <img src={logoSmall} alt="logo icon" />
-//   <div className="brand-name small">VerifyMyGiftAid</div>
-// </div>;

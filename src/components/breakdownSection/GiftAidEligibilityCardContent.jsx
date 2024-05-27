@@ -116,9 +116,9 @@ const GiftAidEligibilityCardContent = ({
   const displayFinalParagraph = () => {
     return (
       <div className="flex w-full flex-col gap-4 tablet:max-w-96 ">
-        <div className=" text-base font-bold ">
+        <h3 className=" text-base font-bold ">
           Your Tax Paid Determines Gift Aid Potential{" "}
-        </div>
+        </h3>
         <div className="flex flex-col gap-6">
           <div className="leading-7">
             {determineGiftAidReliefEligibility() ? (
@@ -205,11 +205,11 @@ const GiftAidEligibilityCardContent = ({
               </>
             )}
           </div>
-          <div className="leading-7">
+          <p className="leading-7">
             As it would{canClaimGiftAid ? " not " : " "}exceeded the total
             amount of tax paid, you {canClaimGiftAid ? " can " : " cannot "}{" "}
             tick the gift aid box.
-          </div>
+          </p>
         </div>
       </div>
     );
@@ -233,17 +233,17 @@ const GiftAidEligibilityCardContent = ({
           >
             <div className="flex w-full flex-col items-start gap-16">
               {determineGiftAidReliefEligibility() ? (
-                <div className=" max-w-[32rem]">
+                <p className=" max-w-[32rem] ">
                   The combined total of the gift aid benefit to the charity and
                   your gift aid tax relief would {canClaimGiftAid ? "not" : ""}{" "}
                   exceed the total amount of tax you have paid.
-                </div>
+                </p>
               ) : (
-                <div className=" max-w-[32rem] leading-6">
+                <p className=" max-w-[32rem] leading-6">
                   The additional amount that the charity can receive through
                   your gift aid donations would {canClaimGiftAid ? "not" : ""}{" "}
                   exceed the total amount of tax you have paid.
-                </div>
+                </p>
               )}
               <div className="flex w-full justify-center">
                 <ResultMessage
@@ -285,24 +285,24 @@ const GiftAidEligibilityCardContent = ({
                 </div>
                 <div className="flex flex-col gap-8">
                   <div className="flex w-full flex-col gap-4 tablet:max-w-96 ">
-                    <div className=" text-base font-bold ">
+                    <h3 className=" text-base font-bold ">
                       Understanding Gift Aid Benefit
-                    </div>
+                    </h3>
                     <div className="flex flex-col gap-6">
-                      <div className="leading-7">
+                      <p className="leading-7">
                         For a £100 donation, the charity can claim an additional
                         £25 through gift aid, making your donation worth £125 to
                         the charity.
-                      </div>
+                      </p>
                       {determineGiftAidReliefEligibility() && (
-                        <div className="leading-7">
+                        <p className="leading-7">
                           As an additional rate tax payer who has claimed
                           additional tax relief on gift aid donations, you would
                           also receive an extra £{displayExampleExtraRelief()}{" "}
                           in tax relief.
-                        </div>
+                        </p>
                       )}
-                      <div className="leading-7">
+                      <p className="leading-7">
                         For your donation of{" "}
                         <span className=" font-bold text-blue-700">
                           £{addCommasToNumber(donationAmount)},
@@ -323,7 +323,7 @@ const GiftAidEligibilityCardContent = ({
                         ) : (
                           "."
                         )}
-                      </div>
+                      </p>
                     </div>
                   </div>
                   {screenType.isMobile ? "" : displayFinalParagraph()}

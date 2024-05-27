@@ -33,7 +33,13 @@ const CheckboxInput = ({
         )}
       </div>
       <div className="leading-0 flex max-w-[calc(100%-39px)] select-none text-lg font-bold leading-5">
-        {title}
+        <div
+          onClick={() => {
+            clickCheckbox();
+          }}
+        >
+          {title}
+        </div>
         {informationBox && (
           <MoreInfoProvider
             title={informationBox.title}

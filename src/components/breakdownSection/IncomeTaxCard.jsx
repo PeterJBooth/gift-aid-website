@@ -117,7 +117,10 @@ const IncomeTaxCard = () => {
   }, [eligibilityInformation]);
 
   return (
-    <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8">
+    <section
+      aria-labelledby="income-tax"
+      className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8"
+    >
       <CardHeading
         inputProps={inputProps}
         inputRef={inputRef}
@@ -135,7 +138,7 @@ const IncomeTaxCard = () => {
         summaryInfoProps={summaryInfoProps}
       />
       <ExpandToggle handleClick={handleClick} isExpanded={isExpanded} />
-    </div>
+    </section>
   );
 };
 

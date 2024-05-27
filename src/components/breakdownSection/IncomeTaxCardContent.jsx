@@ -124,7 +124,7 @@ const IncomeTaxCardContent = ({
           </animated.div>
           <animated.div style={{ ...expandedSectionProps }}>
             <div className=" flex w-full flex-col gap-8 ">
-              <div>The table shows the tax rates you pay in each tax band.</div>
+              <p>The table shows the tax rates you pay in each tax band.</p>
               <div className="shadow-custom5 overflow-x-auto rounded-md tablet:shadow-none">
                 <table className="w-full min-w-[41rem] overflow-scroll overflow-x-auto rounded-md   tablet:table-fixed">
                   <thead>

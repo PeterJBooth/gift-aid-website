@@ -122,7 +122,10 @@ const GiftAidEligibilityCard = () => {
   }, [eligibilityInformation]);
 
   return (
-    <div className=" shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8">
+    <section
+      aria-label="gift-aid-eligibility"
+      className="shadow-custom3 relative flex flex-col gap-8 rounded-3xl bg-white px-5 pb-6 pt-10 largePhone:px-8"
+    >
       <CardHeading
         inputProps={inputProps}
         inputRef={inputRef}
@@ -143,7 +146,7 @@ const GiftAidEligibilityCard = () => {
       />
 
       <ExpandToggle handleClick={handleClick} isExpanded={isExpanded} />
-    </div>
+    </section>
   );
 };
 

@@ -4,36 +4,53 @@ import { ScreenTypeContextProvider } from "../context/ScreenTypeContext";
 import donationIcon from "../assets/info-page/donation-icon.svg";
 import assumptionIcon from "../assets/info-page/assumption.png";
 import { Question } from "../components/Question";
+import { useEffect } from "react";
 
 const InfoPage = () => {
+  useEffect(() => {
+    document.title = "Gift Aid Eligibility Checker: What is Gift Aid?";
+  }, []);
+
   return (
     <>
       <ScreenTypeContextProvider>
         <Header giftAidButtonActive={false} />
         <main>
-          <div className="m-auto mt-40 max-w-10xl px-custom">
+          <section
+            aria-labelledby="what-is-gift-aid-title"
+            className="m-auto mt-40 max-w-10xl px-custom"
+          >
             <div className=" flex max-w-[30rem] flex-col gap-6">
-              <div className="text-[40px] font-black tracking-[-1.1px] largePhone:text-[55px]">
+              <h1
+                id="what-is-gift-aid-title"
+                className="text-[40px] font-black tracking-[-1.1px] largePhone:text-[55px]"
+              >
                 What Is Gift Aid?
-              </div>
-              <div className="leading-7">
+              </h1>
+              <p className="leading-7">
                 Gift Aid is a UK government scheme that allows charities to
                 reclaim the basic rate of tax on donations made by taxpayers,
                 increasing the value of the donation at no extra cost to the
                 donor.
-              </div>
+              </p>
             </div>
-          </div>
-          <div className="mt-40  flex min-h-[22rem] items-center justify-center bg-blue-50 px-custom  desktop:px-12">
+          </section>
+          <section
+            aria-labelledby="how-does-gift-aid-work-title"
+            className="mt-40  flex min-h-[22rem] items-center justify-center bg-blue-50 px-custom  desktop:px-12"
+          >
             <div className="flex w-full flex-col items-center justify-center desktop:flex-row">
               <div className=" flex items-center justify-center pr-8 pt-8 desktop:w-1/2 desktop:pt-0">
-                <img src={donationIcon} alt="Donation Icon" />
+                <img src={donationIcon} alt="Hand putting a coin in a box" />
               </div>
               <div className="flex flex-col gap-6 py-12 desktop:w-1/2">
-                <div className="text-3xl font-bold">
+                <h2
+                  id="how-does-gift-aid-work-title"
+                  className="text-3xl font-bold"
+                >
                   How Does Gift Aid work?
-                </div>
-                <div className="leading-7">
+                </h2>
+                <p className="leading-7">
                   When a taxpayer makes a donation, the charity can reclaim 25p
                   for every £1 donated, boosting the donation by 25%.
                   <br />
@@ -43,22 +60,29 @@ const InfoPage = () => {
                   reclaimed by the charity, as well as any tax relief received,
                   can claim Gift Aid. In short, the charity can only reclaim tax
                   money which you have paid.
-                </div>
+                </p>
               </div>
             </div>
-          </div>
-
-          <div className=" mx-auto mt-40  grid  max-w-10xl  items-center justify-center gap-12 px-custom desktop:grid-cols-[2fr,1fr]">
+          </section>
+          <section
+            id="Assumptions"
+            name="Assumptions"
+            aria-labelledby="gift-aid-eligibility-assumptions-title"
+            className=" mx-auto mt-40  grid  max-w-10xl  items-center justify-center gap-12 px-custom desktop:grid-cols-[2fr,1fr]"
+          >
             <div className="flex  flex-col gap-6">
-              <div className="text-3xl font-bold">
+              <h2
+                id="gift-aid-eligibility-assumptions-title"
+                className="text-3xl font-bold"
+              >
                 Some Assumptions Made When Determining Gift Aid Eligibility...
-              </div>
+              </h2>
               <div className="max-w-[50rem] leading-7">
                 For simplicity the following was not considered when determining
                 gift aid eligibility:
                 <ul className="list-inside list-disc">
                   <li className=" leading-7">
-                    Capital gains or dividends tax Tax relief.
+                    Capital gains or dividends tax.
                   </li>
                   <li className=" leading-7">
                     Job expenses tax relief that landlords can claim.
@@ -71,24 +95,30 @@ const InfoPage = () => {
                   </li>
                 </ul>
                 <br />
-                These were not considered as they either apply to a small
-                minority of tax payers, or have little effect on the amount you
-                can donate and claim gift aid.
+                We've also assumed your yearly income is the same accross the
+                2024/2025 tax year These were not considered as they either
+                apply to a small minority of tax payers, or have little effect
+                on the amount you can donate and claim gift aid.
               </div>
             </div>
             <div className="hidden items-center justify-center desktop:flex">
               <img
                 src={assumptionIcon}
                 className=" mb-4 w-64"
-                alt="Assumption Icon"
+                alt="Head with a question mark above it"
               />
             </div>
-          </div>
-
-          <div className=" mx-auto mb-40 mt-52 box-content flex max-w-[35rem] flex-col items-center justify-center gap-12 px-10 largeDesktop:max-w-[45rem]">
-            <div className=" text-2xl font-bold  largePhone:text-3xl">
+          </section>
+          <section
+            aria-labelledby="frequently-asked-questions-title"
+            className=" mx-auto mb-40 mt-52 box-content flex max-w-[35rem] flex-col items-center justify-center gap-12 px-10 largeDesktop:max-w-[45rem]"
+          >
+            <h2
+              id="frequently-asked-questions-title"
+              className=" text-2xl font-bold  largePhone:text-3xl"
+            >
               Frequently Asked Question
-            </div>
+            </h2>
             <hr className="h-px w-full border-none bg-neutral-200" />
 
             <div className="flex w-full flex-col gap-12 px-4 largeDesktop:px-16">
@@ -131,14 +161,14 @@ const InfoPage = () => {
               />
             </div>
             <hr className="h-px w-full border-none bg-neutral-200" />
-            <div className="text-center leading-7">
+            <p className="text-center leading-7">
               If you still find yourself uncertain about Gift Aid or have
               questions regarding its application to your specific situation, we
               recommend reaching out to the charity you are donating to for
               guidance. Charities often have dedicated teams to assist donors
               with Gift Aid queries.
-            </div>
-          </div>
+            </p>
+          </section>
         </main>
         <Footer />
       </ScreenTypeContextProvider>

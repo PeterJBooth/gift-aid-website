@@ -5,7 +5,7 @@ const Footer = () => {
   const { screenType } = useScreenTypeContext();
 
   return (
-    <div className="mx-auto mb-8 mt-auto flex w-full max-w-10xl flex-col gap-6 px-custom">
+    <footer className="mx-auto mb-8 mt-auto flex w-full max-w-10xl flex-col gap-6 px-custom">
       <hr className=" h-px border-none bg-neutral-200" />
       <div className="flex items-end justify-between gap-4">
         <div className="flex  w-full flex-col gap-6 tablet:w-auto tablet:flex-row tablet:items-end">
@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="text-xs2 leading-4">United Kingdom</div>
         )}
       </div>
-    </div>
+    </footer>
   );
 };
 
