@@ -37,15 +37,18 @@ const SelectInput = ({
         </label>
         <div className="flex">
           <div className="single-select relative z-20 rounded-l-md border border-neutral-100 bg-neutral-50 ">
-            <select
-              className="cursor-pointer rounded-l-md bg-neutral-50 py-4 pl-2 pr-5 text-center text-sm font-bold text-neutral-700"
-              onChange={(e) => {
-                handleOptionChange(e);
-              }}
-            >
-              <option>Year</option>
-              <option>Month</option>
-            </select>
+            <div className="">
+              <select
+                className="my-4 cursor-pointer appearance-none rounded-l-md bg-neutral-50 pl-3 pr-9 text-center text-sm font-bold text-neutral-700 outline-none	"
+                onChange={(e) => {
+                  handleOptionChange(e);
+                }}
+              >
+                <option>Year</option>
+                <option>Month</option>
+              </select>{" "}
+            </div>
+
             <img
               src={toogleIcon}
               alt="Toggle Icon To select Year or Month"
